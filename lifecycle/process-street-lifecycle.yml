@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  API reference (public-api.process.st) + status page probe. Versioning derived
+  from the OpenAPI server URL.
+versioning:
+  scheme: uri-path
+  current: v1.1
+  base: https://public-api.process.st/api/v1.1
+  docs: https://public-api.process.st/api/v1.1/docs/index.html
+status_page: https://status.process.st/
+status_page_provider: Atlassian Statuspage
+retries:
+  note: >-
+    GET safe to retry on any error; PUT idempotent and safe to retry on 5xx;
+    DELETE idempotent. Honor Retry-After on 429.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: >-
+    No dedicated public deprecation/sunset policy page was found; the API is on
+    a single versioned path (v1.1). No operations are marked deprecated in the
+    OpenAPI.
+deprecated_operations: []

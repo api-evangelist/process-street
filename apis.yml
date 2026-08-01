@@ -1,8 +1,21 @@
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
 aid: process-street
 name: Process Street
-description: 'Process Street is a company surfaced as a portfolio company of accel and added to the API
-  Evangelist network as a stub for enrichment. Sector: productivity. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Process Street is a no-code workflow and process management platform for
+  building, running, and automating recurring team processes as workflows
+  (reusable templates) and workflow runs (checklists). Its REST Public API is
+  organized around resource-oriented URLs, accepts and returns JSON, and covers
+  workflows, workflow runs, tasks, form fields and values, pages, folders, data
+  sets, users, one-off tasks, scheduled workflows, comments, attachments,
+  outgoing webhooks, and incoming (data set + workflow) webhooks. Authentication
+  is via an X-API-KEY header; results paginate through an opaque cursor with
+  HATEOAS next links; and a hosted Model Context Protocol (MCP) server exposes
+  most endpoints as tools for AI agents.
 url: https://raw.githubusercontent.com/api-evangelist/process-street/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +23,992 @@ x-backed-by:
 - accel
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.process.st/wp-content/uploads/2020/09/process-street-logo.png
 tags:
 - Company
 - Productivity
-apis: []
+- Workflow
+- Workflow Automation
+- Process Management
+- No-Code
+- Business Process
+- Task Management
+- SaaS
+- MCP
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: process-street:process-street-attachments-api
+  name: Process Street Attachments API
+  description: >-
+    An attachment is a file uploaded to a task within a workflow run.
+
+    Use these endpoints to list, upload, and delete task-level attachments.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-attachments-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-comments-api
+  name: Process Street Comments API
+  description: >-
+    A comment is a discussion message on a task within a workflow run.
+
+    Use these endpoints to create, list, update, and delete comments.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-comments-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-data-set-incoming-webhooks-api
+  name: Process Street Data Set Incoming Webhooks API
+  description: >-
+    An incoming webhook triggers data set row creation or updates from external systems.
+
+    Use these endpoints to create, view, update, and delete incoming webhooks for a data set.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Data Set Incoming Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-data-set-incoming-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-data-sets-api
+  name: Process Street Data Sets API
+  description: >-
+    A data set is a structured collection of records that can be linked to
+
+    workflow form fields. Use these endpoints to manage data sets and their
+
+    records.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Data Sets
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-data-sets-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-file-uploads-api
+  name: Process Street File Uploads API
+  description: >-
+    A file upload is a two-step upload for large files. Create one to get an upload URL and a
+
+    `fileUploadId`, send the file's bytes to that URL, then attach the upload to a target (form field
+
+    value, attachment, or page/workflow widget) via that target's `/upload` endpoint. The `fileUploadId`
+
+    is single-use — attaching it consumes it.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - File Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-file-uploads-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-folders-api
+  name: Process Street Folders API
+  description: >-
+    A folder organizes workflows, pages, and other templates within your organization.
+
+    Use these endpoints to create and manage folders.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-folders-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-form-field-values-api
+  name: Process Street Form Field Values API
+  description: >-
+    A form field value is the data entered into a form field within a workflow
+
+    run. Use these endpoints to read and update form field values for a specific
+
+    workflow run.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Form Field Values
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-form-field-values-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-form-fields-api
+  name: Process Street Form Fields API
+  description: >-
+    A form field is a data-collection element defined on a workflow template.
+
+    Use these endpoints to inspect the form fields and their available options
+
+    on a workflow.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Form Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-form-fields-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-my-work-api
+  name: Process Street My Work API
+  description: >-
+    My Work is your personal task inbox — a consolidated view of all tasks and checklist items
+
+    assigned to you across all workflows. Use these endpoints to list, search, and manage
+
+    your assigned work items.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - My Work
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-my-work-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-one-off-tasks-api
+  name: Process Street One-Off Tasks API
+  description: >-
+    A one-off task is a standalone task that can optionally be linked to a
+
+    workflow run. Use these endpoints to create, view, and manage one-off tasks.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - One-Off Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-one-off-tasks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-page-revisions-api
+  name: Process Street Page Revisions API
+  description: >-
+    A page revision is a versioned snapshot of a page's content.
+
+    Use these endpoints to list, inspect, and manage revisions.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Page Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-page-revisions-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-page-widgets-api
+  name: Process Street Page Widgets API
+  description: >-
+    A page widget is a content element (text, image, video, file, embed, cross-link, or table)
+
+    on a page revision. Use these endpoints to create and manage widgets on draft revisions.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Page Widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-page-widgets-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-pages-api
+  name: Process Street Pages API
+  description: >-
+    A page is a document template for sharing information. Use these endpoints
+
+    to create and manage pages.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-pages-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-scheduled-workflows-api
+  name: Process Street Scheduled Workflows API
+  description: >-
+    A scheduled workflow is a recurring schedule that automatically creates workflow runs.
+
+    Use these endpoints to list scheduled workflows and their recurrence rules.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Scheduled Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-scheduled-workflows-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-tasks-api
+  name: Process Street Tasks API
+  description: >-
+    A task is a step within a workflow run. Tasks can be checked off, assigned
+
+    to users, and may contain form fields for collecting data. Use these endpoints
+
+    to view and update tasks within a workflow run.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-tasks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-users-api
+  name: Process Street Users API
+  description: These endpoints let you list the users in your organization.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-users-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-utilities-api
+  name: Process Street Utilities API
+  description: Helper endpoints for testing authentication and checking rate limits.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-utilities-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-webhooks-api
+  name: Process Street Webhooks API
+  description: >-
+    A webhook delivers real-time notifications to your application when events
+
+    occur in Process Street. Use these endpoints to create and manage webhook
+
+    subscriptions.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-due-date-rules-api
+  name: Process Street Workflow Due Date Rules API
+  description: >-
+    A workflow due date rule defines how the checklist-level due date is calculated
+
+    for workflow runs — either relative to the run's start date or derived from a
+
+    Date form field value. Use these endpoints to set or clear the checklist due
+
+    date rule on a draft workflow revision.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Due Date Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-due-date-rules-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-incoming-webhooks-api
+  name: Process Street Workflow Incoming Webhooks API
+  description: >-
+    An incoming webhook triggers workflow runs from external systems.
+
+    Use these endpoints to create, view, update, and delete incoming webhooks for a workflow.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Incoming Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-incoming-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-logic-rules-api
+  name: Process Street Workflow Logic Rules API
+  description: >-
+    Workflow logic rules are conditional rules that control the visibility of tasks
+
+    and form fields within a workflow revision. Use these endpoints to create, view,
+
+    and manage logic rules.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Logic Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-logic-rules-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-revisions-api
+  name: Process Street Workflow Revisions API
+  description: >-
+    A workflow revision is a versioned snapshot of a workflow's structure.
+
+    Use these endpoints to list, inspect, and manage revisions.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-revisions-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-runs-api
+  name: Process Street Workflow Runs API
+  description: >-
+    A workflow run is an active instance of a workflow. Each run tracks its own
+
+    progress, assignees, and form field values as it moves through the process.
+
+    Use these endpoints to create, update, and manage workflow runs.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-runs-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-task-assignment-rules-api
+  name: Process Street Workflow Task Assignment Rules API
+  description: >-
+    A workflow task assignment rule assigns a task template on a draft workflow
+
+    revision to a specific user (static) or derives assignees from a source such
+
+    as the workflow run initiator, a Members form field, or the source document's
+
+    owner/author (dynamic). Use these endpoints to replace the full set of
+
+    assignment rules on a task template.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Task Assignment Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-task-assignment-rules-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-task-due-date-rules-api
+  name: Process Street Workflow Task Due Date Rules API
+  description: >-
+    A task due date rule defines how an individual task's due date is calculated
+
+    within a workflow run — relative to the run's start/due date, a form field
+
+    value, or another task. Use these endpoints to set or clear the due date rule
+
+    on a task within a draft workflow revision.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Task Due Date Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-task-due-date-rules-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-tasks-api
+  name: Process Street Workflow Tasks API
+  description: >-
+    A workflow task is a task template within a workflow revision.
+
+    Use these endpoints to create, view, update, and delete task templates
+
+    on draft revisions.
+
+
+    > 💡 Notes for MCP clients:
+
+    > - Don't prefix task names with numbers — the UI already shows a position next to each task and order
+    can change.
+
+    > - Consider adding content widgets with instructions, context, or guidance to make processes easier
+    to follow.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-tasks-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflow-widgets-api
+  name: Process Street Workflow Widgets API
+  description: >-
+    A workflow widget is a form field or content element on a task within a workflow revision.
+
+    Use these endpoints to create and manage widgets on draft revisions.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflow Widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflow-widgets-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-workflows-api
+  name: Process Street Workflows API
+  description: >-
+    A workflow is a reusable process template that defines the structure, tasks,
+
+    and form fields for a repeatable process. Use these endpoints to browse and
+
+    inspect your organization's workflows.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-workflows-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
 common:
+- type: TrustCenter
+  url: security/process-street-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/process-street-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.process.st/responsible-disclosure/
+- type: Compliance
+  url: https://www.process.st/security/
 - type: Website
-  url: http://www.process.st
+  url: https://www.process.st/
+- type: DeveloperPortal
+  url: https://public-api.process.st/api/v1.1/docs/index.html
+- type: Documentation
+  url: https://www.process.st/help/
+- type: APIReference
+  url: https://public-api.process.st/api/v1.1/docs/index.html
+- type: MCPServer
+  url: mcp/process-street-mcp.yml
+- type: Authentication
+  url: authentication/process-street-authentication.yml
+- type: StatusPage
+  url: https://status.process.st/
+- type: Blog
+  url: https://www.process.st/blog/
+- type: Support
+  url: https://www.process.st/help/
+- type: Pricing
+  url: https://www.process.st/pricing/
+- type: SignUp
+  url: https://app.process.st/organizations/create
+- type: Login
+  url: https://app.process.st/login
+- type: TermsOfService
+  url: https://www.process.st/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.process.st/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/process-street
+- type: LLMsTxt
+  url: llms/process-street-llms.txt
+- type: Packages
+  url: packages/process-street-packages.yml
+- type: DomainSecurity
+  url: security/process-street-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml

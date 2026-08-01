@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  npm registry search + pkg.go.dev/PyPI probes. Process Street publishes no
+  first-party REST API client SDK. It maintains first-party utility libraries
+  under the process-street GitHub/npm org; third-party integration nodes exist
+  for n8n and Pipedream.
+packages:
+- language: javascript
+  registry: npm
+  name: node-muid
+  url: https://www.npmjs.com/package/node-muid
+  repository: https://github.com/process-street/muid.js
+  install: npm install node-muid
+  official: true
+  note: >-
+    First-party utility for converting between UUIDs and Process Street's
+    22-character URL-safe Muid resource IDs. Not a full API client SDK.
+- language: javascript
+  registry: npm
+  name: n8n-nodes-process-street
+  url: https://www.npmjs.com/package/n8n-nodes-process-street
+  repository: https://github.com/wwelti/n8n-nodes-process-street
+  install: npm install n8n-nodes-process-street
+  official: false
+  note: Community n8n node for Process Street workflow automation.
+- language: javascript
+  registry: npm
+  name: "@pipedream/process_street"
+  url: https://www.npmjs.com/package/@pipedream/process_street
+  install: npm install @pipedream/process_street
+  official: false
+  note: Pipedream integration components for Process Street.

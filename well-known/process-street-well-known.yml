@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: probe of /.well-known/* on Process Street hosts
+note: >-
+  No /.well-known/ discovery documents are published on the API host
+  (public-api.process.st returns 401/403 for unauthenticated /.well-known/
+  paths) or the marketing host (www.process.st returns 404). The app host
+  (app.process.st) returns an HTML SPA for /.well-known/openid-configuration,
+  not a valid OIDC discovery document, so it is not indexed. Absence is valid
+  recorded data.
+hosts:
+- host: https://public-api.process.st
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://www.process.st
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404

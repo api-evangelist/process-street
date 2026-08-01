@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: generated
+source: >-
+  Grounded in real operationIds from
+  openapi/process-street-openapi-original.json plus
+  conventions/process-street-conventions.yml and
+  errors/process-street-error-codes.yml.
+skills:
+- file: process-street-run-a-workflow.md
+  name: Run a Process Street workflow
+  api: openapi/process-street-openapi-original.json
+  operations: [listWorkflows, getWorkflow, createWorkflowRun, getWorkflowRun]
+- file: process-street-complete-run-tasks.md
+  name: Complete tasks and fill form fields on a workflow run
+  api: openapi/process-street-openapi-original.json
+  operations: [getWorkflowRun, listTasks, assignTask, batchUpdateFormFieldValues, updateTask]
+- file: process-street-subscribe-events.md
+  name: Subscribe to Process Street events with a webhook
+  api: openapi/process-street-openapi-original.json
+  operations: [createWebhook, listWebhooks, getWebhook, updateWebhook, deleteWebhook]

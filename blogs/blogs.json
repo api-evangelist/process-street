@@ -1,0 +1,14 @@
+{
+  "repo": "process-street",
+  "feeds": [
+    {
+      "source": "https://status.process.st/",
+      "feed_url": "https://status.process.st/history.atom",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://www.process.st/help/docs/mcp-server/
+server:
+  name: process-street
+  transport: http
+  url: https://mcp.process.st/
+  docs: https://www.process.st/help/docs/mcp-server/
+description: >-
+  Official hosted Model Context Protocol server that lets AI assistants and
+  other MCP clients access Process Street workflows, workflow runs, tasks,
+  users, and data sets. The endpoint (https://mcp.process.st/) confirms itself:
+  "This is the Process Street MCP server. Point your MCP client at this URL to
+  set up MCP functionality." The server supports most Process Street Public API
+  endpoints as tools; access is scoped to the permissions of the authenticating
+  user (Admins, Builders, Users). Not available to organizations with SAML SSO
+  enabled at this time.
+authentication:
+  method: process-street-login
+  note: >-
+    Authenticated with the connecting user's Process Street login credentials
+    via the chosen AI platform; each user can only interact with resources they
+    have permission to.
+clients:
+- Claude (claude.ai)
+- ChatGPT (Pro, Team, Business, Enterprise, Edu)
+- Microsoft Copilot Studio
+- Other MCP-compatible applications
+capabilities:
+- Create and manage workflow runs
+- Assign tasks
+- Generate reports
+- Query and analyze workflows, workflow runs, tasks, users, and data sets
+tools_note: >-
+  The server exposes most of the 150 Public API operations as tools; the
+  provider does not publish a fixed per-tool manifest, so tool names are not
+  enumerated here. See openapi/process-street-openapi-original.json for the
+  underlying operation surface.

@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  openapi/process-street-openapi-original.json (Webhooks, Workflow Incoming
+  Webhooks, Data Set Incoming Webhooks tags) + API reference.
+spec_type: Webhooks
+note: >-
+  Process Street publishes no AsyncAPI document. It documents an HTTP webhook
+  surface with two directions: outgoing webhooks (Process Street calls your URL
+  when task/workflow-run events fire) and incoming webhooks (external systems
+  POST to a Process Street URL to start workflow runs or write data-set rows).
+outgoing:
+  description: >-
+    Subscribe a target URL to workflow/task events. Managed via the Webhooks
+    endpoints; each subscription has a url, status, and a set of triggers.
+  management_operations:
+  - listWebhooks
+  - createWebhook
+  - getWebhook
+  - updateWebhook
+  - deleteWebhook
+  events:
+  - id: TaskChecked
+    description: A task was checked off (marked complete).
+  - id: TaskUnchecked
+    description: A previously checked task was unchecked.
+  - id: TaskCheckedUnchecked
+    description: Fires for either check or uncheck (single subscription for both).
+  - id: TaskReady
+    description: A task became ready to work on (no longer hidden or blocked by a stop task).
+  - id: WorkflowRunCreated
+    description: A new workflow run was created.
+  - id: WorkflowRunCompleted
+    description: A workflow run was marked complete.
+incoming:
+  workflow:
+    description: >-
+      Inbound webhook URLs that start/advance workflow runs from external
+      automation apps. Lifecycle status Active/Disabled/Deleted.
+    operations:
+    - listWorkflowIncomingWebhooks
+    - createWorkflowIncomingWebhook
+    - getWorkflowIncomingWebhook
+    - updateWorkflowIncomingWebhook
+    - deleteWorkflowIncomingWebhook
+  data_set:
+    description: >-
+      Inbound webhook URLs that write rows into a data set. Lifecycle status
+      Active/Disabled/Deleted.
+    operations:
+    - listDataSetIncomingWebhooks
+    - createDataSetIncomingWebhook
+    - getDataSetIncomingWebhook
+    - updateDataSetIncomingWebhook
+    - deleteDataSetIncomingWebhook

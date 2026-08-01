@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Process Street Public API
+  version: 1.0.0
+extends: openapi/process-street-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-artifacts:
+      authentication: authentication/process-street-authentication.yml
+      conventions: conventions/process-street-conventions.yml
+      errors: errors/process-street-error-codes.yml
+      data-model: data-model/process-street-data-model.yml
+      webhooks: asyncapi/process-street-webhooks.yml
+      mcp: mcp/process-street-mcp.yml
+      agentic-access: agentic-access/process-street-agentic-access.yml
+      lifecycle: lifecycle/process-street-lifecycle.yml
+      conformance: conformance/process-street-conformance.yml
+- target: $.info
+  update:
+    x-apievangelist-conventions:
+      pagination: cursor "_" with HATEOAS next links
+      idempotency: PUT/DELETE idempotent; createWorkflowRun deduped via referenceId
+      error-envelope: error/errorCode/requestId/details (branch on errorCode)
+      ids: 22-char opaque Muid
+      rate-limits: 429 + Retry-After
+- target: $.info
+  update:
+    x-apievangelist-mcp-server: https://mcp.process.st/

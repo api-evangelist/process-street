@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/process-street-openapi-original.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  sources:
+  - openapi/process-street-openapi-original.json
+- name: httpAuth
+  type: http
+  scheme: bearer
+  description: Bearer token (beta)
+  sources:
+  - openapi/process-street-openapi-original.json

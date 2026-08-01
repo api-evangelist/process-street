@@ -1,0 +1,82 @@
+generated: '2026-07-20'
+method: searched
+source: https://public-api.process.st/api/v1.1/docs/index.html
+description: >-
+  Cross-cutting request/response semantics for the Process Street Public API,
+  captured from the OpenAPI description and reference. Cross-links
+  authentication/, errors/, and lifecycle/.
+authentication:
+  style: api-key-header
+  header: X-API-KEY
+  note: >-
+    Every request must include an API key as X-API-KEY. Keys are generated in
+    organization settings and carry the permissions of the creating user. A
+    Bearer-token http scheme (httpAuth) is available in beta.
+idempotency:
+  supported: true
+  mechanism: >-
+    PUT and DELETE are idempotent (repeating a call is equivalent to calling
+    once; deleting an already-deleted resource returns 404, safe to ignore).
+    GET is safe to retry on any error. POST is generally NOT safe to blindly
+    retry.
+  dedupe_key:
+    field: referenceId
+    scope: createWorkflowRun
+    behavior: >-
+      Attaching a referenceId when creating a workflow run makes create
+      idempotent: calling createWorkflowRun twice with the same referenceId
+      returns the existing run instead of creating a duplicate.
+  retry_guidance: Safe to retry PUT on 5xx; honor Retry-After on 429.
+pagination:
+  style: cursor
+  cursor_param: '_'
+  mechanism: >-
+    List endpoints page through results using an opaque cursor named "_" (a
+    single underscore). Call the list endpoint without "_" for the first page.
+    Each response includes a links[] array; a link with name "next" carries a
+    fully-formed href URL to GET directly. Follow next.href until it is absent.
+    The "_" value may also be reused as a query parameter, but following the
+    href is simpler and forward-compatible.
+  response_fields:
+  - data
+  - links
+hateoas:
+  supported: true
+  note: >-
+    Responses carry a links[] array of HATEOAS links; each entry has a name
+    (RFC-5988 relation), an href URL, and a type (Api or App). Use them to
+    navigate between resources without constructing URLs by hand.
+ids:
+  format: Muid
+  note: >-
+    All resource IDs are opaque 22-character URL-safe strings (Muids, a
+    base64-encoded UUID). Treat as opaque tokens; do not parse, sort, or assume
+    structure. Compare with plain string equality. First-party node-muid
+    package converts between UUIDs and Muids.
+dates:
+  format: ISO-8601
+  timezone: UTC
+  precision: milliseconds
+  example: '2024-09-15T14:32:00.000Z'
+  date_only: calendar date (e.g. 2024-09-15) for due-date fields
+request_tracing:
+  field: requestId
+  note: >-
+    Error responses from the public API exception handler include a requestId;
+    include it when contacting support so the request can be found in logs.
+versioning:
+  scheme: uri-path
+  current: v1.1
+  base: https://public-api.process.st/api/v1.1
+error_envelope:
+  shape:
+    error: human-readable message (do not parse programmatically)
+    errorCode: machine-parsable classification (branch on this)
+    requestId: correlation id for support
+    details: optional structured context (field paths for Validation errors)
+  reference: errors/process-street-error-codes.yml
+rate_limiting:
+  signal: 429 status with Retry-After header
+  guidance: >-
+    On 429, wait the duration in the Retry-After header before retrying.
+  reference: lifecycle/process-street-lifecycle.yml

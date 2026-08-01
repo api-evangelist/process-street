@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  openapi/process-street-openapi-original.json + API reference description +
+  security/trust-center probe.
+standards:
+- id: rest
+  conforms: true
+  evidence: Resource-oriented URLs, JSON bodies, standard HTTP verbs and status codes.
+- id: openapi-3.1
+  conforms: true
+  evidence: Published OpenAPI 3.1.0 document with 150 operations and 358 schemas.
+- id: apikey-auth
+  conforms: true
+  evidence: securitySchemes apiKeyAuth (X-API-Key header).
+- id: http-bearer
+  conforms: true
+  evidence: securitySchemes httpAuth (bearer, beta).
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme declared.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a custom JSON envelope (error/errorCode/requestId/details), not
+    application/problem+json.
+- id: cursor-pagination
+  conforms: true
+  evidence: Opaque cursor "_" with HATEOAS next links (links[]).
+- id: hateoas
+  conforms: true
+  evidence: Responses carry RFC-5988 relation links in a links[] array.
+- id: idempotency
+  conforms: true
+  evidence: >-
+    PUT/DELETE idempotent; createWorkflowRun deduped via referenceId.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No documented Sunset/Deprecation header support.
+- id: webhooks
+  conforms: true
+  evidence: Outgoing webhooks with event triggers; incoming webhooks for workflows and data sets.
+- id: soc2
+  conforms: true
+  evidence: SOC 2 listed on https://www.process.st/security/
+- id: iso27001
+  conforms: true
+  evidence: ISO 27001 listed on https://www.process.st/security/
+- id: hipaa
+  conforms: true
+  evidence: HIPAA listed on https://www.process.st/security/
+- id: gdpr
+  conforms: true
+  evidence: GDPR listed on https://www.process.st/security/

@@ -1,0 +1,135 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  openapi/process-street-openapi-original.json — entity graph derived from
+  PublicApi* schemas and their id-reference fields.
+id_format:
+  type: Muid
+  note: 22-character URL-safe opaque IDs (base64-encoded UUID); no per-entity prefixes.
+entities:
+- name: Workflow
+  schema: PublicApiWorkflow
+  description: Reusable process template (playbook) — tasks, form fields, logic, automations.
+- name: WorkflowRun
+  schema: PublicApiWorkflowRun
+  description: One instance (checklist) of running a Workflow.
+- name: WorkflowRevision
+  schema: PublicApiWorkflowRevision
+  description: Versioned snapshot of a Workflow.
+- name: Task
+  schema: PublicApiTask
+  description: A task inside a workflow run.
+- name: TaskTemplate
+  schema: PublicApiTaskTemplate
+  description: A task definition on a Workflow template.
+- name: FormFieldValue
+  schema: PublicApiFormFieldWidget
+  description: A form field / widget on a task.
+- name: Page
+  schema: PublicApiPage
+  description: Standalone content document (no tasks/form fields).
+- name: PageRevision
+  schema: PublicApiPageRevision
+  description: Versioned snapshot of a Page.
+- name: Folder
+  schema: PublicApiFolder
+  description: Organizational container for workflows and pages.
+- name: DataSet
+  schema: PublicApiDataSet
+  description: Structured reference data table.
+- name: DataSetIncomingWebhook
+  schema: PublicApiDataSetIncomingWebhook
+  description: Incoming webhook that writes into a data set.
+- name: IncomingWebhook
+  schema: PublicApiIncomingWebhook
+  description: Incoming webhook that triggers a workflow run.
+- name: Webhook
+  schema: PublicApiWebhook
+  description: Outgoing webhook subscription for task/workflow-run events.
+- name: ScheduledWorkflow
+  schema: PublicApiScheduledWorkflow
+  description: A schedule that starts workflow runs.
+- name: OneOffTask
+  schema: PublicApiOneOffTask
+  description: Standalone task not attached to a workflow run.
+- name: Comment
+  schema: PublicApiComment
+  description: Comment on a task within a workflow run.
+- name: Attachment
+  schema: PublicApiAttachment
+  description: File attached to a task/workflow run.
+- name: User
+  schema: PublicApiUser
+  description: Organization member.
+- name: MyWorkItem
+  schema: PublicApiMyWorkItem
+  description: Assigned work item aggregated across workflow runs.
+relationships:
+- from: WorkflowRun
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: WorkflowRevision
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: TaskTemplate
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: ScheduledWorkflow
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: IncomingWebhook
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: Task
+  to: WorkflowRun
+  type: belongs_to
+  via: workflowRunId
+- from: Comment
+  to: WorkflowRun
+  type: belongs_to
+  via: workflowRunId
+- from: Comment
+  to: Task
+  type: belongs_to
+  via: taskId
+- from: Attachment
+  to: WorkflowRun
+  type: belongs_to
+  via: workflowRunId
+- from: Attachment
+  to: Task
+  type: belongs_to
+  via: taskId
+- from: Attachment
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: Webhook
+  to: Workflow
+  type: belongs_to
+  via: workflowId
+- from: Page
+  to: Folder
+  type: belongs_to
+  via: folderId
+- from: PageRevision
+  to: Page
+  type: belongs_to
+  via: pageId
+- from: DataSetIncomingWebhook
+  to: DataSet
+  type: belongs_to
+  via: dataSetId
+- from: MyWorkItem
+  to: WorkflowRun
+  type: belongs_to
+  via: workflowRunId
+- from: MyWorkItem
+  to: Task
+  type: belongs_to
+  via: taskId
