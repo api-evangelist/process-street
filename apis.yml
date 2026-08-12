@@ -966,6 +966,8 @@ apis:
   - type: AgenticAccess
     url: agentic-access/process-street-agentic-access.yml
 common:
+- type: Overlay
+  url: overlays/process-street-public-api-overlay.yaml
 - type: TrustCenter
   url: security/process-street-trust-center.yml
 - type: VulnerabilityDisclosure
