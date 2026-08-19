@@ -1,0 +1,1448 @@
+{
+  "item": [
+    {
+      "id": "f552cc85-dcac-400e-9688-6837c500362c",
+      "name": "Form Field Values",
+      "description": {
+        "content": "A form field value is the data entered into a form field within a workflow\nrun. Use these endpoints to read and update form field values for a specific\nworkflow run.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0faa9be1-1f66-4e4b-a0dd-1b627a8bf2b6",
+          "name": "List all form field values in a task",
+          "request": {
+            "name": "List all form field values in a task",
+            "description": {
+              "content": "Gets a page of form field values for a task of a workflow run.\nForm field values are paged, meaning the links section in the\nresponse must be used to get the next/previous batch of form field values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "tasks",
+                ":taskId",
+                "form-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "133c18ed-215b-4a6b-b5fc-24f23e6e3d47",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "tasks",
+                    ":taskId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"MultiChoice\",\n      \"updatedDate\": \"1957-01-07T17:05:22.242Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": false,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Subject Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Assignees\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"Date\",\n      \"updatedDate\": \"1963-01-19T12:17:54.442Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": true,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Workflow Run\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Tasks\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Sets\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Tasks\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8cc06d6-6684-4f4c-a193-0a0a0dc02396",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "tasks",
+                    ":taskId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04be08eb-5565-459c-8896-755e90e118de",
+          "name": "List all form field values",
+          "request": {
+            "name": "List all form field values",
+            "description": {
+              "content": "Gets a page of form field values for a workflow run.\nForm field values are paged, meaning the links section in the\nresponse must be used to get the next/previous batch of form field values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "form-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d8eb277-84e2-4d41-b506-20c6373b55b0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"MultiChoice\",\n      \"updatedDate\": \"1957-01-07T17:05:22.242Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": false,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Subject Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Assignees\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"Date\",\n      \"updatedDate\": \"1963-01-19T12:17:54.442Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": true,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Workflow Run\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Tasks\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Sets\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Tasks\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ec39a0e-8afb-4765-9984-aa6451ee5fa1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91e938b4-391a-4ad8-990a-030d038749e1",
+          "name": "Batch update form field values",
+          "request": {
+            "name": "Batch update form field values",
+            "description": {
+              "content": "Updates multiple form field values (i.e the values for the form fields present in a workflow run).\nA value may consist of a simple string, may accept multiple values as an array, or it may accept multiple\nproperties.<br>\n<br>\nSee the examples for a complete reference on setting form field values.<br>\n<br>\nNote: File Upload form fields cannot be updated using this endpoint. Use the upload endpoint instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "form-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    {\n      \"id\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeHidden\": \"<boolean>\",\n      \"dataSetRowId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeHidden\": \"<boolean>\",\n      \"dataSetRowId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c91c93c-2c5a-49b2-a50c-d6125f7c009d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"id\": \"lNOlDxX_bxK1A9JudBJFdQ\",\n      \"value\": \"It's over Anakin, I have the high ground\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"Text\",\n      \"updatedDate\": \"2017-01-06T07:36:17.200Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": true,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Data Sets\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Tasks\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"key\": \"string\",\n      \"data\": {},\n      \"fieldType\": \"MultiFile\",\n      \"updatedDate\": \"2012-10-10T07:45:54.331Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"label\": \"string\",\n      \"dataSetLinked\": true,\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Comment\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b8781a5-9804-4d05-8c98-859f2e6c3d77",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"id\": \"lNOlDxX_bxK1A9JudBJFdQ\",\n      \"value\": \"It's over Anakin, I have the high ground\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cac563ae-bd50-4b04-9f5d-8081cb2129fa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"id\": \"lNOlDxX_bxK1A9JudBJFdQ\",\n      \"value\": \"It's over Anakin, I have the high ground\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c217a637-f6b5-4240-89e5-3ef74dbdf731",
+          "name": "Upload a form field value",
+          "request": {
+            "name": "Upload a form field value",
+            "description": {
+              "content": "Uploads one or more files to a File or MultiFile form field in a workflow run.\n\nNote:<br>\nThis endpoint supports both single-file and multi-file form fields.<br>\nFile fields can accept exactly one file and it will replace the current file.<br>\nMultiFile fields can accept multiple files per request, up to 10 files total, subject to the field's configuration.\nThese files will be appended to the field.<br>\nThe maximum file size supported by this endpoint is 20 MB per file for multipart uploads and 10 MB per file for Base64 uploads.\n\nAlternatively, send JSON `{ \"fileUploadId\": \"...\" }` to attach a file you uploaded with the `createFileUpload` endpoint. The `fileUploadId` is single-use.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "form-fields",
+                ":formFieldId",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formFieldId",
+                  "description": "(Required) Form Field ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "Uploaded file reference. Use the upload endpoint to attach content."
+                },
+                {
+                  "key": "fileBase64",
+                  "value": "[{\"content\":\"<string>\",\"filename\":\"<string>\"},{\"content\":\"<string>\",\"filename\":\"<string>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "fileUploadId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "93fecf60-f41f-4233-bc3a-bb7a3f7cdaa2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Uploaded file reference. Use the upload endpoint to attach content.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileBase64",
+                      "value": "[{\"content\":\"<string>\",\"filename\":\"<string>\"},{\"content\":\"<string>\",\"filename\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileUploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "939bf779-bed3-4379-ab82-4d32e7d4dfaf",
+              "name": "Invalid value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Uploaded file reference. Use the upload endpoint to attach content.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileBase64",
+                      "value": "[{\"content\":\"<string>\",\"filename\":\"<string>\"},{\"content\":\"<string>\",\"filename\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileUploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cff56fd5-112a-4f20-83cf-a68a95b35f5c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Uploaded file reference. Use the upload endpoint to attach content.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileBase64",
+                      "value": "[{\"content\":\"<string>\",\"filename\":\"<string>\"},{\"content\":\"<string>\",\"filename\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileUploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed255519-3106-4d78-bc18-4ef3bd3a410b",
+          "name": "Delete all files from a form field",
+          "request": {
+            "name": "Delete all files from a form field",
+            "description": {
+              "content": "Deletes all files from a File or MultiFile form field in a workflow run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "form-fields",
+                ":formFieldId",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formFieldId",
+                  "description": "(Required) Form Field ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17677a3c-b728-4ec5-ac54-44a98fd1eb96",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a752265-55ed-4f4d-97e2-bceb6320c470",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdd0f3b1-23d2-49d5-ad0a-d738b7470082",
+          "name": "Delete a specific file from a form field",
+          "request": {
+            "name": "Delete a specific file from a form field",
+            "description": {
+              "content": "Deletes a specific file from a File or MultiFile form field in a workflow run.\nFor File fields, the `fileId` parameter is ignored since there is only one file.\nFor MultiFile fields, the specified file is removed. If it was the last file, the field value is deleted entirely.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow-runs",
+                ":workflowRunId",
+                "form-fields",
+                ":formFieldId",
+                "upload",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowRunId",
+                  "description": "(Required) The ID of the Workflow Run"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formFieldId",
+                  "description": "(Required) Form Field ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2de5ad47-f528-4506-9564-b4e243b5287a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "398777c5-82e3-4d7b-ba97-717c6dbdbba6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow-runs",
+                    ":workflowRunId",
+                    "form-fields",
+                    ":formFieldId",
+                    "upload",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowRunId",
+                      "description": "(Required) The ID of the Workflow Run"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formFieldId",
+                      "description": "(Required) Form Field ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dcd789b0-8c5c-4f98-80c0-53e48ce6eced",
+    "name": "Process Street Public Attachments Form Field Values API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

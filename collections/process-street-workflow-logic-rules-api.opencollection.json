@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Logic Rules API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Logic Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all conditional logic rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/logic-rules",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of conditional logic rules for a workflow revision, sorted by order tree."
+        },
+        {
+          "info": {
+            "name": "Create a conditional logic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/logic-rules",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a conditional logic rule on a draft workflow revision."
+        },
+        {
+          "info": {
+            "name": "Get a conditional logic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/logic-rules/:ruleId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Logic Rule"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a conditional logic rule by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a conditional logic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/logic-rules/:ruleId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Logic Rule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a conditional logic rule on a draft workflow revision. PUT semantics: all fields must be provided. Returns the updated rule."
+        },
+        {
+          "info": {
+            "name": "Delete a conditional logic rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/logic-rules/:ruleId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Logic Rule"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a conditional logic rule from a draft workflow revision."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Folders API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/folders",
+            "params": [
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of folders in your organization that you have permission to read. Excludes system folders (Home and Private)."
+        },
+        {
+          "info": {
+            "name": "Create a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/folders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a folder in your organization. If `parentFolderId` is omitted, the folder is created directly under the organization's Home folder."
+        },
+        {
+          "info": {
+            "name": "Update a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/folders/:folderId",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the name of an existing folder."
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/folders/:folderId",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Folder"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an empty folder. The folder must contain no subfolders or templates."
+        },
+        {
+          "info": {
+            "name": "Get permissions for a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/folders/:folderId/permissions",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Folder"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the complete list of permissions on a folder, one entry per user or group. `accessLevel` is `Custom` when the atom combination does not match a predefined level. Groups appear with synthetic `group-<id>@process.st` emails on the embedded user."
+        },
+        {
+          "info": {
+            "name": "Set permissions for a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/folders/:folderId/permissions",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces the full set of permissions for a folder. PUT semantics: send the complete list to replace all existing permissions. Send an empty array to remove all user-addressable permissions. Accepts both user emails and group emails (groups appear in other endpoints with synthetic `group-<id>@process.st` emails). Note: the AllFreeMembers system group is managed automatically by the AllMembers system group and cannot be modified directly. Returns the resulting permissions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

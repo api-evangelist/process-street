@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Data Set Incoming Webhooks API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Set Incoming Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List incoming webhooks for a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/incoming-webhooks",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all non-deleted incoming webhooks for a data set."
+        },
+        {
+          "info": {
+            "name": "Create an incoming webhook for a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/incoming-webhooks",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates an incoming webhook for a data set. When the webhook URL receives a JSON payload,\nit creates or updates data set rows using the configured column mappings.\n\n**config.columns** maps data set column IDs to JSON path expressions in the incoming payload.\nEach key is a column ID (Muid), each value is a JSON path (e.g. `$.contact.email`).\n\n**config.keyColumn** (optional) specifies a column used as a unique key for upserts.\nWhen set, incoming payloads update existing rows matching the key value"
+        },
+        {
+          "info": {
+            "name": "Get an incoming webhook for a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/incoming-webhooks/:webhookId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Webhook"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns an incoming webhook by its ID for a data set."
+        },
+        {
+          "info": {
+            "name": "Update an incoming webhook for a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/incoming-webhooks/:webhookId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Webhook"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an incoming webhook for a data set. PUT semantics: all fields must be provided. Returns the updated webhook.\n\nSee the create endpoint for details on `config.columns` and `config.keyColumn`."
+        },
+        {
+          "info": {
+            "name": "Delete an incoming webhook for a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/incoming-webhooks/:webhookId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Webhook"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Soft-deletes an incoming webhook for a data set. Subsequent GET requests will return 404."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

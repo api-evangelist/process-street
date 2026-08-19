@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Form Field Values API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Field Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all form field values in a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId/form-fields",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of form field values for a task of a workflow run.\nForm field values are paged, meaning the links section in the\nresponse must be used to get the next/previous batch of form field values."
+        },
+        {
+          "info": {
+            "name": "List all form field values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/form-fields",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of form field values for a workflow run.\nForm field values are paged, meaning the links section in the\nresponse must be used to get the next/previous batch of form field values."
+        },
+        {
+          "info": {
+            "name": "Batch update form field values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/form-fields",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates multiple form field values (i.e the values for the form fields present in a workflow run).\nA value may consist of a simple string, may accept multiple values as an array, or it may accept multiple\nproperties.<br>\n<br>\nSee the examples for a complete reference on setting form field values.<br>\n<br>\nNote: File Upload form fields cannot be updated using this endpoint. Use the upload endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Upload a form field value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/form-fields/:formFieldId/upload",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "formFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Form Field ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads one or more files to a File or MultiFile form field in a workflow run.\n\nNote:<br>\nThis endpoint supports both single-file and multi-file form fields.<br>\nFile fields can accept exactly one file and it will replace the current file.<br>\nMultiFile fields can accept multiple files per request, up to 10 files total, subject to the field's configuration.\nThese files will be appended to the field.<br>\nThe maximum file size supported by this endpoint is 20 MB per file for multipart uploads and "
+        },
+        {
+          "info": {
+            "name": "Delete all files from a form field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/form-fields/:formFieldId/upload",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "formFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Form Field ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes all files from a File or MultiFile form field in a workflow run."
+        },
+        {
+          "info": {
+            "name": "Delete a specific file from a form field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/form-fields/:formFieldId/upload/:fileId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "formFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Form Field ID"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific file from a File or MultiFile form field in a workflow run.\nFor File fields, the `fileId` parameter is ignored since there is only one file.\nFor MultiFile fields, the specified file is removed. If it was the last file, the field value is deleted entirely."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

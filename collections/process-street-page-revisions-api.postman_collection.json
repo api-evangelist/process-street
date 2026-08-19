@@ -1,0 +1,1444 @@
+{
+  "item": [
+    {
+      "id": "e1254e6f-92e5-4e3e-9701-d410b6444739",
+      "name": "Page Revisions",
+      "description": {
+        "content": "A page revision is a versioned snapshot of a page's content.\nUse these endpoints to list, inspect, and manage revisions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5f444f3-a806-4fcc-a88d-5ba5719c0b05",
+          "name": "List page revisions",
+          "request": {
+            "name": "List page revisions",
+            "description": {
+              "content": "Returns a paginated list of revisions for a page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status: Draft, Finished, or Revised."
+                },
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "59b99bbd-187b-4ed1-ad99-eaa5567fcb48",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n      \"createdDate\": \"2012-03-21T10:25:59.331Z\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"updatedDate\": \"1967-12-25T03:17:35.193Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n      \"version\": \"string\",\n      \"status\": \"Finished\"\n    },\n    {\n      \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n      \"createdDate\": \"1995-12-03T23:36:16.795Z\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"updatedDate\": \"1977-02-05T09:37:35.610Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n      \"version\": \"string\",\n      \"status\": \"Finished\"\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Comment\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccf18cc7-9a89-4907-8f76-803e8d058af2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "253a5c5f-fc47-44bf-8fc7-c13a5949a792",
+          "name": "Create a page revision",
+          "request": {
+            "name": "Create a page revision",
+            "description": {
+              "content": "Creates a new draft revision for a page from its current finished revision. Only one draft can exist at a time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ef857fe-36ae-4a62-b9af-169792a59b09",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"createdDate\": \"1962-06-12T08:40:27.797Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1987-11-04T05:45:07.071Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"version\": \"string\",\n    \"status\": \"Draft\"\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approval Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "915dd1b7-3a89-407e-8cdf-38b50ae38a4e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea67e333-bdc6-4a51-b74b-580388f22247",
+          "name": "Get a page revision",
+          "request": {
+            "name": "Get a page revision",
+            "description": {
+              "content": "Returns a page revision by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions",
+                ":revisionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1fac876c-b238-4a88-92ce-b86cf366fd99",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"createdDate\": \"1962-06-12T08:40:27.797Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1987-11-04T05:45:07.071Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"version\": \"string\",\n    \"status\": \"Draft\"\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approval Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "215d5864-d81d-480c-81e3-747fc30bea28",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e21db363-b756-47f7-b0a5-d37e7e713111",
+          "name": "Update a page revision",
+          "request": {
+            "name": "Update a page revision",
+            "description": {
+              "content": "Updates a draft page revision. Only revisions in Draft status can be updated. Returns the updated revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions",
+                ":revisionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"changeType\": \"<string>\",\n  \"changeExplanation\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0ebcfc5-2330-4b8e-8026-5e1e89f9b56e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"changeType\": \"<string>\",\n  \"changeExplanation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"createdDate\": \"1962-06-12T08:40:27.797Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1987-11-04T05:45:07.071Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"version\": \"string\",\n    \"status\": \"Draft\"\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approval Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8aa6a0ed-a816-4f62-863b-523cc9381321",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"changeType\": \"<string>\",\n  \"changeExplanation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40e46bca-92e7-455e-8f9c-ec9dcd59f78e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"changeType\": \"<string>\",\n  \"changeExplanation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b3931c8-77da-4640-966f-e72b5652d521",
+          "name": "Delete a page revision",
+          "request": {
+            "name": "Delete a page revision",
+            "description": {
+              "content": "Discards a draft page revision. Only revisions in Draft status can be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions",
+                ":revisionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f1a3ed4-98cc-4185-8274-49dd10d06ed3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0187f342-c4e8-4ca8-ae3f-b962187d551d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d40005ec-0529-43ab-9afd-10c7508d9f90",
+          "name": "Export page revision as Markdown",
+          "request": {
+            "name": "Export page revision as Markdown",
+            "description": {
+              "content": "Returns the content of a specific page revision as Markdown.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions",
+                ":revisionId",
+                "markdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/markdown"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8db6e570-9b3f-4cd2-bdd0-25d9c5435ae3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/markdown"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) ",
+                  "key": "Cache-Control",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/markdown"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a45b380d-b5e6-4b77-822f-0b37d3cce1dd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7cfc734-5a9d-4a1b-9108-577d3aa9e6b5",
+          "name": "Publish a page revision",
+          "request": {
+            "name": "Publish a page revision",
+            "description": {
+              "content": "Publishes a draft page revision, transitioning it to Finished status. The previously finished revision becomes Revised.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pages",
+                ":pageId",
+                "revisions",
+                ":revisionId",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pageId",
+                  "description": "(Required) The ID of the Page"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3099994-aacc-4240-874c-9d11f8b74beb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"createdDate\": \"1962-06-12T08:40:27.797Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1987-11-04T05:45:07.071Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"pageId\": \"vI1nvf5OKFhX_f48iEpPJg\",\n    \"version\": \"string\",\n    \"status\": \"Draft\"\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approval Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45e226b1-dbb0-4547-b339-065999a00cff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pages",
+                    ":pageId",
+                    "revisions",
+                    ":revisionId",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pageId",
+                      "description": "(Required) The ID of the Page"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Unauthorized\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2de228ed-57db-4d1d-9d00-3dd98098cfda",
+    "name": "Process Street Public Attachments Page Revisions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments One-Off Tasks API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "One-Off Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new one-off task, optionally linked to a workflow run."
+        },
+        {
+          "info": {
+            "name": "Get a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the One-Off Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a one-off task by its ID, including assignments and subtasks."
+        },
+        {
+          "info": {
+            "name": "Update a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the One-Off Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a one-off task. PUT semantics: all fields must be provided. Returns the updated task."
+        },
+        {
+          "info": {
+            "name": "Delete a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the One-Off Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a one-off task permanently."
+        },
+        {
+          "info": {
+            "name": "Complete a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks/:taskId/complete",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the One-Off Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the task status to Completed. No-op if already completed. Returns the updated task."
+        },
+        {
+          "info": {
+            "name": "Uncomplete a one-off task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/work/tasks/:taskId/uncomplete",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the One-Off Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the task status to NotCompleted. No-op if already not completed. Returns the updated task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

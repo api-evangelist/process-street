@@ -1,0 +1,578 @@
+{
+  "item": [
+    {
+      "id": "837ff5b8-8a5a-4255-9ee1-5d44590c8e00",
+      "name": "Workflow Task Assignment Rules",
+      "description": {
+        "content": "A workflow task assignment rule assigns a task template on a draft workflow\nrevision to a specific user (static) or derives assignees from a source such\nas the workflow run initiator, a Members form field, or the source document's\nowner/author (dynamic). Use these endpoints to replace the full set of\nassignment rules on a task template.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f58fe19d-ca0e-4149-8867-aa7cb437d638",
+          "name": "Get task assignment rules",
+          "request": {
+            "name": "Get task assignment rules",
+            "description": {
+              "content": "Returns the assignment rules for a task on a workflow revision. Each rule has a `type` discriminator: `Static` includes the assignee's `email`; `Dynamic` includes a `sourceType` (one of `ChecklistInitiator`, `FormField`, `DocumentOwner`, `DocumentAuthor`), and when `sourceType` is `FormField`, also a `sourceWidgetId` pointing to a Members or Email form field widget in the same revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "tasks",
+                ":taskId",
+                "assignment-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c343226-202a-45a9-8c6d-8134aeb1468c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "tasks",
+                    ":taskId",
+                    "assignment-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sourceType\": \"DocumentOwner\",\n      \"type\": \"string\",\n      \"sourceWidgetId\": \"string\"\n    },\n    {\n      \"sourceType\": \"ChecklistInitiator\",\n      \"type\": \"string\",\n      \"sourceWidgetId\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Tasks\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Task\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e84bce86-f903-4a32-9064-035a5106cdfe",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "tasks",
+                    ":taskId",
+                    "assignment-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Validation\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40764a9d-ce6d-4143-96ab-9096aed6ac93",
+          "name": "Update task assignment rules",
+          "request": {
+            "name": "Update task assignment rules",
+            "description": {
+              "content": "Replaces the assignment rules for a task on a draft workflow revision. PUT semantics: send the full list of desired rules to replace all existing ones; send an empty array to remove all assignments. Each rule has a `type` discriminator: `Static` requires an `email`; `Dynamic` requires a `sourceType` (one of `ChecklistInitiator`, `FormField`, `DocumentOwner`, `DocumentAuthor`), and when `sourceType` is `FormField`, also a `sourceWidgetId` pointing to a Members or Email form field widget in the same revision. Returns the resulting assignment rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "tasks",
+                ":taskId",
+                "assignment-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sourceType\": \"<string>\",\n    \"type\": \"<string>\",\n    \"sourceWidgetId\": \"<string>\"\n  },\n  {\n    \"sourceType\": \"<string>\",\n    \"type\": \"<string>\",\n    \"sourceWidgetId\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f37ff241-c901-45a5-be38-1306eecce86e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "tasks",
+                    ":taskId",
+                    "assignment-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sourceType\": \"DocumentOwner\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  },\n  {\n    \"sourceType\": \"DocumentAuthor\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sourceType\": \"DocumentOwner\",\n      \"type\": \"string\",\n      \"sourceWidgetId\": \"string\"\n    },\n    {\n      \"sourceType\": \"ChecklistInitiator\",\n      \"type\": \"string\",\n      \"sourceWidgetId\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Tasks\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Task\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7d90a34-55e4-4223-ad88-e1986d71cb48",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "tasks",
+                    ":taskId",
+                    "assignment-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sourceType\": \"DocumentOwner\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  },\n  {\n    \"sourceType\": \"DocumentAuthor\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3cfd472e-454d-49d7-bff6-0625902500d1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "tasks",
+                    ":taskId",
+                    "assignment-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sourceType\": \"DocumentOwner\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  },\n  {\n    \"sourceType\": \"DocumentAuthor\",\n    \"type\": \"string\",\n    \"sourceWidgetId\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"errorCode\": \"Validation\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "77f997b3-468d-45c9-ad11-bbe881951250",
+    "name": "Process Street Public Attachments Workflow Task Assignment Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

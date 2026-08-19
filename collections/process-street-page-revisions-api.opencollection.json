@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Page Revisions API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Page Revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List page revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status: Draft, Finished, or Revised."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of revisions for a page."
+        },
+        {
+          "info": {
+            "name": "Create a page revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new draft revision for a page from its current finished revision. Only one draft can exist at a time."
+        },
+        {
+          "info": {
+            "name": "Get a page revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a page revision by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a page revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a draft page revision. Only revisions in Draft status can be updated. Returns the updated revision."
+        },
+        {
+          "info": {
+            "name": "Delete a page revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Discards a draft page revision. Only revisions in Draft status can be deleted."
+        },
+        {
+          "info": {
+            "name": "Export page revision as Markdown",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions/:revisionId/markdown",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the content of a specific page revision as Markdown."
+        },
+        {
+          "info": {
+            "name": "Publish a page revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/revisions/:revisionId/publish",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Publishes a draft page revision, transitioning it to Finished status. The previously finished revision becomes Revised."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

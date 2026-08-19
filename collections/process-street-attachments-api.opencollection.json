@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/attachments",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow."
+              },
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow run."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task."
+              },
+              {
+                "name": "createdById",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creator."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns task-level attachments, ordered by creation date (newest first). Supports filtering by workflow, workflow run, task, or creator."
+        },
+        {
+          "info": {
+            "name": "Upload an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/attachments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a file as a task-level attachment.\n\nRequires `workflowRunId` and `taskId` to identify the target task.\nAccepts multipart form data (fields `workflowRunId` + `taskId` + `file`) or JSON with base64-encoded content\n(fields `workflowRunId` + `taskId` + `fileBase64`). Maximum file size: 20 MB for multipart, 10 MB for base64.\nYou can also send `workflowRunId` + `taskId` + `fileUploadId` to attach a file you uploaded with\n`createFileUpload`; the `fileUploadId` is single-use."
+        },
+        {
+          "info": {
+            "name": "Delete an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path",
+                "description": "The attachment ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a task-level attachment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

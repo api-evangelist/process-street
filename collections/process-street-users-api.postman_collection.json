@@ -1,0 +1,184 @@
+{
+  "item": [
+    {
+      "id": "b921fa8e-27f1-452d-b555-24d2670673a5",
+      "name": "Users",
+      "description": {
+        "content": "These endpoints let you list the users in your organization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da96e5d1-6afc-4a3c-90f7-010dee40ecd9",
+          "name": "List all users",
+          "request": {
+            "name": "List all users",
+            "description": {
+              "content": "Returns a list of users.\nThe users are returned 20 at a time, sorted by name.\nYou must use the links section to get the next 20 results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54fa49f0-2378-4382-9a3e-6781c7bc5566",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Workflow Run\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a4512ae-61ee-4217-88a0-9e2abd98a14e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c0635982-f254-4b3e-84ce-de517bf43474",
+    "name": "Process Street Public Attachments Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Widgets API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by widget type."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns widgets for a task on a workflow revision, ordered by position."
+        },
+        {
+          "info": {
+            "name": "Create a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a widget on a task within a draft workflow revision.\nText content can include merge tag variables (e.g. `{{workflow.name}}`).\nUse the listWorkflowRevisionVariables endpoint to discover available variables."
+        },
+        {
+          "info": {
+            "name": "Get a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets/:widgetId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "widgetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Widget"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a widget by its ID within a workflow revision task."
+        },
+        {
+          "info": {
+            "name": "Update a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets/:widgetId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "widgetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Widget"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a widget on a task within a draft workflow revision. PUT semantics: all mutable fields must be provided.\nEach field type has different config and constraints — refer to the request examples for the specific shape per type.\nText content can include merge tag variables (e.g. `{{workflow.name}}`).\nUse the listWorkflowRevisionVariables endpoint to discover available variables.\nReturns the updated widget."
+        },
+        {
+          "info": {
+            "name": "Delete a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets/:widgetId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "widgetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Widget"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a widget from a task within a draft workflow revision."
+        },
+        {
+          "info": {
+            "name": "Upload a file to a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/widgets/:widgetId/upload",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "widgetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Widget"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a file to an Image or File widget on a task within a draft workflow revision. Replaces the existing file, if any.\n\nAccepts multipart form data (field `file`) or JSON with base64-encoded content (field `fileBase64`).\nMaximum file size: 20 MB for multipart, 10 MB for base64.\nYou can also send JSON `{ \"fileUploadId\": \"...\" }` to attach a file you uploaded with\n`createFileUpload`; the `fileUploadId` is single-use.\nFor Image widgets, only image/* content types are accepted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

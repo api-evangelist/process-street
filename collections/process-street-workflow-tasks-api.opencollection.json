@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Tasks API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task type: Standard, Approval, AI, or Code."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of workflow tasks for a workflow revision, ordered by position."
+        },
+        {
+          "info": {
+            "name": "Create a workflow task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a workflow task on a draft workflow revision. AI and Code tasks cannot have due date offsets or stop flags.\nTask names can include merge tag variables (e.g. `{{workflow.name}}`).\nUse the listWorkflowRevisionVariables endpoint to discover available variables.\n\n> 💡 Notes for MCP clients:\n> - Don't prefix task names with numbers (e.g. \"1. \", \"Task 1:\"). The UI already shows a position number next to each task, and task order can change — hard-coded numbers go stale.\n> - Consider adding con"
+        },
+        {
+          "info": {
+            "name": "Get a workflow task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a workflow task by its ID within a workflow revision."
+        },
+        {
+          "info": {
+            "name": "Update a workflow task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a workflow task on a draft workflow revision. PUT semantics: all fields must be provided. AI and Code tasks cannot have due date offsets or stop flags.\nTask names can include merge tag variables (e.g. `{{workflow.name}}`).\nUse the listWorkflowRevisionVariables endpoint to discover available variables.\n\n> 💡 Notes for MCP clients:\n> - Don't prefix task names with numbers (e.g. \"1. \", \"Task 1:\"). The UI already shows a position number next to each task, and task order can change — hard-cod"
+        },
+        {
+          "info": {
+            "name": "Delete a workflow task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a workflow task from a draft workflow revision."
+        },
+        {
+          "info": {
+            "name": "Get task permission rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/permission-rules",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the static and dynamic permission rules for a task template on a workflow revision."
+        },
+        {
+          "info": {
+            "name": "Update task permission rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/permission-rules",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces the client-configurable permission rules for a task on a draft workflow revision. PUT semantics: send the full list of desired rules to replace all existing ones. Send an empty array to remove all client-configurable rules. Note: system-managed permits (e.g. for all-members groups) are preserved and not affected by this endpoint. Returns the resulting permission rules."
+        },
+        {
+          "info": {
+            "name": "Get workflow task configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/config",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the configuration for a workflow task. Shape varies by task type: Approval returns subject task IDs, AI returns prompt and output mapping, Code returns code with input/output mappings. Standard tasks have no configuration (returns 400)."
+        },
+        {
+          "info": {
+            "name": "Update workflow task configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/config",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the configuration for a workflow task on a draft revision. PUT semantics: send all fields for the task type; optional fields omitted or set to null are cleared. Standard tasks have no configuration (returns 400). Returns the updated configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

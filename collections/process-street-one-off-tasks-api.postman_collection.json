@@ -1,0 +1,1168 @@
+{
+  "item": [
+    {
+      "id": "90416c39-c909-4a66-97a3-45706dc37d4c",
+      "name": "One-Off Tasks",
+      "description": {
+        "content": "A one-off task is a standalone task that can optionally be linked to a\nworkflow run. Use these endpoints to create, view, and manage one-off tasks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89334756-64cc-4ad4-b17a-8ee0b2e607e9",
+          "name": "Create a one-off task",
+          "request": {
+            "name": "Create a one-off task",
+            "description": {
+              "content": "Creates a new one-off task, optionally linked to a workflow run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"linkedWorkflowRunId\": \"<string>\",\n  \"assigneeEmails\": [\n    \"<string>\"\n  ],\n  \"subtasks\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f2cf56f-4e80-4460-bd41-38b55a5dbfa6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-01T09:00:00.000Z\",\n  \"required\": false,\n  \"assigneeEmails\": [\n    \"jane@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"name\": \"Check terms\"\n    },\n    {\n      \"name\": \"Verify dates\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"quuif1gveYFEcueHcehDig\",\n    \"createdDate\": \"1954-03-15T17:41:04.206Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1962-11-24T17:58:01.800Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"organizationId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"NotCompleted\",\n    \"required\": true,\n    \"visibility\": \"Private\",\n    \"description\": \"string\",\n    \"dueDate\": \"1963-04-16T09:30:32.864Z\",\n    \"assignments\": [\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      }\n    ],\n    \"linkedWorkflowRun\": {\n      \"id\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"name\": \"string\",\n      \"templateId\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"templateName\": \"string\"\n    },\n    \"subtasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      }\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Approvals\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Set Records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b182ca4-5139-4198-8078-89405cf3e5b5",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-01T09:00:00.000Z\",\n  \"required\": false,\n  \"assigneeEmails\": [\n    \"jane@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"name\": \"Check terms\"\n    },\n    {\n      \"name\": \"Verify dates\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45af488e-f983-4594-98ae-501401d662ba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-01T09:00:00.000Z\",\n  \"required\": false,\n  \"assigneeEmails\": [\n    \"jane@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"name\": \"Check terms\"\n    },\n    {\n      \"name\": \"Verify dates\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bc5f0e4-efe2-49a5-a035-fe7b03d3245c",
+          "name": "Get a one-off task",
+          "request": {
+            "name": "Get a one-off task",
+            "description": {
+              "content": "Returns a one-off task by its ID, including assignments and subtasks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the One-Off Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d3c1843-f8e3-4c98-a5dd-346f70ba39e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"quuif1gveYFEcueHcehDig\",\n    \"createdDate\": \"1954-03-15T17:41:04.206Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1962-11-24T17:58:01.800Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"organizationId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"NotCompleted\",\n    \"required\": true,\n    \"visibility\": \"Private\",\n    \"description\": \"string\",\n    \"dueDate\": \"1963-04-16T09:30:32.864Z\",\n    \"assignments\": [\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      }\n    ],\n    \"linkedWorkflowRun\": {\n      \"id\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"name\": \"string\",\n      \"templateId\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"templateName\": \"string\"\n    },\n    \"subtasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      }\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Approvals\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Set Records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e083df93-374a-4aee-a831-563d80575a47",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5517bf0-55a6-4c85-b008-a340097a59c4",
+          "name": "Update a one-off task",
+          "request": {
+            "name": "Update a one-off task",
+            "description": {
+              "content": "Updates a one-off task. PUT semantics: all fields must be provided. Returns the updated task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the One-Off Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"linkedWorkflowRunId\": \"<string>\",\n  \"assigneeEmails\": [\n    \"<string>\"\n  ],\n  \"subtasks\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4621abcf-ffcc-49a3-b7c4-fd4accf565e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-02T09:00:00.000Z\",\n  \"required\": true,\n  \"assigneeEmails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"id\": \"kPcr3wSdMURUe6zuyZxOlA\",\n      \"name\": \"Check terms\",\n      \"status\": \"Completed\"\n    },\n    {\n      \"name\": \"Contact lawyer\",\n      \"status\": \"NotCompleted\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"quuif1gveYFEcueHcehDig\",\n    \"createdDate\": \"1954-03-15T17:41:04.206Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1962-11-24T17:58:01.800Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"organizationId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"NotCompleted\",\n    \"required\": true,\n    \"visibility\": \"Private\",\n    \"description\": \"string\",\n    \"dueDate\": \"1963-04-16T09:30:32.864Z\",\n    \"assignments\": [\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      }\n    ],\n    \"linkedWorkflowRun\": {\n      \"id\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"name\": \"string\",\n      \"templateId\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"templateName\": \"string\"\n    },\n    \"subtasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      }\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Approvals\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Set Records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0d1296a-c6bf-47d1-92c3-d167d41009d7",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-02T09:00:00.000Z\",\n  \"required\": true,\n  \"assigneeEmails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"id\": \"kPcr3wSdMURUe6zuyZxOlA\",\n      \"name\": \"Check terms\",\n      \"status\": \"Completed\"\n    },\n    {\n      \"name\": \"Contact lawyer\",\n      \"status\": \"NotCompleted\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c2ddfcb-18e0-462a-83e2-f81c2330efdc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Review contract\",\n  \"description\": \"Check the terms and conditions\",\n  \"dueDate\": \"2026-04-02T09:00:00.000Z\",\n  \"required\": true,\n  \"assigneeEmails\": [\n    \"jane@example.com\",\n    \"john@example.com\"\n  ],\n  \"subtasks\": [\n    {\n      \"id\": \"kPcr3wSdMURUe6zuyZxOlA\",\n      \"name\": \"Check terms\",\n      \"status\": \"Completed\"\n    },\n    {\n      \"name\": \"Contact lawyer\",\n      \"status\": \"NotCompleted\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9649c4ab-ee25-4ea8-98df-37ef19fb7101",
+          "name": "Delete a one-off task",
+          "request": {
+            "name": "Delete a one-off task",
+            "description": {
+              "content": "Deletes a one-off task permanently.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the One-Off Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b75019b-35c0-41b3-b7a8-43f6bb9bcc6c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "459924f6-26ac-4fce-b6a9-f9ff8640d722",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe93a05b-5127-4ab5-b2be-036d12d5d830",
+          "name": "Complete a one-off task",
+          "request": {
+            "name": "Complete a one-off task",
+            "description": {
+              "content": "Sets the task status to Completed. No-op if already completed. Returns the updated task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks",
+                ":taskId",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the One-Off Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6120b71a-2aea-4214-b778-f7696c327ced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"quuif1gveYFEcueHcehDig\",\n    \"createdDate\": \"1954-03-15T17:41:04.206Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1962-11-24T17:58:01.800Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"organizationId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"NotCompleted\",\n    \"required\": true,\n    \"visibility\": \"Private\",\n    \"description\": \"string\",\n    \"dueDate\": \"1963-04-16T09:30:32.864Z\",\n    \"assignments\": [\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      }\n    ],\n    \"linkedWorkflowRun\": {\n      \"id\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"name\": \"string\",\n      \"templateId\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"templateName\": \"string\"\n    },\n    \"subtasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      }\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Approvals\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Set Records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86c9c358-165a-47fb-8d05-49f959a85a00",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd1c5925-967c-4f5a-847f-ec0790cd5d9c",
+          "name": "Uncomplete a one-off task",
+          "request": {
+            "name": "Uncomplete a one-off task",
+            "description": {
+              "content": "Sets the task status to NotCompleted. No-op if already not completed. Returns the updated task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "tasks",
+                ":taskId",
+                "uncomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The ID of the One-Off Task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ba054353-e59b-4f55-b16b-5f39fae2ccdc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId",
+                    "uncomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"quuif1gveYFEcueHcehDig\",\n    \"createdDate\": \"1954-03-15T17:41:04.206Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1962-11-24T17:58:01.800Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"organizationId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"NotCompleted\",\n    \"required\": true,\n    \"visibility\": \"Private\",\n    \"description\": \"string\",\n    \"dueDate\": \"1963-04-16T09:30:32.864Z\",\n    \"assignments\": [\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      }\n    ],\n    \"linkedWorkflowRun\": {\n      \"id\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"name\": \"string\",\n      \"templateId\": \"oQsycxGFswNfZYdiCp5F9g\",\n      \"templateName\": \"string\"\n    },\n    \"subtasks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"Completed\"\n      }\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Approvals\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Webhook\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Set Records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05a48ef3-c281-4beb-9f70-65a3a6f8b2d8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "tasks",
+                    ":taskId",
+                    "uncomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The ID of the One-Off Task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"errorCode\": \"PayloadTooLarge\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "37729f0a-2d29-4080-b26c-e2cc49f7499f",
+    "name": "Process Street Public Attachments One-Off Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

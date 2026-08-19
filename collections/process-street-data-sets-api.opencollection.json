@@ -1,0 +1,335 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Data Sets API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all data sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets",
+            "params": [
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "\nReturns a list of data sets.\nThe results are returned 20 at a time, sorted in order of creation date.\nYou must use the links section to get the next 20 results.\n"
+        },
+        {
+          "info": {
+            "name": "Create a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/data-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new data set with the given name and field definitions."
+        },
+        {
+          "info": {
+            "name": "Get a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a data set by its ID, including its field definitions."
+        },
+        {
+          "info": {
+            "name": "Update a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a data set's name and field definitions. Uses PUT semantics: the full field list is replaced. Returns the updated data set."
+        },
+        {
+          "info": {
+            "name": "Delete a data set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a data set and all of its records permanently."
+        },
+        {
+          "info": {
+            "name": "Import data set records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records/import",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Imports data set records from an external source via CSV upload.\n\nThe data set must already exist and must not contain any duplicate column names."
+        },
+        {
+          "info": {
+            "name": "List all data set records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "columns",
+                "value": "",
+                "type": "query",
+                "description": "\nThe values of columns to search for.\nIt will match them exactly in a case-insensitive manner.\nIf there are multiple columns, then the records that match all of them will be returned.\n\nExample (before being URL-encoded):\n`?columns[lD7FTF9R63xNCLn8w_xMdw]=value_1&columns[iJozi9Lbu_vC2igAV1NLWQ]=value_2`\n"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "\nReturns a list of data set records for the given query.\nThe results are returned 20 at a time, sorted in order of data set record ID.\nYou must use the links section to get the next 20 results.\n"
+        },
+        {
+          "info": {
+            "name": "Create a data set record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new record in the specified data set."
+        },
+        {
+          "info": {
+            "name": "Get a data set record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records/:dataSetRecordId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "dataSetRecordId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set Record"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a data set record by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a data set record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records/:dataSetRecordId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "dataSetRecordId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set Record"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing record in a data set."
+        },
+        {
+          "info": {
+            "name": "Delete a data set record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/data-sets/:dataSetId/records/:dataSetRecordId",
+            "params": [
+              {
+                "name": "dataSetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set"
+              },
+              {
+                "name": "dataSetRecordId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Data Set Record"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a data set record by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

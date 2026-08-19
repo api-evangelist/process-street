@@ -1,0 +1,1283 @@
+{
+  "item": [
+    {
+      "id": "0eb560cc-32c0-4682-9818-be9da9c5c652",
+      "name": "Workflow Logic Rules",
+      "description": {
+        "content": "Workflow logic rules are conditional rules that control the visibility of tasks\nand form fields within a workflow revision. Use these endpoints to create, view,\nand manage logic rules.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff4e5f25-e288-4f2a-8c85-7ac0d39eea94",
+          "name": "List all conditional logic rules",
+          "request": {
+            "name": "List all conditional logic rules",
+            "description": {
+              "content": "Returns a paginated list of conditional logic rules for a workflow revision, sorted by order tree.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "logic-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a1c3a7d-df6e-427d-9403-3cbaf36a2060",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"condition\": {\n        \"or\": [\n          {\n            \"and\": [\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              },\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              }\n            ]\n          },\n          {\n            \"and\": [\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              },\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              }\n            ]\n          }\n        ]\n      },\n      \"action\": \"Show\",\n      \"targets\": {\n        \"taskIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"widgetIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"description\": \"string\",\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Data Sets\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Approvals\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"condition\": {\n        \"or\": [\n          {\n            \"and\": [\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              },\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              }\n            ]\n          },\n          {\n            \"and\": [\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              },\n              {\n                \"widgetId\": \"string\",\n                \"operator\": \"string\",\n                \"value\": \"string\"\n              }\n            ]\n          }\n        ]\n      },\n      \"action\": \"Hide\",\n      \"targets\": {\n        \"taskIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"widgetIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"description\": \"string\",\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Comment\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Tasks\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Subject Task\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Task\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56468b1a-24dd-4e30-be07-fc7fe7151e6f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4d0da50-4cdc-4bd6-9efa-4e8570f40639",
+          "name": "Create a conditional logic rule",
+          "request": {
+            "name": "Create a conditional logic rule",
+            "description": {
+              "content": "Creates a conditional logic rule on a draft workflow revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "logic-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"<string>\",\n  \"targets\": {\n    \"taskIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"widgetIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"position\": {\n    \"ruleId\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6ffa4bd-59ec-4da0-ab79-f433ccbbda8c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"lJV3-hTDnBHrNjxm51dD4A\",\n            \"operator\": \"Is\",\n            \"value\": \"Active\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"Show\",\n  \"targets\": {\n    \"taskIds\": [\n      \"mCUPuFwPK_1sHFjYZfhAJQ\"\n    ],\n    \"widgetIds\": []\n  },\n  \"description\": \"Show task when Status is Active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"condition\": {\n      \"or\": [\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"action\": \"Hide\",\n    \"targets\": {\n      \"taskIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"widgetIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"description\": \"string\",\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Webhook\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Workflow\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf12e414-e3ac-479f-a1f8-4119b4758174",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"lJV3-hTDnBHrNjxm51dD4A\",\n            \"operator\": \"Is\",\n            \"value\": \"Active\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"Show\",\n  \"targets\": {\n    \"taskIds\": [\n      \"mCUPuFwPK_1sHFjYZfhAJQ\"\n    ],\n    \"widgetIds\": []\n  },\n  \"description\": \"Show task when Status is Active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d016e46-3ce8-4744-8062-c62370d67411",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"lJV3-hTDnBHrNjxm51dD4A\",\n            \"operator\": \"Is\",\n            \"value\": \"Active\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"Show\",\n  \"targets\": {\n    \"taskIds\": [\n      \"mCUPuFwPK_1sHFjYZfhAJQ\"\n    ],\n    \"widgetIds\": []\n  },\n  \"description\": \"Show task when Status is Active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7041111-b2c8-4050-86a4-7c62d1e6c3bf",
+          "name": "Get a conditional logic rule",
+          "request": {
+            "name": "Get a conditional logic rule",
+            "description": {
+              "content": "Returns a conditional logic rule by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "logic-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) The ID of the Logic Rule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "181779d7-e955-4c7d-878c-f2a338150b7a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"condition\": {\n      \"or\": [\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"action\": \"Hide\",\n    \"targets\": {\n      \"taskIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"widgetIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"description\": \"string\",\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Webhook\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Workflow\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8723a1aa-3635-4248-95f0-42c0d91bf67c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aae9103c-e216-4a79-8658-c782bbd1c790",
+          "name": "Update a conditional logic rule",
+          "request": {
+            "name": "Update a conditional logic rule",
+            "description": {
+              "content": "Updates a conditional logic rule on a draft workflow revision. PUT semantics: all fields must be provided. Returns the updated rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "logic-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) The ID of the Logic Rule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"<string>\",\n  \"targets\": {\n    \"taskIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"widgetIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"position\": {\n    \"ruleId\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be725b21-7d12-4697-b925-cf7f9ae342e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"<string>\",\n  \"targets\": {\n    \"taskIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"widgetIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"position\": {\n    \"ruleId\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"condition\": {\n      \"or\": [\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"and\": [\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"widgetId\": \"string\",\n              \"operator\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"action\": \"Hide\",\n    \"targets\": {\n      \"taskIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"widgetIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"description\": \"string\",\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Webhook\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Assignees\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Workflow\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d40bc6a-2a61-48ad-b534-2f26c895d3b1",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"<string>\",\n  \"targets\": {\n    \"taskIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"widgetIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"position\": {\n    \"ruleId\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1138b22d-9216-4c2a-8a9c-7f0b27556a17",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"or\": [\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"and\": [\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"widgetId\": \"<string>\",\n            \"operator\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"action\": \"<string>\",\n  \"targets\": {\n    \"taskIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"widgetIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"position\": {\n    \"ruleId\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9388e577-9d72-4245-8be0-05a4034695f0",
+          "name": "Delete a conditional logic rule",
+          "request": {
+            "name": "Delete a conditional logic rule",
+            "description": {
+              "content": "Deletes a conditional logic rule from a draft workflow revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "revisions",
+                ":revisionId",
+                "logic-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the Workflow"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "revisionId",
+                  "description": "(Required) The ID of the Revision"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) The ID of the Logic Rule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8cca1ca6-c927-4cdd-bb19-a1606e5551ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9efce631-c727-4dba-bc1e-c1c8d8d8a7df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "revisions",
+                    ":revisionId",
+                    "logic-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the Workflow"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "revisionId",
+                      "description": "(Required) The ID of the Revision"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The ID of the Logic Rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"MethodNotAllowed\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ab507eaf-7818-483a-9f13-3965f4bdd762",
+    "name": "Process Street Public Attachments Workflow Logic Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

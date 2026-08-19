@@ -1,0 +1,316 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Runs API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Assign a user to a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/assignees/:email",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assigns a user to a workflow run. If the user does not exist in your organization they will be invited as a Guest (Internal)."
+        },
+        {
+          "info": {
+            "name": "Unassign a user from a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/assignees/:email",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unassigns a user from a workflow run."
+        },
+        {
+          "info": {
+            "name": "List all assignees in a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/assignees",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "\nReturns a list of workflow run assignees for the given workflow run.\nThe results are returned 20 at a time.\nYou must use the links section to get the next 20 results.\n"
+        },
+        {
+          "info": {
+            "name": "Search workflow runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the Workflow (can be copied from the Workflow URL in the web app)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The partial name of the Workflow Run to search for (will match any part of the name in a case-insensitive manner)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "\nThe status (or statuses) to filter by (Active, Completed or Archived).\nIf no status is provided, it will default to Active.\nMultiple statuses can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "\nThe partial values of form field values to search for.\nIt will match any part of the value in a case-insensitive manner.\nIf there are multiple form field values, then Workflow Runs that match any of them will be returned.<br>\n<br>\nExample (before being URL-encoded):\n<code>?fields[lD7FTF9R63xNCLn8w_xMdw]=value_1&fields[lD7FTF9R63xNCLn8w_xMab]=value_2</code>\n"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the latest 200 workflow runs of a workflow, showing the most recently updated first."
+        },
+        {
+          "info": {
+            "name": "Create a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new workflow run for the specified workflow."
+        },
+        {
+          "info": {
+            "name": "Get a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a workflow run by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A PUT request replaces all values, so all fields must be supplied in each request.\nTo remove a due date, you may send a null value or omit the field. See the examples for more."
+        },
+        {
+          "info": {
+            "name": "Delete a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a workflow run by its ID."
+        },
+        {
+          "info": {
+            "name": "List all workflow runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/list",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to runs of a specific workflow. If the workflow does not exist or is inaccessible, the response is an empty page rather than an error."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by workflow run status.\n\n- `Active` — the run is in progress.\n- `Completed` — all tasks were completed and the run was finalised.\n- `Archived` — the run was archived from the active list.\n\nThe internal `Deleted` status is hidden from the public API surface and rejected here.\nOmit this filter to include all non-deleted runs.\n"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of workflow runs accessible to the calling user, sorted by creation date (newest first). Soft-deleted runs are excluded; only runs of workflow-type templates are returned (runs of page-type templates are out of scope)."
+        },
+        {
+          "info": {
+            "name": "Undelete a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/undelete",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Restores a previously deleted workflow run by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

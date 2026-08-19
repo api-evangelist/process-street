@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments My Work API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Work",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List My Work items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/work/items",
+            "params": [
+              {
+                "name": "assigneeEmail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignee email. Defaults to the authenticated user."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item type.\n\n- `Checklist` — a workflow run assigned to the user.\n- `StandardTask` — a regular task within a workflow run.\n- `ApprovalTask` — an approval task awaiting the user's review.\n- `OneOffTask` — a standalone one-off task.\n- `Acknowledgment` — a revision-acknowledgment request after a workflow update.\n"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific workflow. If the workflow does not exist or is inaccessible, the response is an empty page rather than an error."
+              },
+              {
+                "name": "dueDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Due date range start (ISO-8601, e.g. 2024-01-15)."
+              },
+              {
+                "name": "dueDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Due date range end (ISO-8601, e.g. 2024-01-31)."
+              },
+              {
+                "name": "snoozeStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by snooze status.\n\n- `Active` — non-snoozed items only.\n- `Snoozed` — items currently snoozed.\n\nOmit this filter to include both.\n"
+              },
+              {
+                "name": "includeCompleted",
+                "value": "",
+                "type": "query",
+                "description": "Include completed items. Defaults to false."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of work items assigned to the authenticated user.\nUse `assigneeEmail` to filter by a specific user, or omit to default to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Search My Work items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/work/items/search",
+            "params": [
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches work items with complex filtering.\nSupports multi-value filters for assignees, types, and workflows, plus free-text search and sorting."
+        },
+        {
+          "info": {
+            "name": "Snooze a My Work item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/work/items/:itemId/snooze",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the My Work item to snooze."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Snoozes the My Work item until the specified date. If already snoozed, updates the snooze date."
+        },
+        {
+          "info": {
+            "name": "Unsnooze a My Work item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/work/items/:itemId/snooze",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the My Work item to unsnooze."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes the snooze from the My Work item."
+        },
+        {
+          "info": {
+            "name": "Get My Work stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/work/stats",
+            "params": [
+              {
+                "name": "assigneeEmail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignee email. Defaults to the authenticated user."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns total, upcoming, and overdue counts of work items assigned to the authenticated user.\nUse `assigneeEmail` to filter by a specific user, or omit to default to the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

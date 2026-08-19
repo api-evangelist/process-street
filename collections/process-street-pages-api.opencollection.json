@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Pages API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by page name."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by folder ID."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of pages, sorted by name."
+        },
+        {
+          "info": {
+            "name": "Create a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/pages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new page in the specified folder."
+        },
+        {
+          "info": {
+            "name": "Get a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a page by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a page. PUT semantics: all fields must be provided. Returns the updated page."
+        },
+        {
+          "info": {
+            "name": "Delete a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Soft deletes a page by its ID."
+        },
+        {
+          "info": {
+            "name": "Export page as Markdown",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/markdown",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the content of the latest published page revision as Markdown."
+        },
+        {
+          "info": {
+            "name": "Get permissions for a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/permissions",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the complete list of permissions on a page, one entry per user or group. `accessLevel` is `Custom` when the atom combination does not match a predefined level. Groups appear with synthetic `group-<id>@process.st` emails."
+        },
+        {
+          "info": {
+            "name": "Set permissions for a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/permissions",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces the full set of permissions for a page. PUT semantics: send the complete list to replace all existing permissions. Send an empty array to remove all user-addressable permissions. Accepts both user emails and group emails (groups appear in other endpoints with synthetic `group-<id>@process.st` emails). Note: only the AllMembers system group is user-addressable; AllAdmins, AllFreeMembers, AllGuests, and AllAnonymous are managed automatically and cannot be set directly. Returns the resulti"
+        },
+        {
+          "info": {
+            "name": "Duplicate a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/pages/:pageId/duplicate",
+            "params": [
+              {
+                "name": "pageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new page as a copy of the source page at a given revision. All body fields are optional — send `{}` to use defaults. `revisionId` defaults to the source page's latest published revision; `name` defaults to `\"Copy of <original>\"`; `folderId` defaults to the source page's folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

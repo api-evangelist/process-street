@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Revisions API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflow revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status: Draft, Finished, or Revised."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of revisions for a workflow, optionally filtered by status."
+        },
+        {
+          "info": {
+            "name": "Create a workflow revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new draft revision for a workflow from its current finished revision. Only one draft can exist at a time."
+        },
+        {
+          "info": {
+            "name": "Get a workflow revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a workflow revision by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a workflow revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a draft workflow revision. Only revisions in Draft status can be updated. PUT semantics: send all fields; optional fields omitted or set to null are cleared.\nThe checklist name template can include merge tag variables (e.g. `{{workflow.name}}`).\nUse the listWorkflowRevisionVariables endpoint to discover available variables.\nReturns the updated revision."
+        },
+        {
+          "info": {
+            "name": "Delete a workflow revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a draft workflow revision. Only revisions in Draft status can be deleted."
+        },
+        {
+          "info": {
+            "name": "Publish a workflow revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/publish",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Publishes a draft workflow revision, transitioning it to Finished status. The previously finished revision becomes Revised."
+        },
+        {
+          "info": {
+            "name": "List workflow revision variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/variables",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variable type: Standard, FormField, DataSet, EmailTrigger, or DocumentReview."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns merge tag variables available in a workflow revision, filtered by type. Variables are returned in alphabetical order by label."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

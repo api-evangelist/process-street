@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Workflow Task Due Date Rules API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Task Due Date Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the task due date rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/due-date-rule",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the due date rule for a task on a workflow revision. The `rule` field is `null` when no rule is set."
+        },
+        {
+          "info": {
+            "name": "Set the task due date rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/revisions/:revisionId/tasks/:taskId/due-date-rule",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "revisionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Revision"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the single due date rule for a task on a draft workflow revision, replacing any existing rule. Send `rule: null` (or omit the field) to clear the existing rule. Due date rules cannot be **set** on headings, AI tasks, or Code tasks — but clearing is always permitted so stale rules left over from prior task edits can be removed. `sourceWidgetId` is required when `sourceType` is `FormFieldValue` and must reference a Date form field widget in the same revision. `sourceTaskId` is required when `"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

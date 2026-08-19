@@ -1,0 +1,317 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Tasks API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all approvals in a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/approvals",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of approved or rejected approvals for a workflow run. It will not return pending approvals\nthat have not yet been acted upon.\nThe approvals are returned 20 at a time, sorted in task order.\nYou must use the links section to get the next 20 results."
+        },
+        {
+          "info": {
+            "name": "Approve or reject a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/approvals",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The <code>approvalTaskId</code> is the ID of the approval task and the <code>subjectTaskId</code> is the\nID of the task being approved or rejected. If you don't include a subject task, all pending subject tasks\nof the approval task will be approved or rejected.<br>\n<br>\nA PUT request replaces all values, so all fields must be supplied in each request.\nTo not have a comment, you may send a null value or omit the field. See the examples for more."
+        },
+        {
+          "info": {
+            "name": "Assign a user to a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId/assignees/:email",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assigns a user by email to a task in a workflow run."
+        },
+        {
+          "info": {
+            "name": "Unassign a user from a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId/assignees/:email",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unassigns a user by email from a task in a workflow run."
+        },
+        {
+          "info": {
+            "name": "Get a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a task in a workflow run by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A PUT request replaces all values, so all fields must be supplied in each request.\nTo remove a due date, you may send a null value or omit the field. See the examples for more."
+        },
+        {
+          "info": {
+            "name": "List all tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/tasks",
+            "params": [
+              {
+                "name": "assigneeEmail",
+                "value": "",
+                "type": "query",
+                "description": "The email of the assigned user to filter the tasks by (will match in a case-insensitive manner)"
+              },
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the workflow to filter by."
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "\nReturns a list of tasks for the given query.\nThe tasks are returned 20 at a time, sorted in order of due date.\nYou must use the links section to get the next 20 results.\n"
+        },
+        {
+          "info": {
+            "name": "List all tasks in a workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of tasks for a workflow run.\nThe tasks are returned 20 at a time, sorted in order.\nYou must use the links section to get the next 20 results."
+        },
+        {
+          "info": {
+            "name": "List all assignees in a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflow-runs/:workflowRunId/tasks/:taskId/assignees",
+            "params": [
+              {
+                "name": "workflowRunId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow Run"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Task"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all the assignees of a given task of a workflow run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

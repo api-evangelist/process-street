@@ -1,0 +1,998 @@
+{
+  "item": [
+    {
+      "id": "8be6eb7a-a18d-4775-b9a0-d4eee881f67c",
+      "name": "Scheduled Workflows",
+      "description": {
+        "content": "A scheduled workflow is a recurring schedule that automatically creates workflow runs.\nUse these endpoints to list scheduled workflows and their recurrence rules.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "005dece4-13e1-486e-89df-fddcdccbcddf",
+          "name": "List scheduled workflows",
+          "request": {
+            "name": "List scheduled workflows",
+            "description": {
+              "content": "Returns a paginated list of scheduled workflows, ordered by next run date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workflowId",
+                  "value": "<string>",
+                  "description": "Filter by workflow."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Case-insensitive substring match on name."
+                },
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "506a7105-5c9f-43dc-9fe9-f16447345f43",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workflowId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"workflowId\": \"ii5psnJDWJiSpdsAEcRFlA\",\n      \"startDate\": \"1964-12-20T20:36:17.089Z\",\n      \"timeZone\": \"string\",\n      \"createdDate\": \"1999-04-25T19:18:41.677Z\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"updatedDate\": \"1962-06-12T06:43:45.519Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"name\": \"string\",\n      \"duePeriod\": \"string\",\n      \"nextRunDate\": \"2018-07-28T05:27:45.127Z\",\n      \"previousRunDate\": \"1967-12-29T20:28:16.854Z\",\n      \"rules\": [\n        {\n          \"interval\": 1689,\n          \"frequency\": \"Yearly\"\n        },\n        {\n          \"interval\": 6328,\n          \"frequency\": \"Yearly\"\n        }\n      ],\n      \"assigneeEmails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Workflow\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Form Field Values\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflowId\": \"ii5psnJDWJiSpdsAEcRFlA\",\n      \"startDate\": \"1996-07-18T17:57:17.638Z\",\n      \"timeZone\": \"string\",\n      \"createdDate\": \"1959-07-14T08:56:12.826Z\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"updatedDate\": \"2003-12-25T18:29:13.126Z\",\n      \"updatedBy\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"username\": \"string\"\n      },\n      \"name\": \"string\",\n      \"duePeriod\": \"string\",\n      \"nextRunDate\": \"1995-03-14T13:55:37.857Z\",\n      \"previousRunDate\": \"1964-10-24T17:41:00.630Z\",\n      \"rules\": [\n        {\n          \"interval\": 7571,\n          \"frequency\": \"Weekly\"\n        },\n        {\n          \"interval\": 6723,\n          \"frequency\": \"Daily\"\n        }\n      ],\n      \"assigneeEmails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Approval Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Tasks\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Task\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53399a41-f853-41b4-b9c0-bedcbf4cbe7b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workflowId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"errorCode\": \"RateLimited\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eccb6b58-d344-4456-accc-3f3494b3958c",
+          "name": "Create a scheduled workflow",
+          "request": {
+            "name": "Create a scheduled workflow",
+            "description": {
+              "content": "Creates a scheduled workflow that runs a workflow on a recurring schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowId\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"timeZone\": \"<string>\",\n  \"name\": \"<string>\",\n  \"duePeriod\": \"<string>\",\n  \"rules\": [\n    {\n      \"interval\": \"<integer>\",\n      \"frequency\": \"<string>\"\n    },\n    {\n      \"interval\": \"<integer>\",\n      \"frequency\": \"<string>\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2044c65-3bf3-4dbb-b826-3c5c12a5a1ac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"kQPGyFpvBp_u62CNL4VBGQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"workflowId\": \"ii5psnJDWJiSpdsAEcRFlA\",\n    \"startDate\": \"1959-07-03T20:27:05.400Z\",\n    \"timeZone\": \"string\",\n    \"createdDate\": \"1964-11-07T06:24:54.749Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1953-02-07T02:42:05.653Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"name\": \"string\",\n    \"duePeriod\": \"string\",\n    \"nextRunDate\": \"2018-12-11T13:43:42.286Z\",\n    \"previousRunDate\": \"2006-04-28T15:34:46.901Z\",\n    \"rules\": [\n      {\n        \"interval\": 6830,\n        \"frequency\": \"Yearly\"\n      },\n      {\n        \"interval\": 8356,\n        \"frequency\": \"Weekly\"\n      }\n    ],\n    \"assigneeEmails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Data Sets\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Assignees\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "999d8c9c-1bb7-40c1-bd84-41564e951e1d",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"kQPGyFpvBp_u62CNL4VBGQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2e166c5-8fe9-4a6a-82f3-1013953e34f6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"kQPGyFpvBp_u62CNL4VBGQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"errorCode\": \"RateLimited\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5e6d7a8-30be-49f7-a746-554288903b62",
+          "name": "Get a scheduled workflow",
+          "request": {
+            "name": "Get a scheduled workflow",
+            "description": {
+              "content": "Returns a scheduled workflow by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-workflows",
+                ":scheduledWorkflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduledWorkflowId",
+                  "description": "(Required) The ID of the scheduled workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23763b12-ba63-49fd-acf1-c24e461bc4d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"workflowId\": \"ii5psnJDWJiSpdsAEcRFlA\",\n    \"startDate\": \"1959-07-03T20:27:05.400Z\",\n    \"timeZone\": \"string\",\n    \"createdDate\": \"1964-11-07T06:24:54.749Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1953-02-07T02:42:05.653Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"name\": \"string\",\n    \"duePeriod\": \"string\",\n    \"nextRunDate\": \"2018-12-11T13:43:42.286Z\",\n    \"previousRunDate\": \"2006-04-28T15:34:46.901Z\",\n    \"rules\": [\n      {\n        \"interval\": 6830,\n        \"frequency\": \"Yearly\"\n      },\n      {\n        \"interval\": 8356,\n        \"frequency\": \"Weekly\"\n      }\n    ],\n    \"assigneeEmails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Data Sets\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Assignees\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5e338e5-d665-45d9-918a-e88f58ebe4cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"errorCode\": \"RateLimited\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c251379b-2104-462c-a839-d2ac09a0cd47",
+          "name": "Update a scheduled workflow",
+          "request": {
+            "name": "Update a scheduled workflow",
+            "description": {
+              "content": "Updates a scheduled workflow. PUT semantics: all mutable fields must be provided. Rules and assignees are fully replaced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-workflows",
+                ":scheduledWorkflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduledWorkflowId",
+                  "description": "(Required) The ID of the scheduled workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowId\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"timeZone\": \"<string>\",\n  \"name\": \"<string>\",\n  \"duePeriod\": \"<string>\",\n  \"rules\": [\n    {\n      \"interval\": \"<integer>\",\n      \"frequency\": \"<string>\"\n    },\n    {\n      \"interval\": \"<integer>\",\n      \"frequency\": \"<string>\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55935f8c-f0b0-4fc6-8bbc-428ff38dd42c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"sXf7zprzUDUdMuGjgfpACQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"workflowId\": \"ii5psnJDWJiSpdsAEcRFlA\",\n    \"startDate\": \"1959-07-03T20:27:05.400Z\",\n    \"timeZone\": \"string\",\n    \"createdDate\": \"1964-11-07T06:24:54.749Z\",\n    \"createdBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"updatedDate\": \"1953-02-07T02:42:05.653Z\",\n    \"updatedBy\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"username\": \"string\"\n    },\n    \"name\": \"string\",\n    \"duePeriod\": \"string\",\n    \"nextRunDate\": \"2018-12-11T13:43:42.286Z\",\n    \"previousRunDate\": \"2006-04-28T15:34:46.901Z\",\n    \"rules\": [\n      {\n        \"interval\": 6830,\n        \"frequency\": \"Yearly\"\n      },\n      {\n        \"interval\": 8356,\n        \"frequency\": \"Weekly\"\n      }\n    ],\n    \"assigneeEmails\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"Api\",\n        \"rel\": \"Assignees\"\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n        \"type\": \"App\",\n        \"rel\": \"Data Sets\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Comment\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Assignees\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fed4bba-fe67-46eb-aab6-64cb4938e5ec",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"sXf7zprzUDUdMuGjgfpACQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b16d4c8-8eb5-4b45-90eb-0ac1312a1b24",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"sXf7zprzUDUdMuGjgfpACQ\",\n  \"name\": \"Weekly compliance review\",\n  \"startDate\": \"2026-07-21T14:53:24.927Z\",\n  \"timeZone\": \"America/New_York\",\n  \"duePeriod\": \"P7D\",\n  \"rules\": [\n    {\n      \"interval\": 1,\n      \"weekDay\": \"Monday\",\n      \"frequency\": \"Weekly\"\n    }\n  ],\n  \"assigneeEmails\": [\n    \"alice@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"errorCode\": \"RateLimited\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58c0445f-0745-49b1-89a4-881c54e4d98b",
+          "name": "Delete a scheduled workflow",
+          "request": {
+            "name": "Delete a scheduled workflow",
+            "description": {
+              "content": "Deletes a scheduled workflow and unschedules all future runs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-workflows",
+                ":scheduledWorkflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduledWorkflowId",
+                  "description": "(Required) The ID of the scheduled workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "56c4a4b7-1fe5-432c-b76b-26a3796087e4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c15055f1-b354-457d-9d0e-0f4a014a6556",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-workflows",
+                    ":scheduledWorkflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduledWorkflowId",
+                      "description": "(Required) The ID of the scheduled workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"errorCode\": \"RateLimited\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cdb015f4-8810-40b5-bc1f-30723c1133a2",
+    "name": "Process Street Public Attachments Scheduled Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

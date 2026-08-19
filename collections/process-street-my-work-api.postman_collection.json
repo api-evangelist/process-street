@@ -1,0 +1,1185 @@
+{
+  "item": [
+    {
+      "id": "d31a0f97-200a-46e4-a6f0-79fdccb2e39a",
+      "name": "My Work",
+      "description": {
+        "content": "My Work is your personal task inbox — a consolidated view of all tasks and checklist items\nassigned to you across all workflows. Use these endpoints to list, search, and manage\nyour assigned work items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d6f8119-cb20-48b7-a91b-241bc90ab38d",
+          "name": "List My Work items",
+          "request": {
+            "name": "List My Work items",
+            "description": {
+              "content": "Returns a paginated list of work items assigned to the authenticated user.\nUse `assigneeEmail` to filter by a specific user, or omit to default to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assigneeEmail",
+                  "value": "<string>",
+                  "description": "Filter by assignee email. Defaults to the authenticated user."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by item type.\n\n- `Checklist` — a workflow run assigned to the user.\n- `StandardTask` — a regular task within a workflow run.\n- `ApprovalTask` — an approval task awaiting the user's review.\n- `OneOffTask` — a standalone one-off task.\n- `Acknowledgment` — a revision-acknowledgment request after a workflow update.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "workflowId",
+                  "value": "<string>",
+                  "description": "Filter to a specific workflow. If the workflow does not exist or is inaccessible, the response is an empty page rather than an error."
+                },
+                {
+                  "disabled": false,
+                  "key": "dueDateFrom",
+                  "value": "<string>",
+                  "description": "Due date range start (ISO-8601, e.g. 2024-01-15)."
+                },
+                {
+                  "disabled": false,
+                  "key": "dueDateTo",
+                  "value": "<string>",
+                  "description": "Due date range end (ISO-8601, e.g. 2024-01-31)."
+                },
+                {
+                  "disabled": false,
+                  "key": "snoozeStatus",
+                  "value": "<string>",
+                  "description": "Filter by snooze status.\n\n- `Active` — non-snoozed items only.\n- `Snoozed` — items currently snoozed.\n\nOmit this filter to include both.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCompleted",
+                  "value": "<boolean>",
+                  "description": "Include completed items. Defaults to false."
+                },
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1f7add5-424d-4be0-8863-8cf107a4ad34",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "Checklist"
+                    },
+                    {
+                      "key": "workflowId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "snoozeStatus",
+                      "value": "Snoozed"
+                    },
+                    {
+                      "key": "includeCompleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"type\": \"OneOffTask\",\n      \"name\": \"string\",\n      \"workflowId\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"dueDate\": \"1989-10-18T21:30:02.136Z\",\n      \"snoozedUntil\": \"1948-12-14T09:52:18.087Z\",\n      \"assignees\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Subject Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Workflow Run\"\n        }\n      ]\n    },\n    {\n      \"id\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"type\": \"Checklist\",\n      \"name\": \"string\",\n      \"workflowId\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"dueDate\": \"1993-06-26T09:34:54.145Z\",\n      \"snoozedUntil\": \"1966-01-09T05:44:47.179Z\",\n      \"assignees\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Webhook\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Approval Task\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Sets\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0ed517d-8cb2-4b87-9022-3504dd07680a",
+              "name": "Invalid value for: query parameter type, Invalid value for: query parameter snoozeStatus, Invalid value for: query parameter includeCompleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "Checklist"
+                    },
+                    {
+                      "key": "workflowId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "snoozeStatus",
+                      "value": "Snoozed"
+                    },
+                    {
+                      "key": "includeCompleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ab82e9f-2ed7-4114-a570-033b977d4f60",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeEmail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "Checklist"
+                    },
+                    {
+                      "key": "workflowId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dueDateTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "snoozeStatus",
+                      "value": "Snoozed"
+                    },
+                    {
+                      "key": "includeCompleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PaymentRequired\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f8d1eaa-5ce1-47bd-a585-fea353e5aed0",
+          "name": "Search My Work items",
+          "request": {
+            "name": "Search My Work items",
+            "description": {
+              "content": "Searches work items with complex filtering.\nSupports multi-value filters for assignees, types, and workflows, plus free-text search and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "items",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_",
+                  "value": "<string>",
+                  "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workflowIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dueDateFrom\": \"<dateTime>\",\n  \"dueDateTo\": \"<dateTime>\",\n  \"snoozeStatus\": \"<string>\",\n  \"includeCompleted\": \"<boolean>\",\n  \"searchTerm\": \"<string>\",\n  \"sortBy\": \"<string>\",\n  \"sortOrder\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1cb358a-a7c1-4768-8d06-92ae4434eb03",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workflowIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dueDateFrom\": \"<dateTime>\",\n  \"dueDateTo\": \"<dateTime>\",\n  \"snoozeStatus\": \"<string>\",\n  \"includeCompleted\": \"<boolean>\",\n  \"searchTerm\": \"<string>\",\n  \"sortBy\": \"<string>\",\n  \"sortOrder\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"type\": \"OneOffTask\",\n      \"name\": \"string\",\n      \"workflowId\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"dueDate\": \"1989-10-18T21:30:02.136Z\",\n      \"snoozedUntil\": \"1948-12-14T09:52:18.087Z\",\n      \"assignees\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Subject Task\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Workflow Run\"\n        }\n      ]\n    },\n    {\n      \"id\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"type\": \"Checklist\",\n      \"name\": \"string\",\n      \"workflowId\": \"u1E54jvskr9llzkgxXJFrg\",\n      \"workflowRunId\": \"string\",\n      \"taskId\": \"string\",\n      \"dueDate\": \"1993-06-26T09:34:54.145Z\",\n      \"snoozedUntil\": \"1966-01-09T05:44:47.179Z\",\n      \"assignees\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"username\": \"string\"\n        }\n      ],\n      \"links\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"App\",\n          \"rel\": \"Webhook\"\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n          \"type\": \"Api\",\n          \"rel\": \"Approval Task\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"App\",\n      \"rel\": \"Approvals\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Data Sets\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b0154f6-08e5-46b8-a0ca-caa14e23c002",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workflowIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dueDateFrom\": \"<dateTime>\",\n  \"dueDateTo\": \"<dateTime>\",\n  \"snoozeStatus\": \"<string>\",\n  \"includeCompleted\": \"<boolean>\",\n  \"searchTerm\": \"<string>\",\n  \"sortBy\": \"<string>\",\n  \"sortOrder\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f086ff9-95d0-43ab-bbc4-109ae9437275",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assigneeEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workflowIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dueDateFrom\": \"<dateTime>\",\n  \"dueDateTo\": \"<dateTime>\",\n  \"snoozeStatus\": \"<string>\",\n  \"includeCompleted\": \"<boolean>\",\n  \"searchTerm\": \"<string>\",\n  \"sortBy\": \"<string>\",\n  \"sortOrder\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PaymentRequired\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02f780d5-898f-417a-8a94-74bad155a857",
+          "name": "Snooze a My Work item",
+          "request": {
+            "name": "Snooze a My Work item",
+            "description": {
+              "content": "Snoozes the My Work item until the specified date. If already snoozed, updates the snooze date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "items",
+                ":itemId",
+                "snooze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The ID of the My Work item to snooze."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"until\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56e8de19-9106-4019-993a-716b3548329d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    ":itemId",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the My Work item to snooze."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"until\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"itemId\": \"string\",\n    \"until\": \"2018-01-17T03:22:47.137Z\"\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Form Field Values\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "478bf3e5-dec5-4615-b4b4-c1b6d14b36f4",
+              "name": "Invalid value for: body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    ":itemId",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the My Work item to snooze."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"until\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6223497-ee46-46a5-84b9-3cdd1d7526cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    ":itemId",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the My Work item to snooze."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"until\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PaymentRequired\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "005bef6f-b298-46d8-9bef-8af5d6ab55ed",
+          "name": "Unsnooze a My Work item",
+          "request": {
+            "name": "Unsnooze a My Work item",
+            "description": {
+              "content": "Removes the snooze from the My Work item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "items",
+                ":itemId",
+                "snooze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The ID of the My Work item to unsnooze."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66a91965-ac47-4656-8e8d-113b12111f92",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    ":itemId",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the My Work item to unsnooze."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b13cfef3-8d33-4461-ad66-0534c755f283",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "items",
+                    ":itemId",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the My Work item to unsnooze."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PaymentRequired\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "337d9c3b-70d4-4e15-8534-6f06b1e33d97",
+          "name": "Get My Work stats",
+          "request": {
+            "name": "Get My Work stats",
+            "description": {
+              "content": "Returns total, upcoming, and overdue counts of work items assigned to the authenticated user.\nUse `assigneeEmail` to filter by a specific user, or omit to default to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "work",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assigneeEmail",
+                  "value": "<string>",
+                  "description": "Filter by assignee email. Defaults to the authenticated user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12b11bb1-1f6b-4896-92b7-2cc4f1fdfdd7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeEmail",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"total\": 6370,\n    \"upcoming\": 7028,\n    \"overdue\": 9535\n  },\n  \"links\": [\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approvals\"\n    },\n    {\n      \"name\": \"string\",\n      \"href\": \"https://api.process.st/api/v1.1/resource/XXX\",\n      \"type\": \"Api\",\n      \"rel\": \"Approvals\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "127fcb31-be93-4b7d-b823-e3c794691b4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "work",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeEmail",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  },\n  \"errorCode\": \"PaymentRequired\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.process.st/api/v1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e2da3b30-024e-4c99-b3b4-69450ff036fc",
+    "name": "Process Street Public Attachments My Work API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Process Street API is organized around REST. Our API has predictable resource-oriented URLs,\naccepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response\ncodes, authentication, and verbs.\n\nAn [MCP server](https://www.process.st/help/docs/mcp-server/) is also available for integrating with AI agents and tools.\n\n## Core concepts\n\n**Workflow vs Workflow Run.** A **Workflow** (sometimes called a \"playbook\" or template) is the reusable\ndefinition — tasks, form fields, logic, automations. A **Workflow Run** (sometimes called a \"checklist\")\nis one *instance* of running a Workflow. You list available templates via `listWorkflows`; you start one\nvia `createWorkflowRun` (or by scheduling); and you read or update the live state of an in-progress run\nvia the Workflow Runs / Tasks / Form Field Values endpoints. The two are easy to confuse — when in doubt,\n\"Workflow\" is the *blueprint*, \"Workflow Run\" is *one execution*.\n\n**Pages** are similar but standalone: a Page is a content document (no tasks/form fields). A\n**Page Revision** is a versioned snapshot of its content.\n\n## IDs\n\nAll resource IDs are opaque 22-character URL-safe strings (Muids — a base64-encoded UUID). Treat them\nas opaque tokens. Do not parse them, attempt to sort by them, or assume any internal structure. You can\ncompare two IDs for equality with a plain string comparison.\n\n## Dates and times\n\nAll timestamps in requests and responses are ISO-8601, UTC, with millisecond precision\n(e.g. `2024-09-15T14:32:00.000Z`). For date-only fields (typically due dates), use a calendar date\n(`2024-09-15`).\n\n## Pagination\n\nList endpoints page through results using an opaque cursor named `_` (yes, just an underscore).\nThe flow:\n\n1. Call the list endpoint without `_` to get the first page.\n2. Each response includes a `links[]` array. If there are more pages, you'll find an entry with\n   `name: \"next\"` whose `href` is a fully-formed URL you can `GET` directly.\n3. Keep following `next.href` until the `next` link is absent — that's the end.\n\nYou can also reuse the `_` value from one response by passing it as the `_` query parameter on the\nnext request, but **following the `href` is simpler and forward-compatible**.\n\n## Authentication\n\nEvery request must include an API key as `X-API-KEY: <your-key>`. Generate keys from your\norganization settings in the Process Street app. Each key carries the permissions of the user that\ncreated it.\n\n## Idempotency and retries\n\n- `GET` requests are safe to retry on any error.\n- `PUT` requests are idempotent — calling them twice with the same body is equivalent to calling once.\n  Safe to retry on `5xx`.\n- `DELETE` is idempotent (deleting an already-deleted resource returns `404`, which is fine to ignore).\n- `POST` is generally **not** safe to blindly retry. For workflow runs, attach a `referenceId`\n  on create — calling `createWorkflowRun` twice with the same `referenceId` will return the existing\n  run instead of creating a duplicate.\n\n## Errors\n\nErrors are returned as a JSON object with this shape:\n\n```json\n{\n  \"error\": \"human-readable message\",\n  \"errorCode\": \"NotFound\",\n  \"requestId\": \"abc123…\",\n  \"details\": { \"fieldPath\": \"what went wrong\" }\n}\n```\n\n**When present**, branch on `errorCode` rather than regex'ing `error` (we may rewrite the wording). Include\n`requestId` if you contact support so we can find the request in our logs.\n\n`errorCode` and `requestId` are populated on responses generated by the public API exception handler, which\ncovers the great majority of errors. A few low-level failures (e.g. JSON parse failures caught before the\nhandler runs, framework-level routing errors) may return an `ErrorInfo` without these fields. In that case,\nfall back to the HTTP status code (`400`/`401`/`403`/`404`/`409`/`422`/`429`/`5xx`) — its semantics match\nthe corresponding `errorCode` value.\n\n## Rate limits\n\nAll requests are subject to rate limits. If you receive a `429` response, wait for the duration\nspecified in the `Retry-After` header before retrying.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Process Street Public Attachments Form Fields API",
+    "version": "1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all form fields in a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/form-fields",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of form fields for a workflow.\nForm fields are paged, meaning the links section in the\nresponse must be used to get the next/previous batch of form fields."
+        },
+        {
+          "info": {
+            "name": "List all options for a form field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.process.st/api/v1.1/workflows/:workflowId/form-fields/:formFieldId/options",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Workflow"
+              },
+              {
+                "name": "formFieldId",
+                "value": "",
+                "type": "path",
+                "description": "Form Field ID"
+              },
+              {
+                "name": "_",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination cursor. Take this value from the previous response's `links[]` entry whose `name`\nis `\"next\"` (typically just follow that link's `href` instead of reading this value).\nOmit on the first page. If the previous response had no `next` link, there are no more pages."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of form field options.<br>\nOptions are paged, meaning the links section in the response must be used to get the next/previous\nbatch of form field options.\nIf the field is linked to a Data Set Saved View, then the Row IDs are\nalso listed in the response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
