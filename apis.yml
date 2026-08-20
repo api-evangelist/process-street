@@ -42,6 +42,17 @@ image: https://www.process.st/wp-content/uploads/2020/09/process-street-logo.png
 tags:
 - Company
 - Productivity
+- Workflows
+- Workflow-Automation
+- Process Management
+- No-Code
+- Business Process
+- Task Management
+- Software-as-a-Service
+- MCP
+tags_raw:
+- Company
+- Productivity
 - Workflow
 - Workflow Automation
 - Process Management
@@ -160,6 +171,8 @@ apis:
   humanURL: https://public-api.process.st/api/v1.1/docs/index.html
   baseURL: https://public-api.process.st/api/v1.1
   tags:
+  - Datasets
+  tags_raw:
   - Data Sets
   properties:
   - type: OpenAPI
@@ -513,6 +526,8 @@ apis:
   humanURL: https://public-api.process.st/api/v1.1/docs/index.html
   baseURL: https://public-api.process.st/api/v1.1
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -541,6 +556,8 @@ apis:
   humanURL: https://public-api.process.st/api/v1.1/docs/index.html
   baseURL: https://public-api.process.st/api/v1.1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -602,6 +619,8 @@ apis:
   humanURL: https://public-api.process.st/api/v1.1/docs/index.html
   baseURL: https://public-api.process.st/api/v1.1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
