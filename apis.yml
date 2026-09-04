@@ -37,15 +37,16 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
@@ -997,6 +998,9 @@ apis:
   - type: AgenticAccess
     url: agentic-access/process-street-agentic-access.yml
 common:
+- type: CapabilityMap
+  url: capabilities/process-street-capability-edges.yml
+  name: Process Street Business Capability Map
 - type: Overlay
   url: overlays/process-street-public-api-overlay.yaml
 - type: TrustCenter
