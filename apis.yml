@@ -173,41 +173,6 @@ apis:
     url: asyncapi/process-street-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/process-street-agentic-access.yml
-- aid: process-street:process-street-data-sets-api
-  name: Process Street Data Sets API
-  description: >-
-    A data set is a structured collection of records that can be linked to
-
-    workflow form fields. Use these endpoints to manage data sets and their
-
-    records.
-  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
-  baseURL: https://public-api.process.st/api/v1.1
-  tags:
-  - Datasets
-  tags_raw:
-  - Data Sets
-  properties:
-  - type: OpenAPI
-    url: openapi/process-street-data-sets-api-openapi.yml
-  - type: Authentication
-    url: authentication/process-street-authentication.yml
-  - type: Conventions
-    url: conventions/process-street-conventions.yml
-  - type: Idempotency
-    url: conventions/process-street-conventions.yml
-  - type: ErrorCatalog
-    url: errors/process-street-error-codes.yml
-  - type: Conformance
-    url: conformance/process-street-conformance.yml
-  - type: DataModel
-    url: data-model/process-street-data-model.yml
-  - type: Lifecycle
-    url: lifecycle/process-street-lifecycle.yml
-  - type: Webhooks
-    url: asyncapi/process-street-webhooks.yml
-  - type: AgenticAccess
-    url: agentic-access/process-street-agentic-access.yml
 - aid: process-street:process-street-file-uploads-api
   name: Process Street File Uploads API
   description: >-
@@ -979,6 +944,39 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/process-street-workflows-api-openapi.yml
+  - type: Authentication
+    url: authentication/process-street-authentication.yml
+  - type: Conventions
+    url: conventions/process-street-conventions.yml
+  - type: Idempotency
+    url: conventions/process-street-conventions.yml
+  - type: ErrorCatalog
+    url: errors/process-street-error-codes.yml
+  - type: Conformance
+    url: conformance/process-street-conformance.yml
+  - type: DataModel
+    url: data-model/process-street-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/process-street-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/process-street-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/process-street-agentic-access.yml
+- aid: process-street:process-street-datasets-api
+  name: Process Street Datasets API
+  description: >-
+    A data set is a structured collection of records that can be linked to
+
+    workflow form fields. Use these endpoints to manage data sets and their
+
+    records.
+  humanURL: https://public-api.process.st/api/v1.1/docs/index.html
+  baseURL: https://public-api.process.st/api/v1.1
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/process-street-datasets-api-openapi.yml
   - type: Authentication
     url: authentication/process-street-authentication.yml
   - type: Conventions
