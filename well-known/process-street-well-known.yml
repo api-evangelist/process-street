@@ -1,13 +1,16 @@
-generated: '2026-07-20'
+generated: '2026-09-19'
 method: searched
 source: probe of /.well-known/* on Process Street hosts
-note: >-
-  No /.well-known/ discovery documents are published on the API host
-  (public-api.process.st returns 401/403 for unauthenticated /.well-known/
-  paths) or the marketing host (www.process.st returns 404). The app host
-  (app.process.st) returns an HTML SPA for /.well-known/openid-configuration,
-  not a valid OIDC discovery document, so it is not indexed. Absence is valid
-  recorded data.
+note: 'No /.well-known/ discovery documents are published on the API host (public-api.process.st returns
+  401/403 for unauthenticated /.well-known/ paths) or the marketing host (www.process.st returns 404).
+  The app host (app.process.st) returns an HTML SPA for /.well-known/openid-configuration, not a valid
+  OIDC discovery document, so it is not indexed. Absence is valid recorded data.
+
+
+  MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary
+  hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed and
+  were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
 hosts:
 - host: https://public-api.process.st
   documents:
@@ -21,3 +24,29 @@ hosts:
     status: 404
   - path: /.well-known/openid-configuration
     status: 404
+- host: https://mcp.process.st
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: process-street-mcp-oauth-protected-resource.json
+    bytes: 226
+  path_echo_control: passed
+- host: https://login.process.st
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: process-street-login-oauth-authorization-server.json
+    bytes: 2559
+  path_echo_control: passed
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://mcp.process.st
+    path: /.well-known/oauth-protected-resource
+    file: process-street-mcp-oauth-protected-resource.json
+  - host: https://login.process.st
+    path: /.well-known/oauth-authorization-server
+    file: process-street-login-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host

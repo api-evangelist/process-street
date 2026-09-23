@@ -1,34 +1,7 @@
 {
   "provider": "process-street",
   "sources": [
-    "process-street-attachments-api-openapi.yml",
-    "process-street-comments-api-openapi.yml",
-    "process-street-data-set-incoming-webhooks-api-openapi.yml",
-    "process-street-data-sets-api-openapi.yml",
-    "process-street-file-uploads-api-openapi.yml",
-    "process-street-folders-api-openapi.yml",
-    "process-street-form-field-values-api-openapi.yml",
-    "process-street-form-fields-api-openapi.yml",
-    "process-street-my-work-api-openapi.yml",
-    "process-street-one-off-tasks-api-openapi.yml",
-    "process-street-page-revisions-api-openapi.yml",
-    "process-street-page-widgets-api-openapi.yml",
-    "process-street-pages-api-openapi.yml",
-    "process-street-scheduled-workflows-api-openapi.yml",
-    "process-street-tasks-api-openapi.yml",
-    "process-street-users-api-openapi.yml",
-    "process-street-utilities-api-openapi.yml",
-    "process-street-webhooks-api-openapi.yml",
-    "process-street-workflow-due-date-rules-api-openapi.yml",
-    "process-street-workflow-incoming-webhooks-api-openapi.yml",
-    "process-street-workflow-logic-rules-api-openapi.yml",
-    "process-street-workflow-revisions-api-openapi.yml",
-    "process-street-workflow-runs-api-openapi.yml",
-    "process-street-workflow-task-assignment-rules-api-openapi.yml",
-    "process-street-workflow-task-due-date-rules-api-openapi.yml",
-    "process-street-workflow-tasks-api-openapi.yml",
-    "process-street-workflow-widgets-api-openapi.yml",
-    "process-street-workflows-api-openapi.yml"
+    "_original/process-street-openapi-original.json"
   ],
   "outputs": [
     "process-street-attachments-api-openapi.yml",
@@ -60,9 +33,45 @@
     "process-street-workflow-widgets-api-openapi.yml",
     "process-street-workflows-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "process-street-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: process-street-datasets-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 28 total)"
+  ],
+  "skipped": [
+    "process-street-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-data-set-incoming-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-file-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-form-field-values-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-form-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-my-work-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-one-off-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-page-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-page-widgets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-scheduled-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-due-date-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-incoming-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-logic-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-task-assignment-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-task-due-date-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflow-widgets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "process-street-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

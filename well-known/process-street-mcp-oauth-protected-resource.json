@@ -1,0 +1,10 @@
+{
+  "resource": "https://mcp.process.st",
+  "authorization_servers": [
+    "https://login.process.st"
+  ],
+  "scopes_supported": ["openid","profile","email","offline_access"],
+  "bearer_methods_supported": [
+    "header"
+  ]
+}
