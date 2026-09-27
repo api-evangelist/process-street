@@ -244,323 +244,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    PublicApiScheduledWorkflowListResponse:
-      title: PublicApiScheduledWorkflowListResponse
-      type: object
-      properties:
-        data:
-          description: The list of resources returned by this request.
-          type: array
-          items:
-            title: PublicApiScheduledWorkflow
-            type: object
-            required:
-            - id
-            - workflowId
-            - startDate
-            - timeZone
-            - createdDate
-            - createdBy
-            - updatedDate
-            - updatedBy
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              workflowId:
-                description: The ID of the Workflow
-                examples:
-                - ii5psnJDWJiSpdsAEcRFlA
-                type: string
-              name:
-                description: Optional display name for the schedule. Defaults to the workflow's name.
-                type: string
-              startDate:
-                description: When the schedule first becomes active. ISO-8601 UTC. Runs are produced from this date forward.
-                type: string
-                format: date-time
-              timeZone:
-                description: IANA time zone (e.g. `America/New_York`) used when applying the recurrence.
-                type: string
-              duePeriod:
-                description: Optional ISO-8601 duration (e.g. `P3D`) added to each scheduled run's start to compute its due date.
-                type: string
-              nextRunDate:
-                description: When the next workflow run is scheduled to fire. ISO-8601 UTC.
-                type: string
-                format: date-time
-              previousRunDate:
-                description: When the most recent workflow run was fired. ISO-8601 UTC.
-                type: string
-                format: date-time
-              createdDate:
-                description: When the resource was first created. ISO-8601 UTC.
-                type: string
-                format: date-time
-              createdBy:
-                description: User who created the resource.
-                examples:
-                - id: iAaSNCU5lWLYGAi663hO8Q
-                  email: jane.doe@example.com
-                  username: Jane Doe
-                type: object
-                required:
-                - id
-                - email
-                - username
-                properties:
-                  id:
-                    title: EntityID
-                    description: The resource's ID.
-                    type: string
-                  email:
-                    description: The user's email address (also their login identifier).
-                    type: string
-                  username:
-                    description: The user's display name (e.g. `Jane Doe`).
-                    type: string
-              updatedDate:
-                description: When the resource was last modified. ISO-8601 UTC.
-                type: string
-                format: date-time
-              updatedBy:
-                description: User who last modified the resource.
-                examples:
-                - id: iAaSNCU5lWLYGAi663hO8Q
-                  email: jane.doe@example.com
-                  username: Jane Doe
-                type: object
-                required:
-                - id
-                - email
-                - username
-                properties:
-                  id:
-                    title: EntityID
-                    description: The resource's ID.
-                    type: string
-                  email:
-                    description: The user's email address (also their login identifier).
-                    type: string
-                  username:
-                    description: The user's display name (e.g. `Jane Doe`).
-                    type: string
-              rules:
-                description: Recurrence rules that drive the schedule (Daily/Weekly/Monthly/Yearly).
-                type: array
-                items:
-                  title: PublicApiScheduledWorkflowRule
-                  oneOf:
-                  - title: Daily
-                    type: object
-                    required:
-                    - interval
-                    - frequency
-                    properties:
-                      interval:
-                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                        type: integer
-                        format: int32
-                      frequency:
-                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                        type: string
-                        enum:
-                        - Daily
-                        - Weekly
-                        - Monthly
-                        - Yearly
-                        const: Daily
-                  - title: Monthly
-                    type: object
-                    required:
-                    - interval
-                    - by
-                    - frequency
-                    properties:
-                      interval:
-                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                        type: integer
-                        format: int32
-                      by:
-                        description: 'How a `Monthly` rule recurs:
-
-                          `DayOfMonth` repeats on the same calendar date each month (e.g. the 15th);
-
-                          `DayOfWeek` repeats on the same weekday-of-month pattern (e.g. the second Tuesday).'
-                        type: string
-                        enum:
-                        - DayOfMonth
-                        - DayOfWeek
-                      frequency:
-                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                        type: string
-                        enum:
-                        - Daily
-                        - Weekly
-                        - Monthly
-                        - Yearly
-                        const: Monthly
-                  - title: Weekly
-                    type: object
-                    required:
-                    - interval
-                    - weekDay
-                    - frequency
-                    properties:
-                      interval:
-                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                        type: integer
-                        format: int32
-                      weekDay:
-                        description: Day of the week the workflow runs on. Only used by `Weekly` rules.
-                        type: string
-                        enum:
-                        - Sunday
-                        - Monday
-                        - Tuesday
-                        - Wednesday
-                        - Thursday
-                        - Friday
-                        - Saturday
-                      frequency:
-                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                        type: string
-                        enum:
-                        - Daily
-                        - Weekly
-                        - Monthly
-                        - Yearly
-                        const: Weekly
-                  - title: Yearly
-                    type: object
-                    required:
-                    - interval
-                    - frequency
-                    properties:
-                      interval:
-                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                        type: integer
-                        format: int32
-                      frequency:
-                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                        type: string
-                        enum:
-                        - Daily
-                        - Weekly
-                        - Monthly
-                        - Yearly
-                        const: Yearly
-                  discriminator:
-                    propertyName: frequency
-                    mapping:
-                      Daily: '#/components/schemas/Daily'
-                      Monthly: '#/components/schemas/Monthly'
-                      Weekly: '#/components/schemas/Weekly'
-                      Yearly: '#/components/schemas/Yearly'
-              assigneeEmails:
-                description: Emails of users automatically assigned to each scheduled run when it's created.
-                type: array
-                items:
-                  type: string
-              links:
-                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-                type: array
-                items:
-                  title: Link
-                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                  type: object
-                  required:
-                  - name
-                  - href
-                  - type
-                  properties:
-                    name:
-                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                      type: string
-                    href:
-                      title: Uri
-                      description: URL of the linked resource.
-                      examples:
-                      - https://api.process.st/api/v1.1/resource/XXX
-                      type: string
-                    rel:
-                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                      type: string
-                      enum:
-                      - Approval Task
-                      - Approvals
-                      - Assignees
-                      - Comment
-                      - Data Set Records
-                      - Data Sets
-                      - Form Field Values
-                      - Subject Task
-                      - Task
-                      - Tasks
-                      - Users
-                      - Webhook
-                      - Workflow
-                      - Workflow Run
-                    type:
-                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                      type: string
-                      enum:
-                      - Api
-                      - App
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
     PublicApiScheduledWorkflowResponse:
       title: PublicApiScheduledWorkflowResponse
       type: object
@@ -916,6 +599,323 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
+    PublicApiScheduledWorkflowListResponse:
+      title: PublicApiScheduledWorkflowListResponse
+      type: object
+      properties:
+        data:
+          description: The list of resources returned by this request.
+          type: array
+          items:
+            title: PublicApiScheduledWorkflow
+            type: object
+            required:
+            - id
+            - workflowId
+            - startDate
+            - timeZone
+            - createdDate
+            - createdBy
+            - updatedDate
+            - updatedBy
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              workflowId:
+                description: The ID of the Workflow
+                examples:
+                - ii5psnJDWJiSpdsAEcRFlA
+                type: string
+              name:
+                description: Optional display name for the schedule. Defaults to the workflow's name.
+                type: string
+              startDate:
+                description: When the schedule first becomes active. ISO-8601 UTC. Runs are produced from this date forward.
+                type: string
+                format: date-time
+              timeZone:
+                description: IANA time zone (e.g. `America/New_York`) used when applying the recurrence.
+                type: string
+              duePeriod:
+                description: Optional ISO-8601 duration (e.g. `P3D`) added to each scheduled run's start to compute its due date.
+                type: string
+              nextRunDate:
+                description: When the next workflow run is scheduled to fire. ISO-8601 UTC.
+                type: string
+                format: date-time
+              previousRunDate:
+                description: When the most recent workflow run was fired. ISO-8601 UTC.
+                type: string
+                format: date-time
+              createdDate:
+                description: When the resource was first created. ISO-8601 UTC.
+                type: string
+                format: date-time
+              createdBy:
+                description: User who created the resource.
+                examples:
+                - id: iAaSNCU5lWLYGAi663hO8Q
+                  email: jane.doe@example.com
+                  username: Jane Doe
+                type: object
+                required:
+                - id
+                - email
+                - username
+                properties:
+                  id:
+                    title: EntityID
+                    description: The resource's ID.
+                    type: string
+                  email:
+                    description: The user's email address (also their login identifier).
+                    type: string
+                  username:
+                    description: The user's display name (e.g. `Jane Doe`).
+                    type: string
+              updatedDate:
+                description: When the resource was last modified. ISO-8601 UTC.
+                type: string
+                format: date-time
+              updatedBy:
+                description: User who last modified the resource.
+                examples:
+                - id: iAaSNCU5lWLYGAi663hO8Q
+                  email: jane.doe@example.com
+                  username: Jane Doe
+                type: object
+                required:
+                - id
+                - email
+                - username
+                properties:
+                  id:
+                    title: EntityID
+                    description: The resource's ID.
+                    type: string
+                  email:
+                    description: The user's email address (also their login identifier).
+                    type: string
+                  username:
+                    description: The user's display name (e.g. `Jane Doe`).
+                    type: string
+              rules:
+                description: Recurrence rules that drive the schedule (Daily/Weekly/Monthly/Yearly).
+                type: array
+                items:
+                  title: PublicApiScheduledWorkflowRule
+                  oneOf:
+                  - title: Daily
+                    type: object
+                    required:
+                    - interval
+                    - frequency
+                    properties:
+                      interval:
+                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                        type: integer
+                        format: int32
+                      frequency:
+                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                        type: string
+                        enum:
+                        - Daily
+                        - Weekly
+                        - Monthly
+                        - Yearly
+                        const: Daily
+                  - title: Monthly
+                    type: object
+                    required:
+                    - interval
+                    - by
+                    - frequency
+                    properties:
+                      interval:
+                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                        type: integer
+                        format: int32
+                      by:
+                        description: 'How a `Monthly` rule recurs:
+
+                          `DayOfMonth` repeats on the same calendar date each month (e.g. the 15th);
+
+                          `DayOfWeek` repeats on the same weekday-of-month pattern (e.g. the second Tuesday).'
+                        type: string
+                        enum:
+                        - DayOfMonth
+                        - DayOfWeek
+                      frequency:
+                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                        type: string
+                        enum:
+                        - Daily
+                        - Weekly
+                        - Monthly
+                        - Yearly
+                        const: Monthly
+                  - title: Weekly
+                    type: object
+                    required:
+                    - interval
+                    - weekDay
+                    - frequency
+                    properties:
+                      interval:
+                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                        type: integer
+                        format: int32
+                      weekDay:
+                        description: Day of the week the workflow runs on. Only used by `Weekly` rules.
+                        type: string
+                        enum:
+                        - Sunday
+                        - Monday
+                        - Tuesday
+                        - Wednesday
+                        - Thursday
+                        - Friday
+                        - Saturday
+                      frequency:
+                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                        type: string
+                        enum:
+                        - Daily
+                        - Weekly
+                        - Monthly
+                        - Yearly
+                        const: Weekly
+                  - title: Yearly
+                    type: object
+                    required:
+                    - interval
+                    - frequency
+                    properties:
+                      interval:
+                        description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                        type: integer
+                        format: int32
+                      frequency:
+                        description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                          `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                        type: string
+                        enum:
+                        - Daily
+                        - Weekly
+                        - Monthly
+                        - Yearly
+                        const: Yearly
+                  discriminator:
+                    propertyName: frequency
+                    mapping:
+                      Daily: '#/components/schemas/Daily'
+                      Monthly: '#/components/schemas/Monthly'
+                      Weekly: '#/components/schemas/Weekly'
+                      Yearly: '#/components/schemas/Yearly'
+              assigneeEmails:
+                description: Emails of users automatically assigned to each scheduled run when it's created.
+                type: array
+                items:
+                  type: string
+              links:
+                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+                type: array
+                items:
+                  title: Link
+                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                  type: object
+                  required:
+                  - name
+                  - href
+                  - type
+                  properties:
+                    name:
+                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                      type: string
+                    href:
+                      title: Uri
+                      description: URL of the linked resource.
+                      examples:
+                      - https://api.process.st/api/v1.1/resource/XXX
+                      type: string
+                    rel:
+                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                      type: string
+                      enum:
+                      - Approval Task
+                      - Approvals
+                      - Assignees
+                      - Comment
+                      - Data Set Records
+                      - Data Sets
+                      - Form Field Values
+                      - Subject Task
+                      - Task
+                      - Tasks
+                      - Users
+                      - Webhook
+                      - Workflow
+                      - Workflow Run
+                    type:
+                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                      type: string
+                      enum:
+                      - Api
+                      - App
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     CreateScheduledWorkflowRequest:
       title: CreateScheduledWorkflowRequest
       type: object

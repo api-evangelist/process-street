@@ -388,20 +388,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    DuplicatePageRequest:
-      title: DuplicatePageRequest
-      type: object
-      properties:
-        revisionId:
-          title: EntityID
-          type: string
-        name:
-          description: Display name.
-          type: string
-        folderId:
-          title: EntityID
-          description: The ID of the Folder.
-          type: string
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -441,35 +427,6 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    CreatePageRequest:
-      title: CreatePageRequest
-      type: object
-      required:
-      - name
-      - folderId
-      properties:
-        name:
-          description: Display name.
-          type: string
-          maxLength: 255
-          minLength: 1
-        description:
-          description: Optional free-form description of the page.
-          type: string
-          maxLength: 255
-        folderId:
-          title: EntityID
-          description: The ID of the Folder.
-          type: string
-        shareLevel:
-          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
-          type: string
-          enum:
-          - None
-          - View
-        referenceId:
-          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
-          type: string
     UpdatePageRequest:
       title: UpdatePageRequest
       type: object
@@ -500,6 +457,256 @@ components:
         referenceId:
           description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
           type: string
+    CreatePageRequest:
+      title: CreatePageRequest
+      type: object
+      required:
+      - name
+      - folderId
+      properties:
+        name:
+          description: Display name.
+          type: string
+          maxLength: 255
+          minLength: 1
+        description:
+          description: Optional free-form description of the page.
+          type: string
+          maxLength: 255
+        folderId:
+          title: EntityID
+          description: The ID of the Folder.
+          type: string
+        shareLevel:
+          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
+          type: string
+          enum:
+          - None
+          - View
+        referenceId:
+          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
+          type: string
+    DuplicatePageRequest:
+      title: DuplicatePageRequest
+      type: object
+      properties:
+        revisionId:
+          title: EntityID
+          type: string
+        name:
+          description: Display name.
+          type: string
+        folderId:
+          title: EntityID
+          description: The ID of the Folder.
+          type: string
+    PagePermissionEntry:
+      title: PagePermissionEntry
+      type: object
+      required:
+      - email
+      - accessLevel
+      properties:
+        email:
+          description: Email address.
+          type: string
+        accessLevel:
+          description: 'Access level granted to a user on this page.
+
+
+            - `Edit` — view, edit, and delete the page.
+
+            - `View` — view the page (read-only).
+
+            '
+          type: string
+          enum:
+          - Edit
+          - View
+    PublicApiPageResponse:
+      title: PublicApiPageResponse
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          title: PublicApiPage
+          type: object
+          required:
+          - id
+          - name
+          - folderId
+          - shareLevel
+          - createdDate
+          - createdBy
+          - updatedDate
+          - updatedBy
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            name:
+              description: The page's name.
+              type: string
+            description:
+              description: Optional free-form description of the page.
+              type: string
+            folderId:
+              title: EntityID
+              description: The ID of the Folder.
+              type: string
+            shareLevel:
+              description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
+              type: string
+              enum:
+              - None
+              - View
+            referenceId:
+              description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
+              type: string
+            createdDate:
+              description: When the resource was first created. ISO-8601 UTC.
+              type: string
+              format: date-time
+            createdBy:
+              description: User who created the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            updatedDate:
+              description: When the resource was last modified. ISO-8601 UTC.
+              type: string
+              format: date-time
+            updatedBy:
+              description: User who last modified the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            links:
+              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+              type: array
+              items:
+                title: Link
+                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                type: object
+                required:
+                - name
+                - href
+                - type
+                properties:
+                  name:
+                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                    type: string
+                  href:
+                    title: Uri
+                    description: URL of the linked resource.
+                    examples:
+                    - https://api.process.st/api/v1.1/resource/XXX
+                    type: string
+                  rel:
+                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                    type: string
+                    enum:
+                    - Approval Task
+                    - Approvals
+                    - Assignees
+                    - Comment
+                    - Data Set Records
+                    - Data Sets
+                    - Form Field Values
+                    - Subject Task
+                    - Task
+                    - Tasks
+                    - Users
+                    - Webhook
+                    - Workflow
+                    - Workflow Run
+                  type:
+                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                    type: string
+                    enum:
+                    - Api
+                    - App
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     PublicApiPageListResponse:
       title: PublicApiPageListResponse
       type: object
@@ -685,213 +892,6 @@ components:
                 enum:
                 - Api
                 - App
-    PublicApiPageResponse:
-      title: PublicApiPageResponse
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          title: PublicApiPage
-          type: object
-          required:
-          - id
-          - name
-          - folderId
-          - shareLevel
-          - createdDate
-          - createdBy
-          - updatedDate
-          - updatedBy
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            name:
-              description: The page's name.
-              type: string
-            description:
-              description: Optional free-form description of the page.
-              type: string
-            folderId:
-              title: EntityID
-              description: The ID of the Folder.
-              type: string
-            shareLevel:
-              description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
-              type: string
-              enum:
-              - None
-              - View
-            referenceId:
-              description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
-              type: string
-            createdDate:
-              description: When the resource was first created. ISO-8601 UTC.
-              type: string
-              format: date-time
-            createdBy:
-              description: User who created the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            updatedDate:
-              description: When the resource was last modified. ISO-8601 UTC.
-              type: string
-              format: date-time
-            updatedBy:
-              description: User who last modified the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            links:
-              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-              type: array
-              items:
-                title: Link
-                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                type: object
-                required:
-                - name
-                - href
-                - type
-                properties:
-                  name:
-                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                    type: string
-                  href:
-                    title: Uri
-                    description: URL of the linked resource.
-                    examples:
-                    - https://api.process.st/api/v1.1/resource/XXX
-                    type: string
-                  rel:
-                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                    type: string
-                    enum:
-                    - Approval Task
-                    - Approvals
-                    - Assignees
-                    - Comment
-                    - Data Set Records
-                    - Data Sets
-                    - Form Field Values
-                    - Subject Task
-                    - Task
-                    - Tasks
-                    - Users
-                    - Webhook
-                    - Workflow
-                    - Workflow Run
-                  type:
-                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                    type: string
-                    enum:
-                    - Api
-                    - App
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    PagePermissionEntry:
-      title: PagePermissionEntry
-      type: object
-      required:
-      - email
-      - accessLevel
-      properties:
-        email:
-          description: Email address.
-          type: string
-        accessLevel:
-          description: 'Access level granted to a user on this page.
-
-
-            - `Edit` — view, edit, and delete the page.
-
-            - `View` — view the page (read-only).
-
-            '
-          type: string
-          enum:
-          - Edit
-          - View
     PublicApiPagePermissionListResponse:
       title: PublicApiPagePermissionListResponse
       type: object

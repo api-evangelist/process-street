@@ -148,39 +148,171 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    UploadAttachmentRequest:
-      title: UploadAttachmentRequest
+    PublicApiAttachmentResponse:
+      title: PublicApiAttachmentResponse
       type: object
       required:
-      - workflowRunId
-      - taskId
+      - data
       properties:
-        workflowRunId:
-          title: EntityID
-          description: The ID of the Workflow Run.
-          type: string
-        taskId:
-          title: EntityID
-          description: The ID of the Task.
-          type: string
-        file:
-          description: Uploaded file reference. Use the upload endpoint to attach content.
-          type: string
-          format: binary
-        fileBase64:
-          title: FileBase64
+        data:
+          title: PublicApiAttachment
           type: object
           required:
-          - content
-          - filename
+          - id
+          - createdDate
+          - createdBy
+          - taskId
+          - workflowRunId
+          - workflowId
+          - fileName
+          - mimeType
+          - size
           properties:
-            content:
-              description: Rich text content. May contain merge tags.
+            id:
+              title: EntityID
+              description: The resource's ID.
               type: string
-            filename:
+            createdDate:
+              description: When the resource was first created. ISO-8601 UTC.
               type: string
-        fileUploadId:
-          type: string
+              format: date-time
+            createdBy:
+              description: User who created the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            taskId:
+              description: The ID of the Task
+              examples:
+              - mUb8c-br8usZZ0_5NQBDIQ
+              type: string
+            workflowRunId:
+              description: The ID of the Workflow Run
+              examples:
+              - mUb8c-br8usZZ0_5NQBDIQ
+              type: string
+            workflowId:
+              description: The ID of the Workflow
+              examples:
+              - mUb8c-br8usZZ0_5NQBDIQ
+              type: string
+            fileName:
+              description: Original filename as uploaded.
+              type: string
+            mimeType:
+              description: MIME type detected at upload time (e.g. `image/png`, `application/pdf`).
+              type: string
+            size:
+              description: File size in bytes.
+              type: integer
+              format: int64
+            links:
+              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+              type: array
+              items:
+                title: Link
+                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                type: object
+                required:
+                - name
+                - href
+                - type
+                properties:
+                  name:
+                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                    type: string
+                  href:
+                    title: Uri
+                    description: URL of the linked resource.
+                    examples:
+                    - https://api.process.st/api/v1.1/resource/XXX
+                    type: string
+                  rel:
+                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                    type: string
+                    enum:
+                    - Approval Task
+                    - Approvals
+                    - Assignees
+                    - Comment
+                    - Data Set Records
+                    - Data Sets
+                    - Form Field Values
+                    - Subject Task
+                    - Task
+                    - Tasks
+                    - Users
+                    - Webhook
+                    - Workflow
+                    - Workflow Run
+                  type:
+                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                    type: string
+                    enum:
+                    - Api
+                    - App
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     PublicApiAttachmentListResponse:
       title: PublicApiAttachmentListResponse
       type: object
@@ -386,171 +518,39 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    PublicApiAttachmentResponse:
-      title: PublicApiAttachmentResponse
+    UploadAttachmentRequest:
+      title: UploadAttachmentRequest
       type: object
       required:
-      - data
+      - workflowRunId
+      - taskId
       properties:
-        data:
-          title: PublicApiAttachment
+        workflowRunId:
+          title: EntityID
+          description: The ID of the Workflow Run.
+          type: string
+        taskId:
+          title: EntityID
+          description: The ID of the Task.
+          type: string
+        file:
+          description: Uploaded file reference. Use the upload endpoint to attach content.
+          type: string
+          format: binary
+        fileBase64:
+          title: FileBase64
           type: object
           required:
-          - id
-          - createdDate
-          - createdBy
-          - taskId
-          - workflowRunId
-          - workflowId
-          - fileName
-          - mimeType
-          - size
+          - content
+          - filename
           properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
+            content:
+              description: Rich text content. May contain merge tags.
               type: string
-            createdDate:
-              description: When the resource was first created. ISO-8601 UTC.
+            filename:
               type: string
-              format: date-time
-            createdBy:
-              description: User who created the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            taskId:
-              description: The ID of the Task
-              examples:
-              - mUb8c-br8usZZ0_5NQBDIQ
-              type: string
-            workflowRunId:
-              description: The ID of the Workflow Run
-              examples:
-              - mUb8c-br8usZZ0_5NQBDIQ
-              type: string
-            workflowId:
-              description: The ID of the Workflow
-              examples:
-              - mUb8c-br8usZZ0_5NQBDIQ
-              type: string
-            fileName:
-              description: Original filename as uploaded.
-              type: string
-            mimeType:
-              description: MIME type detected at upload time (e.g. `image/png`, `application/pdf`).
-              type: string
-            size:
-              description: File size in bytes.
-              type: integer
-              format: int64
-            links:
-              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-              type: array
-              items:
-                title: Link
-                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                type: object
-                required:
-                - name
-                - href
-                - type
-                properties:
-                  name:
-                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                    type: string
-                  href:
-                    title: Uri
-                    description: URL of the linked resource.
-                    examples:
-                    - https://api.process.st/api/v1.1/resource/XXX
-                    type: string
-                  rel:
-                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                    type: string
-                    enum:
-                    - Approval Task
-                    - Approvals
-                    - Assignees
-                    - Comment
-                    - Data Set Records
-                    - Data Sets
-                    - Form Field Values
-                    - Subject Task
-                    - Task
-                    - Tasks
-                    - Users
-                    - Webhook
-                    - Workflow
-                    - Workflow Run
-                  type:
-                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                    type: string
-                    enum:
-                    - Api
-                    - App
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
+        fileUploadId:
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -460,27 +460,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    CreateWorkflowRunRequest:
-      title: CreateWorkflowRunRequest
-      type: object
-      maxLength: 1024
-      required:
-      - workflowId
-      properties:
-        workflowId:
-          description: The ID of the Workflow
-          examples:
-          - oOjoOPP1o3h9RbZoRKNJeQ
-          type: string
-        name:
-          description: The name of the new Workflow Run
-          type: string
-        dueDate:
-          description: The due date of the new Workflow Run (Optional)
-          type: string
-          format: date-time
-        shared:
-          type: boolean
     CreateWorkflowRunResponse:
       title: CreateWorkflowRunResponse
       type: object
@@ -492,330 +471,6 @@ components:
           examples:
           - ohVSQR5GrQZ0IEteBL5OQw
           type: string
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    ListWorkflowRunsResponse:
-      title: ListWorkflowRunsResponse
-      type: object
-      properties:
-        workflowRuns:
-          type: array
-          items:
-            title: PublicApiWorkflowRun
-            type: object
-            required:
-            - id
-            - audit
-            - status
-            - workflowId
-            - shared
-            - migrationStatus
-            properties:
-              id:
-                description: The ID of the Workflow Run
-                examples:
-                - uSjrFBxdhISklxIBfjlJpQ
-                type: string
-              audit:
-                title: AuditInfo
-                description: Creation and last-modification metadata.
-                type: object
-                required:
-                - createdDate
-                - createdById
-                - updatedDate
-                - updatedById
-                properties:
-                  createdDate:
-                    description: When the resource was first created. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  createdById:
-                    title: EntityID
-                    description: ID of the user who created the resource.
-                    type: string
-                  updatedDate:
-                    description: When the resource was last modified. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  updatedById:
-                    title: EntityID
-                    description: ID of the user who last modified the resource.
-                    type: string
-              name:
-                description: Display name of the workflow run (often interpolated from a name template).
-                type: string
-              status:
-                description: 'Lifecycle status of a workflow run.
-
-
-                  - `Active` — the run is in progress.
-
-                  - `Completed` — all tasks were completed and the run was finalised.
-
-                  - `Archived` — the run was archived from the active list (no further task progress is recorded but the run stays queryable).
-
-                  - `Deleted` — the run was soft-deleted.
-
-
-                  List endpoints return only `Active` runs unless otherwise indicated.
-
-                  '
-                type: string
-                enum:
-                - Active
-                - Completed
-                - Archived
-                - Deleted
-              workflowId:
-                description: The ID of the Workflow
-                examples:
-                - uSjrFBxdhISklxIBfjlJpQ
-                type: string
-              shared:
-                description: When `true`, this run is visible via its share link.
-                type: boolean
-              dueDate:
-                description: Optional workflow-level due date. ISO-8601 UTC.
-                type: string
-                format: date-time
-              migrationStatus:
-                description: 'Whether this run is currently being migrated to a newer workflow revision.
-
-
-                  - `Inactive` — not in a migration; this is the normal state.
-
-                  - `Scheduled` — a migration to a newer revision has been requested and is queued.
-
-                  - `Migrating` — migration is in progress; some fields may change shortly.
-
-                  '
-                type: string
-                enum:
-                - Inactive
-                - Scheduled
-                - Migrating
-              links:
-                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-                type: array
-                items:
-                  title: Link
-                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                  type: object
-                  required:
-                  - name
-                  - href
-                  - type
-                  properties:
-                    name:
-                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                      type: string
-                    href:
-                      title: Uri
-                      description: URL of the linked resource.
-                      examples:
-                      - https://api.process.st/api/v1.1/resource/XXX
-                      type: string
-                    rel:
-                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                      type: string
-                      enum:
-                      - Approval Task
-                      - Approvals
-                      - Assignees
-                      - Comment
-                      - Data Set Records
-                      - Data Sets
-                      - Form Field Values
-                      - Subject Task
-                      - Task
-                      - Tasks
-                      - Users
-                      - Webhook
-                      - Workflow
-                      - Workflow Run
-                    type:
-                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                      type: string
-                      enum:
-                      - Api
-                      - App
-    ErrorInfo:
-      title: ErrorInfo
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
-          type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
-
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
-          type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
-          type: string
-    GetWorkflowRunResponse:
-      title: GetWorkflowRunResponse
-      type: object
-      required:
-      - id
-      - audit
-      - status
-      - workflowId
-      - shared
-      - migrationStatus
-      properties:
-        id:
-          description: The ID of the Workflow Run
-          examples:
-          - v4dqILFV0FgvbS1myYlIew
-          type: string
-        audit:
-          title: AuditInfo
-          description: Creation and last-modification metadata.
-          type: object
-          required:
-          - createdDate
-          - createdById
-          - updatedDate
-          - updatedById
-          properties:
-            createdDate:
-              description: When the resource was first created. ISO-8601 UTC.
-              type: string
-              format: date-time
-            createdById:
-              title: EntityID
-              description: ID of the user who created the resource.
-              type: string
-            updatedDate:
-              description: When the resource was last modified. ISO-8601 UTC.
-              type: string
-              format: date-time
-            updatedById:
-              title: EntityID
-              description: ID of the user who last modified the resource.
-              type: string
-        name:
-          description: Display name.
-          type: string
-        status:
-          description: 'Lifecycle status of a workflow run.
-
-
-            - `Active` — the run is in progress.
-
-            - `Completed` — all tasks were completed and the run was finalised.
-
-            - `Archived` — the run was archived from the active list (no further task progress is recorded but the run stays queryable).
-
-            - `Deleted` — the run was soft-deleted.
-
-
-            List endpoints return only `Active` runs unless otherwise indicated.
-
-            '
-          type: string
-          enum:
-          - Active
-          - Completed
-          - Archived
-          - Deleted
-        workflowId:
-          description: The ID of the Workflow
-          examples:
-          - v4dqILFV0FgvbS1myYlIew
-          type: string
-        shared:
-          type: boolean
-        dueDate:
-          description: Due date. ISO-8601 UTC.
-          type: string
-          format: date-time
-        migrationStatus:
-          description: 'Whether this run is currently being migrated to a newer workflow revision.
-
-
-            - `Inactive` — not in a migration; this is the normal state.
-
-            - `Scheduled` — a migration to a newer revision has been requested and is queued.
-
-            - `Migrating` — migration is in progress; some fields may change shortly.
-
-            '
-          type: string
-          enum:
-          - Inactive
-          - Scheduled
-          - Migrating
         links:
           description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
           type: array
@@ -887,6 +542,45 @@ components:
           description: The due date for the Workflow Run
           type: string
           format: date-time
+    ErrorInfo:
+      title: ErrorInfo
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
+          type: string
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+          type: string
     ListChecklistAssigneesResponse:
       title: ListChecklistAssigneesResponse
       type: object
@@ -1109,6 +803,312 @@ components:
                       - App
         links:
           description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    CreateWorkflowRunRequest:
+      title: CreateWorkflowRunRequest
+      type: object
+      maxLength: 1024
+      required:
+      - workflowId
+      properties:
+        workflowId:
+          description: The ID of the Workflow
+          examples:
+          - oOjoOPP1o3h9RbZoRKNJeQ
+          type: string
+        name:
+          description: The name of the new Workflow Run
+          type: string
+        dueDate:
+          description: The due date of the new Workflow Run (Optional)
+          type: string
+          format: date-time
+        shared:
+          type: boolean
+    ListWorkflowRunsResponse:
+      title: ListWorkflowRunsResponse
+      type: object
+      properties:
+        workflowRuns:
+          type: array
+          items:
+            title: PublicApiWorkflowRun
+            type: object
+            required:
+            - id
+            - audit
+            - status
+            - workflowId
+            - shared
+            - migrationStatus
+            properties:
+              id:
+                description: The ID of the Workflow Run
+                examples:
+                - uSjrFBxdhISklxIBfjlJpQ
+                type: string
+              audit:
+                title: AuditInfo
+                description: Creation and last-modification metadata.
+                type: object
+                required:
+                - createdDate
+                - createdById
+                - updatedDate
+                - updatedById
+                properties:
+                  createdDate:
+                    description: When the resource was first created. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  createdById:
+                    title: EntityID
+                    description: ID of the user who created the resource.
+                    type: string
+                  updatedDate:
+                    description: When the resource was last modified. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  updatedById:
+                    title: EntityID
+                    description: ID of the user who last modified the resource.
+                    type: string
+              name:
+                description: Display name of the workflow run (often interpolated from a name template).
+                type: string
+              status:
+                description: 'Lifecycle status of a workflow run.
+
+
+                  - `Active` — the run is in progress.
+
+                  - `Completed` — all tasks were completed and the run was finalised.
+
+                  - `Archived` — the run was archived from the active list (no further task progress is recorded but the run stays queryable).
+
+                  - `Deleted` — the run was soft-deleted.
+
+
+                  List endpoints return only `Active` runs unless otherwise indicated.
+
+                  '
+                type: string
+                enum:
+                - Active
+                - Completed
+                - Archived
+                - Deleted
+              workflowId:
+                description: The ID of the Workflow
+                examples:
+                - uSjrFBxdhISklxIBfjlJpQ
+                type: string
+              shared:
+                description: When `true`, this run is visible via its share link.
+                type: boolean
+              dueDate:
+                description: Optional workflow-level due date. ISO-8601 UTC.
+                type: string
+                format: date-time
+              migrationStatus:
+                description: 'Whether this run is currently being migrated to a newer workflow revision.
+
+
+                  - `Inactive` — not in a migration; this is the normal state.
+
+                  - `Scheduled` — a migration to a newer revision has been requested and is queued.
+
+                  - `Migrating` — migration is in progress; some fields may change shortly.
+
+                  '
+                type: string
+                enum:
+                - Inactive
+                - Scheduled
+                - Migrating
+              links:
+                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+                type: array
+                items:
+                  title: Link
+                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                  type: object
+                  required:
+                  - name
+                  - href
+                  - type
+                  properties:
+                    name:
+                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                      type: string
+                    href:
+                      title: Uri
+                      description: URL of the linked resource.
+                      examples:
+                      - https://api.process.st/api/v1.1/resource/XXX
+                      type: string
+                    rel:
+                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                      type: string
+                      enum:
+                      - Approval Task
+                      - Approvals
+                      - Assignees
+                      - Comment
+                      - Data Set Records
+                      - Data Sets
+                      - Form Field Values
+                      - Subject Task
+                      - Task
+                      - Tasks
+                      - Users
+                      - Webhook
+                      - Workflow
+                      - Workflow Run
+                    type:
+                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                      type: string
+                      enum:
+                      - Api
+                      - App
+    GetWorkflowRunResponse:
+      title: GetWorkflowRunResponse
+      type: object
+      required:
+      - id
+      - audit
+      - status
+      - workflowId
+      - shared
+      - migrationStatus
+      properties:
+        id:
+          description: The ID of the Workflow Run
+          examples:
+          - v4dqILFV0FgvbS1myYlIew
+          type: string
+        audit:
+          title: AuditInfo
+          description: Creation and last-modification metadata.
+          type: object
+          required:
+          - createdDate
+          - createdById
+          - updatedDate
+          - updatedById
+          properties:
+            createdDate:
+              description: When the resource was first created. ISO-8601 UTC.
+              type: string
+              format: date-time
+            createdById:
+              title: EntityID
+              description: ID of the user who created the resource.
+              type: string
+            updatedDate:
+              description: When the resource was last modified. ISO-8601 UTC.
+              type: string
+              format: date-time
+            updatedById:
+              title: EntityID
+              description: ID of the user who last modified the resource.
+              type: string
+        name:
+          description: Display name.
+          type: string
+        status:
+          description: 'Lifecycle status of a workflow run.
+
+
+            - `Active` — the run is in progress.
+
+            - `Completed` — all tasks were completed and the run was finalised.
+
+            - `Archived` — the run was archived from the active list (no further task progress is recorded but the run stays queryable).
+
+            - `Deleted` — the run was soft-deleted.
+
+
+            List endpoints return only `Active` runs unless otherwise indicated.
+
+            '
+          type: string
+          enum:
+          - Active
+          - Completed
+          - Archived
+          - Deleted
+        workflowId:
+          description: The ID of the Workflow
+          examples:
+          - v4dqILFV0FgvbS1myYlIew
+          type: string
+        shared:
+          type: boolean
+        dueDate:
+          description: Due date. ISO-8601 UTC.
+          type: string
+          format: date-time
+        migrationStatus:
+          description: 'Whether this run is currently being migrated to a newer workflow revision.
+
+
+            - `Inactive` — not in a migration; this is the normal state.
+
+            - `Scheduled` — a migration to a newer revision has been requested and is queued.
+
+            - `Migrating` — migration is in progress; some fields may change shortly.
+
+            '
+          type: string
+          enum:
+          - Inactive
+          - Scheduled
+          - Migrating
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
           type: array
           items:
             title: Link
