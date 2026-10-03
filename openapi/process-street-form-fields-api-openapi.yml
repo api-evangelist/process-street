@@ -117,73 +117,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    ListFormFieldOptionsResponse:
-      title: ListFormFieldOptionsResponse
-      type: object
-      properties:
-        options:
-          type: array
-          items:
-            title: FormFieldOption
-            type: object
-            required:
-            - value
-            - label
-            properties:
-              value:
-                description: The option's stored value.
-                type: string
-              label:
-                description: Display label shown to the end user.
-                type: string
-              dataSetRowId:
-                title: EntityID
-                type: string
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -341,6 +274,73 @@ components:
                 type: string
               dataSetLinked:
                 type: boolean
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    ListFormFieldOptionsResponse:
+      title: ListFormFieldOptionsResponse
+      type: object
+      properties:
+        options:
+          type: array
+          items:
+            title: FormFieldOption
+            type: object
+            required:
+            - value
+            - label
+            properties:
+              value:
+                description: The option's stored value.
+                type: string
+              label:
+                description: Display label shown to the end user.
+                type: string
+              dataSetRowId:
+                title: EntityID
+                type: string
         links:
           description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
           type: array

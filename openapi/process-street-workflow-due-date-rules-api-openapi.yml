@@ -163,6 +163,47 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
+    UpdateChecklistDueDateRuleRequest:
+      title: UpdateChecklistDueDateRuleRequest
+      type: object
+      properties:
+        rule:
+          title: DueDateRuleBody
+          description: The rule to set; omit or send `null` to clear the existing rule.
+          type: object
+          required:
+          - sourceType
+          - offsetDirection
+          - dueOffset
+          - businessDaysHandlingMode
+          properties:
+            sourceType:
+              description: How the workflow run's due date is derived. `ChecklistStartDate` bases the due date on the workflow run's start date. `FormFieldValue` bases it on a Date form field value (requires `sourceWidgetId`).
+              type: string
+              enum:
+              - FormFieldValue
+              - ChecklistStartDate
+            sourceWidgetId:
+              title: EntityID
+              description: 'For `sourceType=FormField`: the ID of the Members form field whose value drives the rule''s assignees at runtime. Absent for `sourceType=ChecklistInitiator`.'
+              type: string
+            offsetDirection:
+              description: Whether the offset applies before or after the source date.
+              type: string
+              enum:
+              - Before
+              - After
+            dueOffset:
+              description: ISO-8601 duration (e.g. `P7D`, `PT4H30M`).
+              type: string
+            businessDaysHandlingMode:
+              title: BusinessDaysHandlingMode
+              description: How non-business days are handled when calculating the due date. `AllDays` counts every day. `BusinessDaysOnly` counts only Monday–Friday. `ShiftToNextBusinessDay` calculates using all days then moves a Saturday/Sunday result to the next Monday.
+              type: string
+              enum:
+              - AllDays
+              - BusinessDaysOnly
+              - ShiftToNextBusinessDay
     GetChecklistDueDateRuleResponseResponse:
       title: GetChecklistDueDateRuleResponseResponse
       type: object
@@ -256,47 +297,6 @@ components:
                 enum:
                 - Api
                 - App
-    UpdateChecklistDueDateRuleRequest:
-      title: UpdateChecklistDueDateRuleRequest
-      type: object
-      properties:
-        rule:
-          title: DueDateRuleBody
-          description: The rule to set; omit or send `null` to clear the existing rule.
-          type: object
-          required:
-          - sourceType
-          - offsetDirection
-          - dueOffset
-          - businessDaysHandlingMode
-          properties:
-            sourceType:
-              description: How the workflow run's due date is derived. `ChecklistStartDate` bases the due date on the workflow run's start date. `FormFieldValue` bases it on a Date form field value (requires `sourceWidgetId`).
-              type: string
-              enum:
-              - FormFieldValue
-              - ChecklistStartDate
-            sourceWidgetId:
-              title: EntityID
-              description: 'For `sourceType=FormField`: the ID of the Members form field whose value drives the rule''s assignees at runtime. Absent for `sourceType=ChecklistInitiator`.'
-              type: string
-            offsetDirection:
-              description: Whether the offset applies before or after the source date.
-              type: string
-              enum:
-              - Before
-              - After
-            dueOffset:
-              description: ISO-8601 duration (e.g. `P7D`, `PT4H30M`).
-              type: string
-            businessDaysHandlingMode:
-              title: BusinessDaysHandlingMode
-              description: How non-business days are handled when calculating the due date. `AllDays` counts every day. `BusinessDaysOnly` counts only Monday–Friday. `ShiftToNextBusinessDay` calculates using all days then moves a Saturday/Sunday result to the next Monday.
-              type: string
-              enum:
-              - AllDays
-              - BusinessDaysOnly
-              - ShiftToNextBusinessDay
   securitySchemes:
     apiKeyAuth:
       type: apiKey

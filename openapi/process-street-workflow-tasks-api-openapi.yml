@@ -600,45 +600,196 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    ErrorInfo:
-      title: ErrorInfo
+    PublicApiPermissionRuleListResponse:
+      title: PublicApiPermissionRuleListResponse
+      type: object
+      properties:
+        data:
+          description: The list of resources returned by this request.
+          type: array
+          items:
+            title: PublicApiPermissionRule
+            oneOf:
+            - title: DynamicPermissionRule
+              type: object
+              required:
+              - sourceType
+              - taskRead
+              - taskUpdate
+              - type
+              properties:
+                sourceType:
+                  title: SourceType
+                  description: "Where the user(s) that get task access are pulled from at runtime.\n\n- `ChecklistInitiator` — grants access to the user who started the workflow run.\n- `FormField` — grants access to users referenced by a form field on the run (`sourceWidgetId`\n  identifies which Members form field).\n"
+                  type: string
+                  enum:
+                  - ChecklistInitiator
+                  - FormField
+                sourceWidgetId:
+                  title: EntityID
+                  description: 'For `sourceType=FormField`: the ID of the Members form field whose value drives the rule''s assignees at runtime. Absent for `sourceType=ChecklistInitiator`.'
+                  type: string
+                taskRead:
+                  description: When `true`, the rule grants read access to the task.
+                  type: boolean
+                taskUpdate:
+                  description: When `true`, the rule grants update access to the task (check off, edit form fields).
+                  type: boolean
+                type:
+                  description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                  type: string
+                  const: Dynamic
+            - title: StaticPermissionRule
+              type: object
+              required:
+              - user
+              - taskRead
+              - taskUpdate
+              - type
+              properties:
+                user:
+                  title: PublicApiUser
+                  description: User this entry refers to.
+                  examples:
+                  - id: iAaSNCU5lWLYGAi663hO8Q
+                    email: jane.doe@example.com
+                    username: Jane Doe
+                  type: object
+                  required:
+                  - id
+                  - email
+                  - username
+                  properties:
+                    id:
+                      title: EntityID
+                      description: The resource's ID.
+                      type: string
+                    email:
+                      description: The user's email address (also their login identifier).
+                      type: string
+                    username:
+                      description: The user's display name (e.g. `Jane Doe`).
+                      type: string
+                taskRead:
+                  description: When `true`, the rule grants read access to the task.
+                  type: boolean
+                taskUpdate:
+                  description: When `true`, the rule grants update access to the task (check off, edit form fields).
+                  type: boolean
+                type:
+                  description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                  type: string
+                  const: Static
+            discriminator:
+              propertyName: type
+              mapping:
+                Dynamic: '#/components/schemas/DynamicPermissionRule'
+                Static: '#/components/schemas/StaticPermissionRule'
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    UpdateWorkflowTaskRequest:
+      title: UpdateWorkflowTaskRequest
       type: object
       required:
-      - error
+      - stop
+      - hiddenByDefault
       properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
+        name:
+          description: Display name.
           type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
-
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
-          type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
+          maxLength: 255
+        stop:
+          type: boolean
+        hiddenByDefault:
+          description: When `true`, the widget is hidden by default; conditional logic rules can reveal it at runtime. Defaults to `false`.
+          type: boolean
+        dueOffset:
           type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
-          type: string
+        position:
+          title: TaskPosition
+          description: Where to place this task in the workflow revision. `Top` — before all existing tasks. `Bottom` — after all existing tasks (default when `position` is omitted). `After` — immediately after the task identified by `taskId`.
+          oneOf:
+          - title: TaskPositionAfter
+            type: object
+            required:
+            - taskId
+            - type
+            properties:
+              taskId:
+                title: EntityID
+                description: The ID of the Task.
+                type: string
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: After
+          - title: TaskPositionBottom
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Bottom
+          - title: TaskPositionTop
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Top
+          discriminator:
+            propertyName: type
+            mapping:
+              After: '#/components/schemas/TaskPositionAfter'
+              Bottom: '#/components/schemas/TaskPositionBottom'
+              Top: '#/components/schemas/TaskPositionTop'
     PublicApiTaskConfigResponse:
       title: PublicApiTaskConfigResponse
       type: object
@@ -761,6 +912,97 @@ components:
                 enum:
                 - Api
                 - App
+    TaskType:
+      title: TaskType
+      description: 'What the task does.
+
+
+        - `Standard` — a regular task that a user manually checks off when done.
+
+        - `Approval` — an approval task; a reviewer approves or rejects it, gating subsequent tasks.
+
+        - `AI` — an automated task that runs an AI prompt to populate form field values.
+
+        - `Code` — an automated task that runs a custom code snippet.
+
+        '
+      type: string
+      enum:
+      - Standard
+      - Approval
+      - AI
+      - Code
+    PublicApiTaskConfig:
+      title: PublicApiTaskConfig
+      oneOf:
+      - title: PublicApiAiTaskConfig
+        type: object
+        required:
+        - prompt
+        - type
+        properties:
+          prompt:
+            description: AI prompt template. May contain merge tags referencing form field values.
+            type: string
+          systemPrompt:
+            description: Optional system message prepended to the AI prompt to set its behaviour.
+            type: string
+          outputMapping:
+            description: Mapping from prompt/code output keys to form field IDs that receive the values.
+            type: object
+            additionalProperties:
+              title: EntityID
+              type: string
+          type:
+            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+            type: string
+            const: Ai
+      - title: PublicApiApprovalTaskConfig
+        type: object
+        required:
+        - type
+        properties:
+          subjectTaskIds:
+            description: IDs of the tasks reviewed by an approval task.
+            type: array
+            items:
+              title: EntityID
+              type: string
+          type:
+            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+            type: string
+            const: Approval
+      - title: PublicApiCodeTaskConfig
+        type: object
+        required:
+        - code
+        - type
+        properties:
+          code:
+            description: Code snippet executed by this Code task.
+            type: string
+          inputMapping:
+            description: Mapping from prompt/code input keys to form field IDs whose values are passed in.
+            type: object
+            additionalProperties:
+              title: EntityID
+              type: string
+          outputMapping:
+            description: Mapping from prompt/code output keys to form field IDs that receive the values.
+            type: object
+            additionalProperties:
+              title: EntityID
+              type: string
+          type:
+            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+            type: string
+            const: Code
+      discriminator:
+        propertyName: type
+        mapping:
+          Ai: '#/components/schemas/PublicApiAiTaskConfig'
+          Approval: '#/components/schemas/PublicApiApprovalTaskConfig'
+          Code: '#/components/schemas/PublicApiCodeTaskConfig'
     PublicApiTaskTemplateListResponse:
       title: PublicApiTaskTemplateListResponse
       type: object
@@ -974,287 +1216,45 @@ components:
                 enum:
                 - Api
                 - App
-    PublicApiPermissionRuleListResponse:
-      title: PublicApiPermissionRuleListResponse
-      type: object
-      properties:
-        data:
-          description: The list of resources returned by this request.
-          type: array
-          items:
-            title: PublicApiPermissionRule
-            oneOf:
-            - title: DynamicPermissionRule
-              type: object
-              required:
-              - sourceType
-              - taskRead
-              - taskUpdate
-              - type
-              properties:
-                sourceType:
-                  title: SourceType
-                  description: "Where the user(s) that get task access are pulled from at runtime.\n\n- `ChecklistInitiator` — grants access to the user who started the workflow run.\n- `FormField` — grants access to users referenced by a form field on the run (`sourceWidgetId`\n  identifies which Members form field).\n"
-                  type: string
-                  enum:
-                  - ChecklistInitiator
-                  - FormField
-                sourceWidgetId:
-                  title: EntityID
-                  description: 'For `sourceType=FormField`: the ID of the Members form field whose value drives the rule''s assignees at runtime. Absent for `sourceType=ChecklistInitiator`.'
-                  type: string
-                taskRead:
-                  description: When `true`, the rule grants read access to the task.
-                  type: boolean
-                taskUpdate:
-                  description: When `true`, the rule grants update access to the task (check off, edit form fields).
-                  type: boolean
-                type:
-                  description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                  type: string
-                  const: Dynamic
-            - title: StaticPermissionRule
-              type: object
-              required:
-              - user
-              - taskRead
-              - taskUpdate
-              - type
-              properties:
-                user:
-                  title: PublicApiUser
-                  description: User this entry refers to.
-                  examples:
-                  - id: iAaSNCU5lWLYGAi663hO8Q
-                    email: jane.doe@example.com
-                    username: Jane Doe
-                  type: object
-                  required:
-                  - id
-                  - email
-                  - username
-                  properties:
-                    id:
-                      title: EntityID
-                      description: The resource's ID.
-                      type: string
-                    email:
-                      description: The user's email address (also their login identifier).
-                      type: string
-                    username:
-                      description: The user's display name (e.g. `Jane Doe`).
-                      type: string
-                taskRead:
-                  description: When `true`, the rule grants read access to the task.
-                  type: boolean
-                taskUpdate:
-                  description: When `true`, the rule grants update access to the task (check off, edit form fields).
-                  type: boolean
-                type:
-                  description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                  type: string
-                  const: Static
-            discriminator:
-              propertyName: type
-              mapping:
-                Dynamic: '#/components/schemas/DynamicPermissionRule'
-                Static: '#/components/schemas/StaticPermissionRule'
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    UpdateWorkflowTaskRequest:
-      title: UpdateWorkflowTaskRequest
+    ErrorInfo:
+      title: ErrorInfo
       type: object
       required:
-      - stop
-      - hiddenByDefault
+      - error
       properties:
-        name:
-          description: Display name.
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
           type: string
-          maxLength: 255
-        stop:
-          type: boolean
-        hiddenByDefault:
-          description: When `true`, the widget is hidden by default; conditional logic rules can reveal it at runtime. Defaults to `false`.
-          type: boolean
-        dueOffset:
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
           type: string
-        position:
-          title: TaskPosition
-          description: Where to place this task in the workflow revision. `Top` — before all existing tasks. `Bottom` — after all existing tasks (default when `position` is omitted). `After` — immediately after the task identified by `taskId`.
-          oneOf:
-          - title: TaskPositionAfter
-            type: object
-            required:
-            - taskId
-            - type
-            properties:
-              taskId:
-                title: EntityID
-                description: The ID of the Task.
-                type: string
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: After
-          - title: TaskPositionBottom
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Bottom
-          - title: TaskPositionTop
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Top
-          discriminator:
-            propertyName: type
-            mapping:
-              After: '#/components/schemas/TaskPositionAfter'
-              Bottom: '#/components/schemas/TaskPositionBottom'
-              Top: '#/components/schemas/TaskPositionTop'
-    PublicApiTaskConfig:
-      title: PublicApiTaskConfig
-      oneOf:
-      - title: PublicApiAiTaskConfig
-        type: object
-        required:
-        - prompt
-        - type
-        properties:
-          prompt:
-            description: AI prompt template. May contain merge tags referencing form field values.
-            type: string
-          systemPrompt:
-            description: Optional system message prepended to the AI prompt to set its behaviour.
-            type: string
-          outputMapping:
-            description: Mapping from prompt/code output keys to form field IDs that receive the values.
-            type: object
-            additionalProperties:
-              title: EntityID
-              type: string
-          type:
-            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-            type: string
-            const: Ai
-      - title: PublicApiApprovalTaskConfig
-        type: object
-        required:
-        - type
-        properties:
-          subjectTaskIds:
-            description: IDs of the tasks reviewed by an approval task.
-            type: array
-            items:
-              title: EntityID
-              type: string
-          type:
-            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-            type: string
-            const: Approval
-      - title: PublicApiCodeTaskConfig
-        type: object
-        required:
-        - code
-        - type
-        properties:
-          code:
-            description: Code snippet executed by this Code task.
-            type: string
-          inputMapping:
-            description: Mapping from prompt/code input keys to form field IDs whose values are passed in.
-            type: object
-            additionalProperties:
-              title: EntityID
-              type: string
-          outputMapping:
-            description: Mapping from prompt/code output keys to form field IDs that receive the values.
-            type: object
-            additionalProperties:
-              title: EntityID
-              type: string
-          type:
-            description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-            type: string
-            const: Code
-      discriminator:
-        propertyName: type
-        mapping:
-          Ai: '#/components/schemas/PublicApiAiTaskConfig'
-          Approval: '#/components/schemas/PublicApiApprovalTaskConfig'
-          Code: '#/components/schemas/PublicApiCodeTaskConfig'
-    TaskType:
-      title: TaskType
-      description: 'What the task does.
-
-
-        - `Standard` — a regular task that a user manually checks off when done.
-
-        - `Approval` — an approval task; a reviewer approves or rejects it, gating subsequent tasks.
-
-        - `AI` — an automated task that runs an AI prompt to populate form field values.
-
-        - `Code` — an automated task that runs a custom code snippet.
-
-        '
-      type: string
-      enum:
-      - Standard
-      - Approval
-      - AI
-      - Code
+          enum:
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+          type: string
     PublicApiTaskTemplateResponse:
       title: PublicApiTaskTemplateResponse
       type: object

@@ -430,6 +430,403 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    ListApprovalsResponse:
+      title: ListApprovalsResponse
+      type: object
+      properties:
+        approvals:
+          type: array
+          items:
+            title: SimplifiedApproval
+            type: object
+            required:
+            - id
+            - audit
+            - organizationId
+            - workflowRunId
+            - approvalTaskId
+            - subjectTaskId
+            - status
+            - reviewedBy
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              audit:
+                title: PublicApiAudit
+                description: Creation and last-modification metadata.
+                type: object
+                required:
+                - createdDate
+                - createdBy
+                - updatedDate
+                - updatedBy
+                properties:
+                  createdDate:
+                    description: When the resource was first created. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  createdBy:
+                    title: PublicApiUser
+                    description: User who created the resource.
+                    examples:
+                    - id: iAaSNCU5lWLYGAi663hO8Q
+                      email: jane.doe@example.com
+                      username: Jane Doe
+                    type: object
+                    required:
+                    - id
+                    - email
+                    - username
+                    properties:
+                      id:
+                        title: EntityID
+                        description: The resource's ID.
+                        type: string
+                      email:
+                        description: The user's email address (also their login identifier).
+                        type: string
+                      username:
+                        description: The user's display name (e.g. `Jane Doe`).
+                        type: string
+                  updatedDate:
+                    description: When the resource was last modified. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  updatedBy:
+                    title: PublicApiUser
+                    description: User who last modified the resource.
+                    examples:
+                    - id: iAaSNCU5lWLYGAi663hO8Q
+                      email: jane.doe@example.com
+                      username: Jane Doe
+                    type: object
+                    required:
+                    - id
+                    - email
+                    - username
+                    properties:
+                      id:
+                        title: EntityID
+                        description: The resource's ID.
+                        type: string
+                      email:
+                        description: The user's email address (also their login identifier).
+                        type: string
+                      username:
+                        description: The user's display name (e.g. `Jane Doe`).
+                        type: string
+              organizationId:
+                title: EntityID
+                description: The ID of the organization this resource belongs to.
+                type: string
+              workflowRunId:
+                title: EntityID
+                description: The ID of the Workflow Run.
+                type: string
+              approvalTaskId:
+                title: EntityID
+                type: string
+              subjectTaskId:
+                title: EntityID
+                type: string
+              status:
+                description: 'Outcome of an approval task review.
+
+
+                  - `Approved` — the reviewer accepted the subject task(s).
+
+                  - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
+
+                  '
+                type: string
+                enum:
+                - Approved
+                - Rejected
+              reviewedBy:
+                title: PublicApiUser
+                examples:
+                - id: iAaSNCU5lWLYGAi663hO8Q
+                  email: jane.doe@example.com
+                  username: Jane Doe
+                type: object
+                required:
+                - id
+                - email
+                - username
+                properties:
+                  id:
+                    title: EntityID
+                    description: The resource's ID.
+                    type: string
+                  email:
+                    description: The user's email address (also their login identifier).
+                    type: string
+                  username:
+                    description: The user's display name (e.g. `Jane Doe`).
+                    type: string
+              comment:
+                type: string
+              links:
+                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+                type: array
+                items:
+                  title: Link
+                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                  type: object
+                  required:
+                  - name
+                  - href
+                  - type
+                  properties:
+                    name:
+                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                      type: string
+                    href:
+                      title: Uri
+                      description: URL of the linked resource.
+                      examples:
+                      - https://api.process.st/api/v1.1/resource/XXX
+                      type: string
+                    rel:
+                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                      type: string
+                      enum:
+                      - Approval Task
+                      - Approvals
+                      - Assignees
+                      - Comment
+                      - Data Set Records
+                      - Data Sets
+                      - Form Field Values
+                      - Subject Task
+                      - Task
+                      - Tasks
+                      - Users
+                      - Webhook
+                      - Workflow
+                      - Workflow Run
+                    type:
+                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                      type: string
+                      enum:
+                      - Api
+                      - App
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    UpsertApprovalRequest:
+      title: UpsertApprovalRequest
+      type: object
+      required:
+      - approvalTaskId
+      - status
+      properties:
+        approvalTaskId:
+          examples:
+          - kEDOjQu891-kEobPtstORw
+          type: string
+        subjectTaskId:
+          examples:
+          - kEDOjQu891-kEobPtstORw
+          type: string
+        status:
+          description: 'Outcome of an approval task review.
+
+
+            - `Approved` — the reviewer accepted the subject task(s).
+
+            - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
+
+            '
+          type: string
+          enum:
+          - Approved
+          - Rejected
+        comment:
+          type: string
+    GetTaskResponse:
+      title: GetTaskResponse
+      type: object
+      required:
+      - id
+      - updatedDate
+      - updatedBy
+      - workflowRunId
+      - status
+      - name
+      - hidden
+      - stopped
+      properties:
+        id:
+          description: The ID of the Task
+          examples:
+          - mdDUijub_wOJZGOTRs9GEQ
+          type: string
+        updatedDate:
+          description: When the resource was last modified. ISO-8601 UTC.
+          type: string
+          format: date-time
+        updatedBy:
+          title: PublicApiUser
+          description: User who last modified the resource.
+          examples:
+          - id: iAaSNCU5lWLYGAi663hO8Q
+            email: jane.doe@example.com
+            username: Jane Doe
+          type: object
+          required:
+          - id
+          - email
+          - username
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            email:
+              description: The user's email address (also their login identifier).
+              type: string
+            username:
+              description: The user's display name (e.g. `Jane Doe`).
+              type: string
+        completedDate:
+          type: string
+          format: date-time
+        completedBy:
+          title: PublicApiUser
+          examples:
+          - id: iAaSNCU5lWLYGAi663hO8Q
+            email: jane.doe@example.com
+            username: Jane Doe
+          type: object
+          required:
+          - id
+          - email
+          - username
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            email:
+              description: The user's email address (also their login identifier).
+              type: string
+            username:
+              description: The user's display name (e.g. `Jane Doe`).
+              type: string
+        workflowRunId:
+          description: The ID of the Workflow Run
+          examples:
+          - mdDUijub_wOJZGOTRs9GEQ
+          type: string
+        status:
+          title: Status
+          type: string
+          enum:
+          - NotCompleted
+          - Completed
+        dueDate:
+          description: Due date. ISO-8601 UTC.
+          type: string
+          format: date-time
+        name:
+          description: Display name.
+          type: string
+        hidden:
+          description: Whether the task is hidden by Conditional Logic.
+          type: boolean
+        stopped:
+          description: Whether the task is blocked (stopped) by an incomplete prior stop task.
+          type: boolean
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -681,29 +1078,6 @@ components:
                 enum:
                 - Api
                 - App
-    UpdateTaskRequest:
-      title: UpdateTaskRequest
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          description: 'Whether the task is complete.
-
-
-            - `NotCompleted` — the task has not yet been checked off.
-
-            - `Completed` — the task has been checked off.
-
-            '
-          type: string
-          enum:
-          - NotCompleted
-          - Completed
-        dueDate:
-          description: Due date. ISO-8601 UTC.
-          type: string
-          format: date-time
     ListTaskAssigneesResponse:
       title: ListTaskAssigneesResponse
       type: object
@@ -732,83 +1106,21 @@ components:
               username:
                 description: The user's display name (e.g. `Jane Doe`).
                 type: string
-    GetTaskResponse:
-      title: GetTaskResponse
+    UpdateTaskRequest:
+      title: UpdateTaskRequest
       type: object
       required:
-      - id
-      - updatedDate
-      - updatedBy
-      - workflowRunId
       - status
-      - name
-      - hidden
-      - stopped
       properties:
-        id:
-          description: The ID of the Task
-          examples:
-          - mdDUijub_wOJZGOTRs9GEQ
-          type: string
-        updatedDate:
-          description: When the resource was last modified. ISO-8601 UTC.
-          type: string
-          format: date-time
-        updatedBy:
-          title: PublicApiUser
-          description: User who last modified the resource.
-          examples:
-          - id: iAaSNCU5lWLYGAi663hO8Q
-            email: jane.doe@example.com
-            username: Jane Doe
-          type: object
-          required:
-          - id
-          - email
-          - username
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            email:
-              description: The user's email address (also their login identifier).
-              type: string
-            username:
-              description: The user's display name (e.g. `Jane Doe`).
-              type: string
-        completedDate:
-          type: string
-          format: date-time
-        completedBy:
-          title: PublicApiUser
-          examples:
-          - id: iAaSNCU5lWLYGAi663hO8Q
-            email: jane.doe@example.com
-            username: Jane Doe
-          type: object
-          required:
-          - id
-          - email
-          - username
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            email:
-              description: The user's email address (also their login identifier).
-              type: string
-            username:
-              description: The user's display name (e.g. `Jane Doe`).
-              type: string
-        workflowRunId:
-          description: The ID of the Workflow Run
-          examples:
-          - mdDUijub_wOJZGOTRs9GEQ
-          type: string
         status:
-          title: Status
+          description: 'Whether the task is complete.
+
+
+            - `NotCompleted` — the task has not yet been checked off.
+
+            - `Completed` — the task has been checked off.
+
+            '
           type: string
           enum:
           - NotCompleted
@@ -817,318 +1129,6 @@ components:
           description: Due date. ISO-8601 UTC.
           type: string
           format: date-time
-        name:
-          description: Display name.
-          type: string
-        hidden:
-          description: Whether the task is hidden by Conditional Logic.
-          type: boolean
-        stopped:
-          description: Whether the task is blocked (stopped) by an incomplete prior stop task.
-          type: boolean
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    UpsertApprovalRequest:
-      title: UpsertApprovalRequest
-      type: object
-      required:
-      - approvalTaskId
-      - status
-      properties:
-        approvalTaskId:
-          examples:
-          - kEDOjQu891-kEobPtstORw
-          type: string
-        subjectTaskId:
-          examples:
-          - kEDOjQu891-kEobPtstORw
-          type: string
-        status:
-          description: 'Outcome of an approval task review.
-
-
-            - `Approved` — the reviewer accepted the subject task(s).
-
-            - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
-
-            '
-          type: string
-          enum:
-          - Approved
-          - Rejected
-        comment:
-          type: string
-    ListApprovalsResponse:
-      title: ListApprovalsResponse
-      type: object
-      properties:
-        approvals:
-          type: array
-          items:
-            title: SimplifiedApproval
-            type: object
-            required:
-            - id
-            - audit
-            - organizationId
-            - workflowRunId
-            - approvalTaskId
-            - subjectTaskId
-            - status
-            - reviewedBy
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              audit:
-                title: PublicApiAudit
-                description: Creation and last-modification metadata.
-                type: object
-                required:
-                - createdDate
-                - createdBy
-                - updatedDate
-                - updatedBy
-                properties:
-                  createdDate:
-                    description: When the resource was first created. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  createdBy:
-                    title: PublicApiUser
-                    description: User who created the resource.
-                    examples:
-                    - id: iAaSNCU5lWLYGAi663hO8Q
-                      email: jane.doe@example.com
-                      username: Jane Doe
-                    type: object
-                    required:
-                    - id
-                    - email
-                    - username
-                    properties:
-                      id:
-                        title: EntityID
-                        description: The resource's ID.
-                        type: string
-                      email:
-                        description: The user's email address (also their login identifier).
-                        type: string
-                      username:
-                        description: The user's display name (e.g. `Jane Doe`).
-                        type: string
-                  updatedDate:
-                    description: When the resource was last modified. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  updatedBy:
-                    title: PublicApiUser
-                    description: User who last modified the resource.
-                    examples:
-                    - id: iAaSNCU5lWLYGAi663hO8Q
-                      email: jane.doe@example.com
-                      username: Jane Doe
-                    type: object
-                    required:
-                    - id
-                    - email
-                    - username
-                    properties:
-                      id:
-                        title: EntityID
-                        description: The resource's ID.
-                        type: string
-                      email:
-                        description: The user's email address (also their login identifier).
-                        type: string
-                      username:
-                        description: The user's display name (e.g. `Jane Doe`).
-                        type: string
-              organizationId:
-                title: EntityID
-                description: The ID of the organization this resource belongs to.
-                type: string
-              workflowRunId:
-                title: EntityID
-                description: The ID of the Workflow Run.
-                type: string
-              approvalTaskId:
-                title: EntityID
-                type: string
-              subjectTaskId:
-                title: EntityID
-                type: string
-              status:
-                description: 'Outcome of an approval task review.
-
-
-                  - `Approved` — the reviewer accepted the subject task(s).
-
-                  - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
-
-                  '
-                type: string
-                enum:
-                - Approved
-                - Rejected
-              reviewedBy:
-                title: PublicApiUser
-                examples:
-                - id: iAaSNCU5lWLYGAi663hO8Q
-                  email: jane.doe@example.com
-                  username: Jane Doe
-                type: object
-                required:
-                - id
-                - email
-                - username
-                properties:
-                  id:
-                    title: EntityID
-                    description: The resource's ID.
-                    type: string
-                  email:
-                    description: The user's email address (also their login identifier).
-                    type: string
-                  username:
-                    description: The user's display name (e.g. `Jane Doe`).
-                    type: string
-              comment:
-                type: string
-              links:
-                description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-                type: array
-                items:
-                  title: Link
-                  description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                  type: object
-                  required:
-                  - name
-                  - href
-                  - type
-                  properties:
-                    name:
-                      description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                      type: string
-                    href:
-                      title: Uri
-                      description: URL of the linked resource.
-                      examples:
-                      - https://api.process.st/api/v1.1/resource/XXX
-                      type: string
-                    rel:
-                      description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                      type: string
-                      enum:
-                      - Approval Task
-                      - Approvals
-                      - Assignees
-                      - Comment
-                      - Data Set Records
-                      - Data Sets
-                      - Form Field Values
-                      - Subject Task
-                      - Task
-                      - Tasks
-                      - Users
-                      - Webhook
-                      - Workflow
-                      - Workflow Run
-                    type:
-                      description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                      type: string
-                      enum:
-                      - Api
-                      - App
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
   securitySchemes:
     apiKeyAuth:
       type: apiKey

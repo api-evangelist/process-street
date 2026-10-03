@@ -104,28 +104,6 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    CreateFileUploadRequest:
-      title: CreateFileUploadRequest
-      type: object
-      required:
-      - filename
-      - contentType
-      - sizeBytes
-      properties:
-        filename:
-          description: The original file name, including its extension.
-          type: string
-          maxLength: 255
-          minLength: 1
-        contentType:
-          description: The MIME type of the file (e.g. `application/pdf`). You must send this exact value as the `Content-Type` header when uploading to `uploadUrl`.
-          type: string
-          minLength: 1
-        sizeBytes:
-          description: The size of the file in bytes.
-          type: integer
-          format: int64
-          minimum: 1
     PublicApiFileUploadResponse:
       title: PublicApiFileUploadResponse
       type: object
@@ -200,6 +178,28 @@ components:
                 enum:
                 - Api
                 - App
+    CreateFileUploadRequest:
+      title: CreateFileUploadRequest
+      type: object
+      required:
+      - filename
+      - contentType
+      - sizeBytes
+      properties:
+        filename:
+          description: The original file name, including its extension.
+          type: string
+          maxLength: 255
+          minLength: 1
+        contentType:
+          description: The MIME type of the file (e.g. `application/pdf`). You must send this exact value as the `Content-Type` header when uploading to `uploadUrl`.
+          type: string
+          minLength: 1
+        sizeBytes:
+          description: The size of the file in bytes.
+          type: integer
+          format: int64
+          minimum: 1
   securitySchemes:
     apiKeyAuth:
       type: apiKey

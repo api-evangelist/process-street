@@ -286,23 +286,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    UpdatePageRevisionRequest:
-      title: UpdatePageRevisionRequest
-      type: object
-      required:
-      - changeType
-      properties:
-        changeType:
-          title: ChangeType
-          description: Whether the changes in this revision are significant. `Material` — substantial changes; bumps the major version (e.g. `1.3` → `2.0`). `NonMaterial` — minor edits like wording or typo fixes; bumps the minor version (e.g. `1.3` → `1.4`).
-          type: string
-          enum:
-          - Material
-          - NonMaterial
-        changeExplanation:
-          description: Optional human-readable explanation of what changed in this revision; surfaced in revision history.
-          type: string
-          maxLength: 1000
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -615,6 +598,23 @@ components:
                 enum:
                 - Api
                 - App
+    UpdatePageRevisionRequest:
+      title: UpdatePageRevisionRequest
+      type: object
+      required:
+      - changeType
+      properties:
+        changeType:
+          title: ChangeType
+          description: Whether the changes in this revision are significant. `Material` — substantial changes; bumps the major version (e.g. `1.3` → `2.0`). `NonMaterial` — minor edits like wording or typo fixes; bumps the minor version (e.g. `1.3` → `1.4`).
+          type: string
+          enum:
+          - Material
+          - NonMaterial
+        changeExplanation:
+          description: Optional human-readable explanation of what changed in this revision; surfaced in revision history.
+          type: string
+          maxLength: 1000
   securitySchemes:
     apiKeyAuth:
       type: apiKey

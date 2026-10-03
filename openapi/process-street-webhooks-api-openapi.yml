@@ -194,6 +194,107 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    UpdateWebhookRequest:
+      title: UpdateWebhookRequest
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          description: Target URL.
+          type: string
+        triggers:
+          type: array
+          uniqueItems: true
+          items:
+            description: 'Event that fires the outgoing webhook.
+
+
+              - `TaskChecked` — a task is marked complete.
+
+              - `TaskUnchecked` — a task is marked incomplete after having been completed.
+
+              - `TaskCheckedUnchecked` — fires for either of the above (single subscription for both).
+
+              - `TaskReady` — all prerequisite tasks/stop tasks are clear and this task becomes actionable.
+
+              - `WorkflowRunCreated` — a new workflow run is created.
+
+              - `WorkflowRunCompleted` — all tasks on a run are complete.
+
+              '
+            type: string
+            enum:
+            - TaskChecked
+            - TaskUnchecked
+            - TaskCheckedUnchecked
+            - TaskReady
+            - WorkflowRunCreated
+            - WorkflowRunCompleted
+        workflowId:
+          title: EntityID
+          description: The ID of the Workflow.
+          type: string
+        taskId:
+          title: EntityID
+          description: The ID of the Task.
+          type: string
+    WebhookResponse:
+      title: WebhookResponse
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          description: The ID of the Webhook
+          examples:
+          - pnHL-E_bERkSpcREFFtFng
+          type: string
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -608,107 +709,6 @@ components:
                 enum:
                 - Api
                 - App
-    WebhookResponse:
-      title: WebhookResponse
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          description: The ID of the Webhook
-          examples:
-          - pnHL-E_bERkSpcREFFtFng
-          type: string
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    UpdateWebhookRequest:
-      title: UpdateWebhookRequest
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          description: Target URL.
-          type: string
-        triggers:
-          type: array
-          uniqueItems: true
-          items:
-            description: 'Event that fires the outgoing webhook.
-
-
-              - `TaskChecked` — a task is marked complete.
-
-              - `TaskUnchecked` — a task is marked incomplete after having been completed.
-
-              - `TaskCheckedUnchecked` — fires for either of the above (single subscription for both).
-
-              - `TaskReady` — all prerequisite tasks/stop tasks are clear and this task becomes actionable.
-
-              - `WorkflowRunCreated` — a new workflow run is created.
-
-              - `WorkflowRunCompleted` — all tasks on a run are complete.
-
-              '
-            type: string
-            enum:
-            - TaskChecked
-            - TaskUnchecked
-            - TaskCheckedUnchecked
-            - TaskReady
-            - WorkflowRunCreated
-            - WorkflowRunCompleted
-        workflowId:
-          title: EntityID
-          description: The ID of the Workflow.
-          type: string
-        taskId:
-          title: EntityID
-          description: The ID of the Task.
-          type: string
     CreateWebhookRequest:
       title: CreateWebhookRequest
       type: object

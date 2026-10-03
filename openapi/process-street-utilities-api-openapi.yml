@@ -37,14 +37,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    TestAuthResponse:
-      title: TestAuthResponse
-      type: object
-      required:
-      - apiKeyLabel
-      properties:
-        apiKeyLabel:
-          type: string
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -83,6 +75,14 @@ components:
           - InternalError
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+          type: string
+    TestAuthResponse:
+      title: TestAuthResponse
+      type: object
+      required:
+      - apiKeyLabel
+      properties:
+        apiKeyLabel:
           type: string
   securitySchemes:
     apiKeyAuth:

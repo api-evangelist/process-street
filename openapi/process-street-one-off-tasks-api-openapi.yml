@@ -237,6 +237,66 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    UpdateOneOffTaskRequest:
+      title: UpdateOneOffTaskRequest
+      type: object
+      required:
+      - name
+      - required
+      properties:
+        name:
+          description: Display name.
+          type: string
+          minLength: 1
+        description:
+          description: Optional long-form description.
+          type: string
+        dueDate:
+          description: Due date. ISO-8601 UTC.
+          type: string
+          format: date-time
+        required:
+          description: When `true`, the form field must have a value before its task can be completed.
+          type: boolean
+        linkedWorkflowRunId:
+          title: EntityID
+          type: string
+        assigneeEmails:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        subtasks:
+          type: array
+          items:
+            title: UpdateSubtaskRequest
+            type: object
+            required:
+            - name
+            - status
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              name:
+                description: Display name.
+                type: string
+                minLength: 1
+              status:
+                title: Status
+                description: 'Whether this subtask has been checked off.
+
+
+                  - `Completed` — the subtask is checked.
+
+                  - `NotCompleted` — the subtask is unchecked.
+
+                  '
+                type: string
+                enum:
+                - Completed
+                - NotCompleted
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -317,66 +377,6 @@ components:
                 description: Display name.
                 type: string
                 minLength: 1
-    UpdateOneOffTaskRequest:
-      title: UpdateOneOffTaskRequest
-      type: object
-      required:
-      - name
-      - required
-      properties:
-        name:
-          description: Display name.
-          type: string
-          minLength: 1
-        description:
-          description: Optional long-form description.
-          type: string
-        dueDate:
-          description: Due date. ISO-8601 UTC.
-          type: string
-          format: date-time
-        required:
-          description: When `true`, the form field must have a value before its task can be completed.
-          type: boolean
-        linkedWorkflowRunId:
-          title: EntityID
-          type: string
-        assigneeEmails:
-          type: array
-          minItems: 1
-          items:
-            type: string
-        subtasks:
-          type: array
-          items:
-            title: UpdateSubtaskRequest
-            type: object
-            required:
-            - name
-            - status
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              name:
-                description: Display name.
-                type: string
-                minLength: 1
-              status:
-                title: Status
-                description: 'Whether this subtask has been checked off.
-
-
-                  - `Completed` — the subtask is checked.
-
-                  - `NotCompleted` — the subtask is unchecked.
-
-                  '
-                type: string
-                enum:
-                - Completed
-                - NotCompleted
     PublicApiOneOffTaskResponse:
       title: PublicApiOneOffTaskResponse
       type: object
