@@ -259,220 +259,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    CreateWorkflowLogicRuleRequest:
-      title: CreateWorkflowLogicRuleRequest
-      type: object
-      required:
-      - condition
-      - action
-      - targets
-      properties:
-        condition:
-          title: OrCondition
-          type: object
-          properties:
-            or:
-              description: List of AND-groups; the OR-condition matches if any group matches.
-              type: array
-              items:
-                title: AndGroup
-                type: object
-                properties:
-                  and:
-                    description: List of conditions that must all match (AND combined within a group).
-                    type: array
-                    items:
-                      title: LeafCondition
-                      type: object
-                      required:
-                      - widgetId
-                      - operator
-                      properties:
-                        widgetId:
-                          title: EntityID
-                          description: The ID of the widget.
-                          type: string
-                        operator:
-                          description: Comparison operator (e.g. `Is`, `IsNot`, `Contains`, `IsEmpty`).
-                          type: string
-                        value:
-                          description: The option's stored value.
-                          type: string
-        action:
-          title: WorkflowLogicRuleAction
-          description: What the rule does to its targets when conditions match. `Show` reveals tasks/widgets that are hidden by default. `Hide` conceals tasks/widgets that are visible by default.
-          type: string
-          enum:
-          - Show
-          - Hide
-        targets:
-          title: PublicApiTargets
-          type: object
-          properties:
-            taskIds:
-              description: IDs of the tasks this rule applies to.
-              type: array
-              items:
-                title: EntityID
-                type: string
-            widgetIds:
-              description: IDs of the widgets (form fields) this rule applies to.
-              type: array
-              items:
-                title: EntityID
-                type: string
-        position:
-          title: RulePosition
-          description: Where to place this logic rule in the workflow revision. `Top` — before all existing rules. `Bottom` — after all existing rules (default when `position` is omitted). `After` — immediately after the rule identified by `ruleId`.
-          oneOf:
-          - title: RulePositionAfter
-            type: object
-            required:
-            - ruleId
-            - type
-            properties:
-              ruleId:
-                title: EntityID
-                type: string
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: After
-          - title: RulePositionBottom
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Bottom
-          - title: RulePositionTop
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Top
-          discriminator:
-            propertyName: type
-            mapping:
-              After: '#/components/schemas/RulePositionAfter'
-              Bottom: '#/components/schemas/RulePositionBottom'
-              Top: '#/components/schemas/RulePositionTop'
-        description:
-          description: Optional long-form description.
-          type: string
-          maxLength: 255
-    UpdateWorkflowLogicRuleRequest:
-      title: UpdateWorkflowLogicRuleRequest
-      type: object
-      required:
-      - condition
-      - action
-      - targets
-      properties:
-        condition:
-          title: OrCondition
-          type: object
-          properties:
-            or:
-              description: List of AND-groups; the OR-condition matches if any group matches.
-              type: array
-              items:
-                title: AndGroup
-                type: object
-                properties:
-                  and:
-                    description: List of conditions that must all match (AND combined within a group).
-                    type: array
-                    items:
-                      title: LeafCondition
-                      type: object
-                      required:
-                      - widgetId
-                      - operator
-                      properties:
-                        widgetId:
-                          title: EntityID
-                          description: The ID of the widget.
-                          type: string
-                        operator:
-                          description: Comparison operator (e.g. `Is`, `IsNot`, `Contains`, `IsEmpty`).
-                          type: string
-                        value:
-                          description: The option's stored value.
-                          type: string
-        action:
-          title: WorkflowLogicRuleAction
-          description: What the rule does to its targets when conditions match. `Show` reveals tasks/widgets that are hidden by default. `Hide` conceals tasks/widgets that are visible by default.
-          type: string
-          enum:
-          - Show
-          - Hide
-        targets:
-          title: PublicApiTargets
-          type: object
-          properties:
-            taskIds:
-              description: IDs of the tasks this rule applies to.
-              type: array
-              items:
-                title: EntityID
-                type: string
-            widgetIds:
-              description: IDs of the widgets (form fields) this rule applies to.
-              type: array
-              items:
-                title: EntityID
-                type: string
-        position:
-          title: RulePosition
-          description: Where to place this logic rule in the workflow revision. `Top` — before all existing rules. `Bottom` — after all existing rules (default when `position` is omitted). `After` — immediately after the rule identified by `ruleId`.
-          oneOf:
-          - title: RulePositionAfter
-            type: object
-            required:
-            - ruleId
-            - type
-            properties:
-              ruleId:
-                title: EntityID
-                type: string
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: After
-          - title: RulePositionBottom
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Bottom
-          - title: RulePositionTop
-            type: object
-            required:
-            - type
-            properties:
-              type:
-                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
-                type: string
-                const: Top
-          discriminator:
-            propertyName: type
-            mapping:
-              After: '#/components/schemas/RulePositionAfter'
-              Bottom: '#/components/schemas/RulePositionBottom'
-              Top: '#/components/schemas/RulePositionTop'
-        description:
-          description: Optional long-form description.
-          type: string
-          maxLength: 255
     PublicApiLogicRuleListResponse:
       title: PublicApiLogicRuleListResponse
       type: object
@@ -640,6 +426,113 @@ components:
                 enum:
                 - Api
                 - App
+    UpdateWorkflowLogicRuleRequest:
+      title: UpdateWorkflowLogicRuleRequest
+      type: object
+      required:
+      - condition
+      - action
+      - targets
+      properties:
+        condition:
+          title: OrCondition
+          type: object
+          properties:
+            or:
+              description: List of AND-groups; the OR-condition matches if any group matches.
+              type: array
+              items:
+                title: AndGroup
+                type: object
+                properties:
+                  and:
+                    description: List of conditions that must all match (AND combined within a group).
+                    type: array
+                    items:
+                      title: LeafCondition
+                      type: object
+                      required:
+                      - widgetId
+                      - operator
+                      properties:
+                        widgetId:
+                          title: EntityID
+                          description: The ID of the widget.
+                          type: string
+                        operator:
+                          description: Comparison operator (e.g. `Is`, `IsNot`, `Contains`, `IsEmpty`).
+                          type: string
+                        value:
+                          description: The option's stored value.
+                          type: string
+        action:
+          title: WorkflowLogicRuleAction
+          description: What the rule does to its targets when conditions match. `Show` reveals tasks/widgets that are hidden by default. `Hide` conceals tasks/widgets that are visible by default.
+          type: string
+          enum:
+          - Show
+          - Hide
+        targets:
+          title: PublicApiTargets
+          type: object
+          properties:
+            taskIds:
+              description: IDs of the tasks this rule applies to.
+              type: array
+              items:
+                title: EntityID
+                type: string
+            widgetIds:
+              description: IDs of the widgets (form fields) this rule applies to.
+              type: array
+              items:
+                title: EntityID
+                type: string
+        position:
+          title: RulePosition
+          description: Where to place this logic rule in the workflow revision. `Top` — before all existing rules. `Bottom` — after all existing rules (default when `position` is omitted). `After` — immediately after the rule identified by `ruleId`.
+          oneOf:
+          - title: RulePositionAfter
+            type: object
+            required:
+            - ruleId
+            - type
+            properties:
+              ruleId:
+                title: EntityID
+                type: string
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: After
+          - title: RulePositionBottom
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Bottom
+          - title: RulePositionTop
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Top
+          discriminator:
+            propertyName: type
+            mapping:
+              After: '#/components/schemas/RulePositionAfter'
+              Bottom: '#/components/schemas/RulePositionBottom'
+              Top: '#/components/schemas/RulePositionTop'
+        description:
+          description: Optional long-form description.
+          type: string
+          maxLength: 255
     PublicApiLogicRuleResponse:
       title: PublicApiLogicRuleResponse
       type: object
@@ -806,6 +699,113 @@ components:
                 enum:
                 - Api
                 - App
+    CreateWorkflowLogicRuleRequest:
+      title: CreateWorkflowLogicRuleRequest
+      type: object
+      required:
+      - condition
+      - action
+      - targets
+      properties:
+        condition:
+          title: OrCondition
+          type: object
+          properties:
+            or:
+              description: List of AND-groups; the OR-condition matches if any group matches.
+              type: array
+              items:
+                title: AndGroup
+                type: object
+                properties:
+                  and:
+                    description: List of conditions that must all match (AND combined within a group).
+                    type: array
+                    items:
+                      title: LeafCondition
+                      type: object
+                      required:
+                      - widgetId
+                      - operator
+                      properties:
+                        widgetId:
+                          title: EntityID
+                          description: The ID of the widget.
+                          type: string
+                        operator:
+                          description: Comparison operator (e.g. `Is`, `IsNot`, `Contains`, `IsEmpty`).
+                          type: string
+                        value:
+                          description: The option's stored value.
+                          type: string
+        action:
+          title: WorkflowLogicRuleAction
+          description: What the rule does to its targets when conditions match. `Show` reveals tasks/widgets that are hidden by default. `Hide` conceals tasks/widgets that are visible by default.
+          type: string
+          enum:
+          - Show
+          - Hide
+        targets:
+          title: PublicApiTargets
+          type: object
+          properties:
+            taskIds:
+              description: IDs of the tasks this rule applies to.
+              type: array
+              items:
+                title: EntityID
+                type: string
+            widgetIds:
+              description: IDs of the widgets (form fields) this rule applies to.
+              type: array
+              items:
+                title: EntityID
+                type: string
+        position:
+          title: RulePosition
+          description: Where to place this logic rule in the workflow revision. `Top` — before all existing rules. `Bottom` — after all existing rules (default when `position` is omitted). `After` — immediately after the rule identified by `ruleId`.
+          oneOf:
+          - title: RulePositionAfter
+            type: object
+            required:
+            - ruleId
+            - type
+            properties:
+              ruleId:
+                title: EntityID
+                type: string
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: After
+          - title: RulePositionBottom
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Bottom
+          - title: RulePositionTop
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                description: Discriminator value for this variant. See the parent oneOf for the full set of values.
+                type: string
+                const: Top
+          discriminator:
+            propertyName: type
+            mapping:
+              After: '#/components/schemas/RulePositionAfter'
+              Bottom: '#/components/schemas/RulePositionBottom'
+              Top: '#/components/schemas/RulePositionTop'
+        description:
+          description: Optional long-form description.
+          type: string
+          maxLength: 255
     ErrorInfo:
       title: ErrorInfo
       type: object

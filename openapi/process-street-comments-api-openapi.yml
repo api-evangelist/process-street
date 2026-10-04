@@ -212,6 +212,185 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    PublicApiCommentResponse:
+      title: PublicApiCommentResponse
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          title: PublicApiComment
+          type: object
+          required:
+          - id
+          - createdDate
+          - createdBy
+          - updatedDate
+          - updatedBy
+          - workflowRunId
+          - taskId
+          - text
+          properties:
+            id:
+              description: The ID of the Comment
+              examples:
+              - hyaux9QcP0MQtVAx_olPjQ
+              type: string
+            createdDate:
+              description: When the resource was first created. ISO-8601 UTC.
+              type: string
+              format: date-time
+            createdBy:
+              description: User who created the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            updatedDate:
+              description: When the resource was last modified. ISO-8601 UTC.
+              type: string
+              format: date-time
+            updatedBy:
+              description: User who last modified the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            workflowRunId:
+              description: The ID of the Workflow Run
+              examples:
+              - hyaux9QcP0MQtVAx_olPjQ
+              type: string
+            taskId:
+              description: The ID of the Task
+              examples:
+              - hyaux9QcP0MQtVAx_olPjQ
+              type: string
+            text:
+              description: The comment body. Plain text; not interpreted as Markdown or HTML.
+              type: string
+            links:
+              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+              type: array
+              items:
+                title: Link
+                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                type: object
+                required:
+                - name
+                - href
+                - type
+                properties:
+                  name:
+                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                    type: string
+                  href:
+                    title: Uri
+                    description: URL of the linked resource.
+                    examples:
+                    - https://api.process.st/api/v1.1/resource/XXX
+                    type: string
+                  rel:
+                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                    type: string
+                    enum:
+                    - Approval Task
+                    - Approvals
+                    - Assignees
+                    - Comment
+                    - Data Set Records
+                    - Data Sets
+                    - Form Field Values
+                    - Subject Task
+                    - Task
+                    - Tasks
+                    - Users
+                    - Webhook
+                    - Workflow
+                    - Workflow Run
+                  type:
+                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                    type: string
+                    enum:
+                    - Api
+                    - App
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     CreateCommentRequest:
       title: CreateCommentRequest
       type: object
@@ -230,15 +409,6 @@ components:
           examples:
           - isvAAMiLinSLGoCyGflKcA
           type: string
-        text:
-          type: string
-          minLength: 1
-    UpdateCommentRequest:
-      title: UpdateCommentRequest
-      type: object
-      required:
-      - text
-      properties:
         text:
           type: string
           minLength: 1
@@ -422,6 +592,15 @@ components:
                 enum:
                 - Api
                 - App
+    UpdateCommentRequest:
+      title: UpdateCommentRequest
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          minLength: 1
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -461,185 +640,6 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    PublicApiCommentResponse:
-      title: PublicApiCommentResponse
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          title: PublicApiComment
-          type: object
-          required:
-          - id
-          - createdDate
-          - createdBy
-          - updatedDate
-          - updatedBy
-          - workflowRunId
-          - taskId
-          - text
-          properties:
-            id:
-              description: The ID of the Comment
-              examples:
-              - hyaux9QcP0MQtVAx_olPjQ
-              type: string
-            createdDate:
-              description: When the resource was first created. ISO-8601 UTC.
-              type: string
-              format: date-time
-            createdBy:
-              description: User who created the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            updatedDate:
-              description: When the resource was last modified. ISO-8601 UTC.
-              type: string
-              format: date-time
-            updatedBy:
-              description: User who last modified the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            workflowRunId:
-              description: The ID of the Workflow Run
-              examples:
-              - hyaux9QcP0MQtVAx_olPjQ
-              type: string
-            taskId:
-              description: The ID of the Task
-              examples:
-              - hyaux9QcP0MQtVAx_olPjQ
-              type: string
-            text:
-              description: The comment body. Plain text; not interpreted as Markdown or HTML.
-              type: string
-            links:
-              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-              type: array
-              items:
-                title: Link
-                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                type: object
-                required:
-                - name
-                - href
-                - type
-                properties:
-                  name:
-                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                    type: string
-                  href:
-                    title: Uri
-                    description: URL of the linked resource.
-                    examples:
-                    - https://api.process.st/api/v1.1/resource/XXX
-                    type: string
-                  rel:
-                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                    type: string
-                    enum:
-                    - Approval Task
-                    - Approvals
-                    - Assignees
-                    - Comment
-                    - Data Set Records
-                    - Data Sets
-                    - Form Field Values
-                    - Subject Task
-                    - Task
-                    - Tasks
-                    - Users
-                    - Webhook
-                    - Workflow
-                    - Workflow Run
-                  type:
-                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                    type: string
-                    enum:
-                    - Api
-                    - App
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -388,153 +388,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    UpdatePageRequest:
-      title: UpdatePageRequest
-      type: object
-      required:
-      - name
-      - folderId
-      - shareLevel
-      properties:
-        name:
-          description: Display name.
-          type: string
-          maxLength: 255
-          minLength: 1
-        description:
-          description: Optional free-form description of the page.
-          type: string
-          maxLength: 255
-        folderId:
-          title: EntityID
-          description: The ID of the Folder.
-          type: string
-        shareLevel:
-          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
-          type: string
-          enum:
-          - None
-          - View
-        referenceId:
-          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
-          type: string
-    CreatePageRequest:
-      title: CreatePageRequest
-      type: object
-      required:
-      - name
-      - folderId
-      properties:
-        name:
-          description: Display name.
-          type: string
-          maxLength: 255
-          minLength: 1
-        description:
-          description: Optional free-form description of the page.
-          type: string
-          maxLength: 255
-        folderId:
-          title: EntityID
-          description: The ID of the Folder.
-          type: string
-        shareLevel:
-          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
-          type: string
-          enum:
-          - None
-          - View
-        referenceId:
-          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
-          type: string
-    PublicApiPagePermissionListResponse:
-      title: PublicApiPagePermissionListResponse
-      type: object
-      properties:
-        data:
-          description: The list of resources returned by this request.
-          type: array
-          items:
-            title: PublicApiPagePermission
-            type: object
-            required:
-            - email
-            - accessLevel
-            - permissions
-            properties:
-              email:
-                description: Email address.
-                type: string
-              accessLevel:
-                description: Access level a user or group has on this page. `Edit` — view, edit, and delete the page. `View` — view the page (read-only). `Custom` — the user's underlying permission atoms don't match any predefined level; inspect the `permissions` object on the same entry for the actual atoms.
-                type: string
-                enum:
-                - Edit
-                - View
-                - Custom
-              permissions:
-                title: PublicApiPagePermissionAtoms
-                description: Granular permission flags this user or group has on the page.
-                type: object
-                required:
-                - pageRead
-                - pageUpdate
-                - pageDelete
-                properties:
-                  pageRead:
-                    description: Can view the page.
-                    type: boolean
-                  pageUpdate:
-                    description: Can edit the page.
-                    type: boolean
-                  pageDelete:
-                    description: Can delete the page.
-                    type: boolean
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
     PublicApiPageListResponse:
       title: PublicApiPageListResponse
       type: object
@@ -720,68 +573,6 @@ components:
                 enum:
                 - Api
                 - App
-    PagePermissionEntry:
-      title: PagePermissionEntry
-      type: object
-      required:
-      - email
-      - accessLevel
-      properties:
-        email:
-          description: Email address.
-          type: string
-        accessLevel:
-          description: 'Access level granted to a user on this page.
-
-
-            - `Edit` — view, edit, and delete the page.
-
-            - `View` — view the page (read-only).
-
-            '
-          type: string
-          enum:
-          - Edit
-          - View
-    ErrorInfo:
-      title: ErrorInfo
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
-          type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
-
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
-          type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
-          type: string
     PublicApiPageResponse:
       title: PublicApiPageResponse
       type: object
@@ -966,6 +757,36 @@ components:
                 enum:
                 - Api
                 - App
+    UpdatePageRequest:
+      title: UpdatePageRequest
+      type: object
+      required:
+      - name
+      - folderId
+      - shareLevel
+      properties:
+        name:
+          description: Display name.
+          type: string
+          maxLength: 255
+          minLength: 1
+        description:
+          description: Optional free-form description of the page.
+          type: string
+          maxLength: 255
+        folderId:
+          title: EntityID
+          description: The ID of the Folder.
+          type: string
+        shareLevel:
+          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
+          type: string
+          enum:
+          - None
+          - View
+        referenceId:
+          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
+          type: string
     DuplicatePageRequest:
       title: DuplicatePageRequest
       type: object
@@ -979,6 +800,185 @@ components:
         folderId:
           title: EntityID
           description: The ID of the Folder.
+          type: string
+    PagePermissionEntry:
+      title: PagePermissionEntry
+      type: object
+      required:
+      - email
+      - accessLevel
+      properties:
+        email:
+          description: Email address.
+          type: string
+        accessLevel:
+          description: 'Access level granted to a user on this page.
+
+
+            - `Edit` — view, edit, and delete the page.
+
+            - `View` — view the page (read-only).
+
+            '
+          type: string
+          enum:
+          - Edit
+          - View
+    PublicApiPagePermissionListResponse:
+      title: PublicApiPagePermissionListResponse
+      type: object
+      properties:
+        data:
+          description: The list of resources returned by this request.
+          type: array
+          items:
+            title: PublicApiPagePermission
+            type: object
+            required:
+            - email
+            - accessLevel
+            - permissions
+            properties:
+              email:
+                description: Email address.
+                type: string
+              accessLevel:
+                description: Access level a user or group has on this page. `Edit` — view, edit, and delete the page. `View` — view the page (read-only). `Custom` — the user's underlying permission atoms don't match any predefined level; inspect the `permissions` object on the same entry for the actual atoms.
+                type: string
+                enum:
+                - Edit
+                - View
+                - Custom
+              permissions:
+                title: PublicApiPagePermissionAtoms
+                description: Granular permission flags this user or group has on the page.
+                type: object
+                required:
+                - pageRead
+                - pageUpdate
+                - pageDelete
+                properties:
+                  pageRead:
+                    description: Can view the page.
+                    type: boolean
+                  pageUpdate:
+                    description: Can edit the page.
+                    type: boolean
+                  pageDelete:
+                    description: Can delete the page.
+                    type: boolean
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    CreatePageRequest:
+      title: CreatePageRequest
+      type: object
+      required:
+      - name
+      - folderId
+      properties:
+        name:
+          description: Display name.
+          type: string
+          maxLength: 255
+          minLength: 1
+        description:
+          description: Optional free-form description of the page.
+          type: string
+          maxLength: 255
+        folderId:
+          title: EntityID
+          description: The ID of the Folder.
+          type: string
+        shareLevel:
+          description: Controls who can view this page. `None` — only organization members can view this page. `View` — anyone with the link can view this page.
+          type: string
+          enum:
+          - None
+          - View
+        referenceId:
+          description: Version prefix used when version control is enabled on this page. Combined with the version number to form the full version identifier.
+          type: string
+    ErrorInfo:
+      title: ErrorInfo
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
+          type: string
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
   securitySchemes:
     apiKeyAuth:

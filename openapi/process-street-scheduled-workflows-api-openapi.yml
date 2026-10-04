@@ -244,6 +244,152 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    CreateScheduledWorkflowRequest:
+      title: CreateScheduledWorkflowRequest
+      type: object
+      required:
+      - workflowId
+      - startDate
+      - timeZone
+      properties:
+        workflowId:
+          description: The ID of the Workflow
+          examples:
+          - kOj4KAR4KoR91yv8PFVBmg
+          type: string
+        name:
+          description: Display name.
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        timeZone:
+          type: string
+        duePeriod:
+          type: string
+        rules:
+          type: array
+          items:
+            title: PublicApiScheduledWorkflowRule
+            oneOf:
+            - title: Daily
+              type: object
+              required:
+              - interval
+              - frequency
+              properties:
+                interval:
+                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                  type: integer
+                  format: int32
+                frequency:
+                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                  type: string
+                  enum:
+                  - Daily
+                  - Weekly
+                  - Monthly
+                  - Yearly
+                  const: Daily
+            - title: Monthly
+              type: object
+              required:
+              - interval
+              - by
+              - frequency
+              properties:
+                interval:
+                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                  type: integer
+                  format: int32
+                by:
+                  description: 'How a `Monthly` rule recurs:
+
+                    `DayOfMonth` repeats on the same calendar date each month (e.g. the 15th);
+
+                    `DayOfWeek` repeats on the same weekday-of-month pattern (e.g. the second Tuesday).'
+                  type: string
+                  enum:
+                  - DayOfMonth
+                  - DayOfWeek
+                frequency:
+                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                  type: string
+                  enum:
+                  - Daily
+                  - Weekly
+                  - Monthly
+                  - Yearly
+                  const: Monthly
+            - title: Weekly
+              type: object
+              required:
+              - interval
+              - weekDay
+              - frequency
+              properties:
+                interval:
+                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                  type: integer
+                  format: int32
+                weekDay:
+                  description: Day of the week the workflow runs on. Only used by `Weekly` rules.
+                  type: string
+                  enum:
+                  - Sunday
+                  - Monday
+                  - Tuesday
+                  - Wednesday
+                  - Thursday
+                  - Friday
+                  - Saturday
+                frequency:
+                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                  type: string
+                  enum:
+                  - Daily
+                  - Weekly
+                  - Monthly
+                  - Yearly
+                  const: Weekly
+            - title: Yearly
+              type: object
+              required:
+              - interval
+              - frequency
+              properties:
+                interval:
+                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
+                  type: integer
+                  format: int32
+                frequency:
+                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
+
+                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
+                  type: string
+                  enum:
+                  - Daily
+                  - Weekly
+                  - Monthly
+                  - Yearly
+                  const: Yearly
+            discriminator:
+              propertyName: frequency
+              mapping:
+                Daily: '#/components/schemas/Daily'
+                Monthly: '#/components/schemas/Monthly'
+                Weekly: '#/components/schemas/Weekly'
+                Yearly: '#/components/schemas/Yearly'
+        assigneeEmails:
+          type: array
+          items:
+            type: string
     PublicApiScheduledWorkflowResponse:
       title: PublicApiScheduledWorkflowResponse
       type: object
@@ -560,191 +706,6 @@ components:
                 enum:
                 - Api
                 - App
-    CreateScheduledWorkflowRequest:
-      title: CreateScheduledWorkflowRequest
-      type: object
-      required:
-      - workflowId
-      - startDate
-      - timeZone
-      properties:
-        workflowId:
-          description: The ID of the Workflow
-          examples:
-          - kOj4KAR4KoR91yv8PFVBmg
-          type: string
-        name:
-          description: Display name.
-          type: string
-        startDate:
-          type: string
-          format: date-time
-        timeZone:
-          type: string
-        duePeriod:
-          type: string
-        rules:
-          type: array
-          items:
-            title: PublicApiScheduledWorkflowRule
-            oneOf:
-            - title: Daily
-              type: object
-              required:
-              - interval
-              - frequency
-              properties:
-                interval:
-                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                  type: integer
-                  format: int32
-                frequency:
-                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                  type: string
-                  enum:
-                  - Daily
-                  - Weekly
-                  - Monthly
-                  - Yearly
-                  const: Daily
-            - title: Monthly
-              type: object
-              required:
-              - interval
-              - by
-              - frequency
-              properties:
-                interval:
-                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                  type: integer
-                  format: int32
-                by:
-                  description: 'How a `Monthly` rule recurs:
-
-                    `DayOfMonth` repeats on the same calendar date each month (e.g. the 15th);
-
-                    `DayOfWeek` repeats on the same weekday-of-month pattern (e.g. the second Tuesday).'
-                  type: string
-                  enum:
-                  - DayOfMonth
-                  - DayOfWeek
-                frequency:
-                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                  type: string
-                  enum:
-                  - Daily
-                  - Weekly
-                  - Monthly
-                  - Yearly
-                  const: Monthly
-            - title: Weekly
-              type: object
-              required:
-              - interval
-              - weekDay
-              - frequency
-              properties:
-                interval:
-                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                  type: integer
-                  format: int32
-                weekDay:
-                  description: Day of the week the workflow runs on. Only used by `Weekly` rules.
-                  type: string
-                  enum:
-                  - Sunday
-                  - Monday
-                  - Tuesday
-                  - Wednesday
-                  - Thursday
-                  - Friday
-                  - Saturday
-                frequency:
-                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                  type: string
-                  enum:
-                  - Daily
-                  - Weekly
-                  - Monthly
-                  - Yearly
-                  const: Weekly
-            - title: Yearly
-              type: object
-              required:
-              - interval
-              - frequency
-              properties:
-                interval:
-                  description: Recurrence interval. For a Weekly schedule with `interval=2`, fires every other week.
-                  type: integer
-                  format: int32
-                frequency:
-                  description: 'How often the workflow runs. The other fields on the rule depend on this value:
-
-                    `Daily` uses only `interval`, `Weekly` adds `weekDay`, `Monthly` adds `by`, `Yearly` uses only `interval`.'
-                  type: string
-                  enum:
-                  - Daily
-                  - Weekly
-                  - Monthly
-                  - Yearly
-                  const: Yearly
-            discriminator:
-              propertyName: frequency
-              mapping:
-                Daily: '#/components/schemas/Daily'
-                Monthly: '#/components/schemas/Monthly'
-                Weekly: '#/components/schemas/Weekly'
-                Yearly: '#/components/schemas/Yearly'
-        assigneeEmails:
-          type: array
-          items:
-            type: string
-    ErrorInfo:
-      title: ErrorInfo
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
-          type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
-
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
-          type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
-          type: string
     PublicApiScheduledWorkflowListResponse:
       title: PublicApiScheduledWorkflowListResponse
       type: object
@@ -1062,6 +1023,45 @@ components:
                 enum:
                 - Api
                 - App
+    ErrorInfo:
+      title: ErrorInfo
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
+          type: string
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -506,365 +506,6 @@ paths:
       - httpAuth: []
 components:
   schemas:
-    ImportDataSetRowsResponse:
-      title: ImportDataSetRowsResponse
-      type: object
-      required:
-      - id
-      - created
-      - updated
-      - deleted
-      properties:
-        id:
-          description: The ID of the Data Set
-          examples:
-          - gb7mWlfEf4Z3iejhYlNE-g
-          type: string
-        created:
-          type: integer
-          format: int64
-        updated:
-          type: integer
-          format: int64
-        deleted:
-          type: integer
-          format: int64
-    CreateDataSetRowRequest:
-      title: CreateDataSetRowRequest
-      type: object
-      properties:
-        cells:
-          type: array
-          items:
-            title: SimplifiedCell
-            type: object
-            required:
-            - fieldId
-            - value
-            properties:
-              fieldId:
-                title: EntityID
-                description: The ID of the form field.
-                type: string
-              value:
-                description: The option's stored value.
-                oneOf:
-                - type: 'null'
-                - type: number
-                - type: string
-    CreateDataSetRowResponse:
-      title: CreateDataSetRowResponse
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          description: The ID of the Data Set Record
-          examples:
-          - i8iL1atgd-SFcxevEfZN0w
-          type: string
-    ListDataSetsResponse:
-      title: ListDataSetsResponse
-      type: object
-      properties:
-        dataSets:
-          type: array
-          items:
-            title: SimplifiedDataSet
-            type: object
-            required:
-            - id
-            - audit
-            - organizationId
-            - name
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              audit:
-                title: PublicApiAudit
-                description: Creation and last-modification metadata.
-                type: object
-                required:
-                - createdDate
-                - createdBy
-                - updatedDate
-                - updatedBy
-                properties:
-                  createdDate:
-                    description: When the resource was first created. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  createdBy:
-                    title: PublicApiUser
-                    description: User who created the resource.
-                    examples:
-                    - id: iAaSNCU5lWLYGAi663hO8Q
-                      email: jane.doe@example.com
-                      username: Jane Doe
-                    type: object
-                    required:
-                    - id
-                    - email
-                    - username
-                    properties:
-                      id:
-                        title: EntityID
-                        description: The resource's ID.
-                        type: string
-                      email:
-                        description: The user's email address (also their login identifier).
-                        type: string
-                      username:
-                        description: The user's display name (e.g. `Jane Doe`).
-                        type: string
-                  updatedDate:
-                    description: When the resource was last modified. ISO-8601 UTC.
-                    type: string
-                    format: date-time
-                  updatedBy:
-                    title: PublicApiUser
-                    description: User who last modified the resource.
-                    examples:
-                    - id: iAaSNCU5lWLYGAi663hO8Q
-                      email: jane.doe@example.com
-                      username: Jane Doe
-                    type: object
-                    required:
-                    - id
-                    - email
-                    - username
-                    properties:
-                      id:
-                        title: EntityID
-                        description: The resource's ID.
-                        type: string
-                      email:
-                        description: The user's email address (also their login identifier).
-                        type: string
-                      username:
-                        description: The user's display name (e.g. `Jane Doe`).
-                        type: string
-              deletedDate:
-                type: string
-                format: date-time
-              deletedBy:
-                title: PublicApiUser
-                examples:
-                - id: iAaSNCU5lWLYGAi663hO8Q
-                  email: jane.doe@example.com
-                  username: Jane Doe
-                type: object
-                required:
-                - id
-                - email
-                - username
-                properties:
-                  id:
-                    title: EntityID
-                    description: The resource's ID.
-                    type: string
-                  email:
-                    description: The user's email address (also their login identifier).
-                    type: string
-                  username:
-                    description: The user's display name (e.g. `Jane Doe`).
-                    type: string
-              organizationId:
-                title: EntityID
-                description: The ID of the organization this resource belongs to.
-                type: string
-              name:
-                description: Display name.
-                type: string
-              fields:
-                description: Form field definitions or column definitions, depending on context.
-                type: array
-                items:
-                  title: DataSetField
-                  type: object
-                  required:
-                  - id
-                  - audit
-                  - name
-                  - fieldType
-                  properties:
-                    id:
-                      title: EntityID
-                      description: The resource's ID.
-                      type: string
-                    audit:
-                      title: PublicApiAudit
-                      description: Creation and last-modification metadata.
-                      type: object
-                      required:
-                      - createdDate
-                      - createdBy
-                      - updatedDate
-                      - updatedBy
-                      properties:
-                        createdDate:
-                          description: When the resource was first created. ISO-8601 UTC.
-                          type: string
-                          format: date-time
-                        createdBy:
-                          title: PublicApiUser
-                          description: User who created the resource.
-                          examples:
-                          - id: iAaSNCU5lWLYGAi663hO8Q
-                            email: jane.doe@example.com
-                            username: Jane Doe
-                          type: object
-                          required:
-                          - id
-                          - email
-                          - username
-                          properties:
-                            id:
-                              title: EntityID
-                              description: The resource's ID.
-                              type: string
-                            email:
-                              description: The user's email address (also their login identifier).
-                              type: string
-                            username:
-                              description: The user's display name (e.g. `Jane Doe`).
-                              type: string
-                        updatedDate:
-                          description: When the resource was last modified. ISO-8601 UTC.
-                          type: string
-                          format: date-time
-                        updatedBy:
-                          title: PublicApiUser
-                          description: User who last modified the resource.
-                          examples:
-                          - id: iAaSNCU5lWLYGAi663hO8Q
-                            email: jane.doe@example.com
-                            username: Jane Doe
-                          type: object
-                          required:
-                          - id
-                          - email
-                          - username
-                          properties:
-                            id:
-                              title: EntityID
-                              description: The resource's ID.
-                              type: string
-                            email:
-                              description: The user's email address (also their login identifier).
-                              type: string
-                            username:
-                              description: The user's display name (e.g. `Jane Doe`).
-                              type: string
-                    name:
-                      description: Display name.
-                      type: string
-                    fieldType:
-                      title: ColumnType
-                      description: 'Data type of the column.
-
-
-                        - `Text` — free-form string.
-
-                        - `Number` — numeric value.
-
-                        - `DateTime` — ISO-8601 date-time.
-
-                        '
-                      type: string
-                      enum:
-                      - Text
-                      - DateTime
-                      - Number
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    CreateDataSetRequest:
-      title: CreateDataSetRequest
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          description: Display name.
-          type: string
-          minLength: 1
-        fields:
-          description: Form field definitions or column definitions, depending on context.
-          type: array
-          minItems: 1
-          items:
-            title: CreateDataSetFieldRequest
-            type: object
-            required:
-            - name
-            - fieldType
-            properties:
-              name:
-                description: Display name.
-                type: string
-                minLength: 1
-              fieldType:
-                title: ColumnType
-                description: 'Data type of the column.
-
-
-                  - `Text` — free-form string.
-
-                  - `Number` — numeric value.
-
-                  - `DateTime` — ISO-8601 date-time.
-
-                  '
-                type: string
-                enum:
-                - Text
-                - DateTime
-                - Number
     ListDataSetRowsResponse:
       title: ListDataSetRowsResponse
       type: object
@@ -1019,45 +660,151 @@ components:
                 enum:
                 - Api
                 - App
-    ErrorInfo:
-      title: ErrorInfo
+    CreateDataSetRequest:
+      title: CreateDataSetRequest
       type: object
       required:
-      - error
+      - name
       properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
+        name:
+          description: Display name.
           type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+          minLength: 1
+        fields:
+          description: Form field definitions or column definitions, depending on context.
+          type: array
+          minItems: 1
+          items:
+            title: CreateDataSetFieldRequest
+            type: object
+            required:
+            - name
+            - fieldType
+            properties:
+              name:
+                description: Display name.
+                type: string
+                minLength: 1
+              fieldType:
+                title: ColumnType
+                description: 'Data type of the column.
 
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+
+                  - `Text` — free-form string.
+
+                  - `Number` — numeric value.
+
+                  - `DateTime` — ISO-8601 date-time.
+
+                  '
+                type: string
+                enum:
+                - Text
+                - DateTime
+                - Number
+    SimplifiedRow:
+      title: SimplifiedRow
+      type: object
+      required:
+      - id
+      - audit
+      - organizationId
+      - dataSetId
+      properties:
+        id:
+          title: EntityID
+          description: The resource's ID.
+          type: string
+        audit:
+          title: PublicApiAudit
+          description: Creation and last-modification metadata.
           type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
+          required:
+          - createdDate
+          - createdBy
+          - updatedDate
+          - updatedBy
+          properties:
+            createdDate:
+              description: When the resource was first created. ISO-8601 UTC.
+              type: string
+              format: date-time
+            createdBy:
+              title: PublicApiUser
+              description: User who created the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+            updatedDate:
+              description: When the resource was last modified. ISO-8601 UTC.
+              type: string
+              format: date-time
+            updatedBy:
+              title: PublicApiUser
+              description: User who last modified the resource.
+              examples:
+              - id: iAaSNCU5lWLYGAi663hO8Q
+                email: jane.doe@example.com
+                username: Jane Doe
+              type: object
+              required:
+              - id
+              - email
+              - username
+              properties:
+                id:
+                  title: EntityID
+                  description: The resource's ID.
+                  type: string
+                email:
+                  description: The user's email address (also their login identifier).
+                  type: string
+                username:
+                  description: The user's display name (e.g. `Jane Doe`).
+                  type: string
+        organizationId:
+          title: EntityID
+          description: The ID of the organization this resource belongs to.
           type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+        dataSetId:
+          title: EntityID
           type: string
+        cells:
+          type: array
+          items:
+            title: SimplifiedCell
+            type: object
+            required:
+            - fieldId
+            - value
+            properties:
+              fieldId:
+                title: EntityID
+                description: The ID of the form field.
+                type: string
+              value:
+                description: The option's stored value.
+                oneOf:
+                - type: 'null'
+                - type: number
+                - type: string
     PublicApiDataSetResponse:
       title: PublicApiDataSetResponse
       type: object
@@ -1322,90 +1069,10 @@ components:
                 enum:
                 - Api
                 - App
-    SimplifiedRow:
-      title: SimplifiedRow
+    UpdateDataSetRowRequest:
+      title: UpdateDataSetRowRequest
       type: object
-      required:
-      - id
-      - audit
-      - organizationId
-      - dataSetId
       properties:
-        id:
-          title: EntityID
-          description: The resource's ID.
-          type: string
-        audit:
-          title: PublicApiAudit
-          description: Creation and last-modification metadata.
-          type: object
-          required:
-          - createdDate
-          - createdBy
-          - updatedDate
-          - updatedBy
-          properties:
-            createdDate:
-              description: When the resource was first created. ISO-8601 UTC.
-              type: string
-              format: date-time
-            createdBy:
-              title: PublicApiUser
-              description: User who created the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-            updatedDate:
-              description: When the resource was last modified. ISO-8601 UTC.
-              type: string
-              format: date-time
-            updatedBy:
-              title: PublicApiUser
-              description: User who last modified the resource.
-              examples:
-              - id: iAaSNCU5lWLYGAi663hO8Q
-                email: jane.doe@example.com
-                username: Jane Doe
-              type: object
-              required:
-              - id
-              - email
-              - username
-              properties:
-                id:
-                  title: EntityID
-                  description: The resource's ID.
-                  type: string
-                email:
-                  description: The user's email address (also their login identifier).
-                  type: string
-                username:
-                  description: The user's display name (e.g. `Jane Doe`).
-                  type: string
-        organizationId:
-          title: EntityID
-          description: The ID of the organization this resource belongs to.
-          type: string
-        dataSetId:
-          title: EntityID
-          type: string
         cells:
           type: array
           items:
@@ -1425,6 +1092,27 @@ components:
                 - type: 'null'
                 - type: number
                 - type: string
+    ImportDataSetRowsRequest:
+      title: ImportDataSetRowsRequest
+      type: object
+      required:
+      - strategy
+      - file
+      properties:
+        strategy:
+          description: "How rows in the uploaded CSV are reconciled with the existing data set.\n\n- `Append` — every uploaded row is inserted as a new row (no `key` required;\n  nothing is updated or deleted).\n- `Upsert` — rows whose `key` column matches an existing row are updated in\n  place; new keys are inserted; rows absent from the upload are left untouched.\n- `Sync` — like `Upsert`, but rows in the data set whose key is absent from\n  the upload are deleted, leaving the data set fully in sync with the file.\n"
+          type: string
+          enum:
+          - Append
+          - Upsert
+          - Sync
+        file:
+          description: Uploaded file reference. Use the upload endpoint to attach content.
+          type: string
+          format: binary
+        key:
+          description: Unique key used to identify this row across imports — matches the data set column referenced by the webhook's `keyColumn`.
+          type: string
     UpdateDataSetRequest:
       title: UpdateDataSetRequest
       type: object
@@ -1471,8 +1159,42 @@ components:
                 - Text
                 - DateTime
                 - Number
-    UpdateDataSetRowRequest:
-      title: UpdateDataSetRowRequest
+    ImportDataSetRowsResponse:
+      title: ImportDataSetRowsResponse
+      type: object
+      required:
+      - id
+      - created
+      - updated
+      - deleted
+      properties:
+        id:
+          description: The ID of the Data Set
+          examples:
+          - gb7mWlfEf4Z3iejhYlNE-g
+          type: string
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        deleted:
+          type: integer
+          format: int64
+    CreateDataSetRowResponse:
+      title: CreateDataSetRowResponse
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          description: The ID of the Data Set Record
+          examples:
+          - i8iL1atgd-SFcxevEfZN0w
+          type: string
+    CreateDataSetRowRequest:
+      title: CreateDataSetRowRequest
       type: object
       properties:
         cells:
@@ -1494,26 +1216,304 @@ components:
                 - type: 'null'
                 - type: number
                 - type: string
-    ImportDataSetRowsRequest:
-      title: ImportDataSetRowsRequest
+    ListDataSetsResponse:
+      title: ListDataSetsResponse
+      type: object
+      properties:
+        dataSets:
+          type: array
+          items:
+            title: SimplifiedDataSet
+            type: object
+            required:
+            - id
+            - audit
+            - organizationId
+            - name
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              audit:
+                title: PublicApiAudit
+                description: Creation and last-modification metadata.
+                type: object
+                required:
+                - createdDate
+                - createdBy
+                - updatedDate
+                - updatedBy
+                properties:
+                  createdDate:
+                    description: When the resource was first created. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  createdBy:
+                    title: PublicApiUser
+                    description: User who created the resource.
+                    examples:
+                    - id: iAaSNCU5lWLYGAi663hO8Q
+                      email: jane.doe@example.com
+                      username: Jane Doe
+                    type: object
+                    required:
+                    - id
+                    - email
+                    - username
+                    properties:
+                      id:
+                        title: EntityID
+                        description: The resource's ID.
+                        type: string
+                      email:
+                        description: The user's email address (also their login identifier).
+                        type: string
+                      username:
+                        description: The user's display name (e.g. `Jane Doe`).
+                        type: string
+                  updatedDate:
+                    description: When the resource was last modified. ISO-8601 UTC.
+                    type: string
+                    format: date-time
+                  updatedBy:
+                    title: PublicApiUser
+                    description: User who last modified the resource.
+                    examples:
+                    - id: iAaSNCU5lWLYGAi663hO8Q
+                      email: jane.doe@example.com
+                      username: Jane Doe
+                    type: object
+                    required:
+                    - id
+                    - email
+                    - username
+                    properties:
+                      id:
+                        title: EntityID
+                        description: The resource's ID.
+                        type: string
+                      email:
+                        description: The user's email address (also their login identifier).
+                        type: string
+                      username:
+                        description: The user's display name (e.g. `Jane Doe`).
+                        type: string
+              deletedDate:
+                type: string
+                format: date-time
+              deletedBy:
+                title: PublicApiUser
+                examples:
+                - id: iAaSNCU5lWLYGAi663hO8Q
+                  email: jane.doe@example.com
+                  username: Jane Doe
+                type: object
+                required:
+                - id
+                - email
+                - username
+                properties:
+                  id:
+                    title: EntityID
+                    description: The resource's ID.
+                    type: string
+                  email:
+                    description: The user's email address (also their login identifier).
+                    type: string
+                  username:
+                    description: The user's display name (e.g. `Jane Doe`).
+                    type: string
+              organizationId:
+                title: EntityID
+                description: The ID of the organization this resource belongs to.
+                type: string
+              name:
+                description: Display name.
+                type: string
+              fields:
+                description: Form field definitions or column definitions, depending on context.
+                type: array
+                items:
+                  title: DataSetField
+                  type: object
+                  required:
+                  - id
+                  - audit
+                  - name
+                  - fieldType
+                  properties:
+                    id:
+                      title: EntityID
+                      description: The resource's ID.
+                      type: string
+                    audit:
+                      title: PublicApiAudit
+                      description: Creation and last-modification metadata.
+                      type: object
+                      required:
+                      - createdDate
+                      - createdBy
+                      - updatedDate
+                      - updatedBy
+                      properties:
+                        createdDate:
+                          description: When the resource was first created. ISO-8601 UTC.
+                          type: string
+                          format: date-time
+                        createdBy:
+                          title: PublicApiUser
+                          description: User who created the resource.
+                          examples:
+                          - id: iAaSNCU5lWLYGAi663hO8Q
+                            email: jane.doe@example.com
+                            username: Jane Doe
+                          type: object
+                          required:
+                          - id
+                          - email
+                          - username
+                          properties:
+                            id:
+                              title: EntityID
+                              description: The resource's ID.
+                              type: string
+                            email:
+                              description: The user's email address (also their login identifier).
+                              type: string
+                            username:
+                              description: The user's display name (e.g. `Jane Doe`).
+                              type: string
+                        updatedDate:
+                          description: When the resource was last modified. ISO-8601 UTC.
+                          type: string
+                          format: date-time
+                        updatedBy:
+                          title: PublicApiUser
+                          description: User who last modified the resource.
+                          examples:
+                          - id: iAaSNCU5lWLYGAi663hO8Q
+                            email: jane.doe@example.com
+                            username: Jane Doe
+                          type: object
+                          required:
+                          - id
+                          - email
+                          - username
+                          properties:
+                            id:
+                              title: EntityID
+                              description: The resource's ID.
+                              type: string
+                            email:
+                              description: The user's email address (also their login identifier).
+                              type: string
+                            username:
+                              description: The user's display name (e.g. `Jane Doe`).
+                              type: string
+                    name:
+                      description: Display name.
+                      type: string
+                    fieldType:
+                      title: ColumnType
+                      description: 'Data type of the column.
+
+
+                        - `Text` — free-form string.
+
+                        - `Number` — numeric value.
+
+                        - `DateTime` — ISO-8601 date-time.
+
+                        '
+                      type: string
+                      enum:
+                      - Text
+                      - DateTime
+                      - Number
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
+    ErrorInfo:
+      title: ErrorInfo
       type: object
       required:
-      - strategy
-      - file
+      - error
       properties:
-        strategy:
-          description: "How rows in the uploaded CSV are reconciled with the existing data set.\n\n- `Append` — every uploaded row is inserted as a new row (no `key` required;\n  nothing is updated or deleted).\n- `Upsert` — rows whose `key` column matches an existing row are updated in\n  place; new keys are inserted; rows absent from the upload are left untouched.\n- `Sync` — like `Upsert`, but rows in the data set whose key is absent from\n  the upload are deleted, leaving the data set fully in sync with the file.\n"
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
+          type: string
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
           type: string
           enum:
-          - Append
-          - Upsert
-          - Sync
-        file:
-          description: Uploaded file reference. Use the upload endpoint to attach content.
-          type: string
-          format: binary
-        key:
-          description: Unique key used to identify this row across imports — matches the data set column referenced by the webhook's `keyColumn`.
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
   securitySchemes:
     apiKeyAuth:

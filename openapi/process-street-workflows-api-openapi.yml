@@ -430,6 +430,89 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    DuplicateWorkflowRequest:
+      title: DuplicateWorkflowRequest
+      type: object
+      properties:
+        revisionId:
+          title: EntityID
+          type: string
+        name:
+          description: Display name.
+          type: string
+          maxLength: 255
+        folderId:
+          title: EntityID
+          description: The ID of the Folder.
+          type: string
+    WorkflowPermissionEntry:
+      title: WorkflowPermissionEntry
+      type: object
+      required:
+      - email
+      - accessLevel
+      properties:
+        email:
+          description: Email address.
+          type: string
+        accessLevel:
+          description: Access level granted to a user or group on this workflow. `Edit` — edit the workflow, run new workflow runs, and view all runs created from it. `EditViewOwn` — edit the workflow and run new runs, but only view runs assigned to them (available on some plans). `ViewAll` — view the workflow and all runs, plus run new runs; cannot edit the workflow. `Run` — view the workflow, run new runs, and view runs assigned to them. `View` — view the workflow and only runs assigned to them; cannot run.
+          type: string
+          enum:
+          - Edit
+          - EditViewOwn
+          - ViewAll
+          - Run
+          - View
+    UpdateWorkflowRequest:
+      title: UpdateWorkflowRequest
+      type: object
+      required:
+      - name
+      - folderId
+      - shareLevel
+      - runLinkShareLevel
+      - allowComments
+      - sharedRunsByDefault
+      properties:
+        name:
+          description: Display name.
+          type: string
+          maxLength: 255
+          minLength: 1
+        description:
+          description: Optional free-form description of the workflow.
+          type: string
+          maxLength: 255
+        folderId:
+          description: The ID of the Folder
+          examples:
+          - r2RGPmsMhswgOT4V50lCJw
+          type: string
+        shareLevel:
+          description: Controls who can access this workflow. `None` — only organization members can view and run this workflow (when permitted). `Overview` — used only for Forms; viewers see the form name and background image but not the content. `View` — anyone with the link can view this workflow. `Run` — anyone with the link can view and run this workflow. Setting this to any value other than `None` may return `403 Forbidden` ("too new") — anti-spam protection blocks organizations without an eligible paid subscription outright, and blocks startup-plan organizations younger than 7 days.
+          type: string
+          enum:
+          - None
+          - Overview
+          - View
+          - Run
+        runLinkShareLevel:
+          description: Controls who can run this workflow via a run link. `Organization` — only authenticated organization members with run permission can use the run link. `Public` — anyone with the link can run the workflow without a Process Street account; all runs created from a public link are automatically shared. Setting this to `Public` may return `403 Forbidden` ("too new") — anti-spam protection blocks organizations without an eligible paid subscription outright, and blocks startup-plan organizations younger than 7 days.
+          type: string
+          enum:
+          - Organization
+          - Public
+        allowComments:
+          description: When `true`, comments are enabled on workflow runs created from this workflow.
+          type: boolean
+        sharedRunsByDefault:
+          description: When `true`, new workflow runs created from this workflow have their share link enabled by default. Recipients of the share link can fill in form fields and complete tasks without a Process Street account.
+          type: boolean
+        referenceId:
+          description: Version prefix used when version control is enabled on this workflow. Combined with the version number to form the full version identifier.
+          type: string
+          maxLength: 100
     PublicApiWorkflowPermissionListResponse:
       title: PublicApiWorkflowPermissionListResponse
       type: object
@@ -549,21 +632,6 @@ components:
                 enum:
                 - Api
                 - App
-    DuplicateWorkflowRequest:
-      title: DuplicateWorkflowRequest
-      type: object
-      properties:
-        revisionId:
-          title: EntityID
-          type: string
-        name:
-          description: Display name.
-          type: string
-          maxLength: 255
-        folderId:
-          title: EntityID
-          description: The ID of the Folder.
-          type: string
     CreateWorkflowRequest:
       title: CreateWorkflowRequest
       type: object
@@ -613,184 +681,6 @@ components:
           description: Version prefix used when version control is enabled on this workflow. Combined with the version number to form the full version identifier.
           type: string
           maxLength: 100
-    PublicApiWorkflowResponse:
-      title: PublicApiWorkflowResponse
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          title: PublicApiWorkflow
-          type: object
-          required:
-          - id
-          - audit
-          - name
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            audit:
-              title: PublicApiAudit
-              description: Creation and last-modification metadata.
-              type: object
-              required:
-              - createdDate
-              - createdBy
-              - updatedDate
-              - updatedBy
-              properties:
-                createdDate:
-                  description: When the resource was first created. ISO-8601 UTC.
-                  type: string
-                  format: date-time
-                createdBy:
-                  title: PublicApiUser
-                  description: User who created the resource.
-                  examples:
-                  - id: iAaSNCU5lWLYGAi663hO8Q
-                    email: jane.doe@example.com
-                    username: Jane Doe
-                  type: object
-                  required:
-                  - id
-                  - email
-                  - username
-                  properties:
-                    id:
-                      title: EntityID
-                      description: The resource's ID.
-                      type: string
-                    email:
-                      description: The user's email address (also their login identifier).
-                      type: string
-                    username:
-                      description: The user's display name (e.g. `Jane Doe`).
-                      type: string
-                updatedDate:
-                  description: When the resource was last modified. ISO-8601 UTC.
-                  type: string
-                  format: date-time
-                updatedBy:
-                  title: PublicApiUser
-                  description: User who last modified the resource.
-                  examples:
-                  - id: iAaSNCU5lWLYGAi663hO8Q
-                    email: jane.doe@example.com
-                    username: Jane Doe
-                  type: object
-                  required:
-                  - id
-                  - email
-                  - username
-                  properties:
-                    id:
-                      title: EntityID
-                      description: The resource's ID.
-                      type: string
-                    email:
-                      description: The user's email address (also their login identifier).
-                      type: string
-                    username:
-                      description: The user's display name (e.g. `Jane Doe`).
-                      type: string
-            name:
-              description: The workflow's name.
-              type: string
-            description:
-              description: Optional long-form description of the workflow.
-              type: string
-            links:
-              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
-              type: array
-              items:
-                title: Link
-                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-                type: object
-                required:
-                - name
-                - href
-                - type
-                properties:
-                  name:
-                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                    type: string
-                  href:
-                    title: Uri
-                    description: URL of the linked resource.
-                    examples:
-                    - https://api.process.st/api/v1.1/resource/XXX
-                    type: string
-                  rel:
-                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                    type: string
-                    enum:
-                    - Approval Task
-                    - Approvals
-                    - Assignees
-                    - Comment
-                    - Data Set Records
-                    - Data Sets
-                    - Form Field Values
-                    - Subject Task
-                    - Task
-                    - Tasks
-                    - Users
-                    - Webhook
-                    - Workflow
-                    - Workflow Run
-                  type:
-                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                    type: string
-                    enum:
-                    - Api
-                    - App
-        links:
-          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
     ListTaskTemplatesResponse:
       title: ListTaskTemplatesResponse
       type: object
@@ -1003,6 +893,184 @@ components:
                 enum:
                 - Api
                 - App
+    PublicApiWorkflowResponse:
+      title: PublicApiWorkflowResponse
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          title: PublicApiWorkflow
+          type: object
+          required:
+          - id
+          - audit
+          - name
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            audit:
+              title: PublicApiAudit
+              description: Creation and last-modification metadata.
+              type: object
+              required:
+              - createdDate
+              - createdBy
+              - updatedDate
+              - updatedBy
+              properties:
+                createdDate:
+                  description: When the resource was first created. ISO-8601 UTC.
+                  type: string
+                  format: date-time
+                createdBy:
+                  title: PublicApiUser
+                  description: User who created the resource.
+                  examples:
+                  - id: iAaSNCU5lWLYGAi663hO8Q
+                    email: jane.doe@example.com
+                    username: Jane Doe
+                  type: object
+                  required:
+                  - id
+                  - email
+                  - username
+                  properties:
+                    id:
+                      title: EntityID
+                      description: The resource's ID.
+                      type: string
+                    email:
+                      description: The user's email address (also their login identifier).
+                      type: string
+                    username:
+                      description: The user's display name (e.g. `Jane Doe`).
+                      type: string
+                updatedDate:
+                  description: When the resource was last modified. ISO-8601 UTC.
+                  type: string
+                  format: date-time
+                updatedBy:
+                  title: PublicApiUser
+                  description: User who last modified the resource.
+                  examples:
+                  - id: iAaSNCU5lWLYGAi663hO8Q
+                    email: jane.doe@example.com
+                    username: Jane Doe
+                  type: object
+                  required:
+                  - id
+                  - email
+                  - username
+                  properties:
+                    id:
+                      title: EntityID
+                      description: The resource's ID.
+                      type: string
+                    email:
+                      description: The user's email address (also their login identifier).
+                      type: string
+                    username:
+                      description: The user's display name (e.g. `Jane Doe`).
+                      type: string
+            name:
+              description: The workflow's name.
+              type: string
+            description:
+              description: Optional long-form description of the workflow.
+              type: string
+            links:
+              description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 link relation like `self`, `edit`, `related`), an `href` URL, and a `type` (`Api` for callable endpoints, `App` for browser-facing URLs). Prefer following these `href` values over constructing URLs by hand.
+              type: array
+              items:
+                title: Link
+                description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+                type: object
+                required:
+                - name
+                - href
+                - type
+                properties:
+                  name:
+                    description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                    type: string
+                  href:
+                    title: Uri
+                    description: URL of the linked resource.
+                    examples:
+                    - https://api.process.st/api/v1.1/resource/XXX
+                    type: string
+                  rel:
+                    description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                    type: string
+                    enum:
+                    - Approval Task
+                    - Approvals
+                    - Assignees
+                    - Comment
+                    - Data Set Records
+                    - Data Sets
+                    - Form Field Values
+                    - Subject Task
+                    - Task
+                    - Tasks
+                    - Users
+                    - Webhook
+                    - Workflow
+                    - Workflow Run
+                  type:
+                    description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                    type: string
+                    enum:
+                    - Api
+                    - App
+        links:
+          description: 'Pagination links. When the result has more pages, look for an entry with `name: "next"` — its `href` is the URL to fetch the next page. Absence of `next` means there are no more pages. For single-resource responses this array is typically empty.'
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     ErrorInfo:
       title: ErrorInfo
       type: object
@@ -1042,55 +1110,6 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    UpdateWorkflowRequest:
-      title: UpdateWorkflowRequest
-      type: object
-      required:
-      - name
-      - folderId
-      - shareLevel
-      - runLinkShareLevel
-      - allowComments
-      - sharedRunsByDefault
-      properties:
-        name:
-          description: Display name.
-          type: string
-          maxLength: 255
-          minLength: 1
-        description:
-          description: Optional free-form description of the workflow.
-          type: string
-          maxLength: 255
-        folderId:
-          description: The ID of the Folder
-          examples:
-          - r2RGPmsMhswgOT4V50lCJw
-          type: string
-        shareLevel:
-          description: Controls who can access this workflow. `None` — only organization members can view and run this workflow (when permitted). `Overview` — used only for Forms; viewers see the form name and background image but not the content. `View` — anyone with the link can view this workflow. `Run` — anyone with the link can view and run this workflow. Setting this to any value other than `None` may return `403 Forbidden` ("too new") — anti-spam protection blocks organizations without an eligible paid subscription outright, and blocks startup-plan organizations younger than 7 days.
-          type: string
-          enum:
-          - None
-          - Overview
-          - View
-          - Run
-        runLinkShareLevel:
-          description: Controls who can run this workflow via a run link. `Organization` — only authenticated organization members with run permission can use the run link. `Public` — anyone with the link can run the workflow without a Process Street account; all runs created from a public link are automatically shared. Setting this to `Public` may return `403 Forbidden` ("too new") — anti-spam protection blocks organizations without an eligible paid subscription outright, and blocks startup-plan organizations younger than 7 days.
-          type: string
-          enum:
-          - Organization
-          - Public
-        allowComments:
-          description: When `true`, comments are enabled on workflow runs created from this workflow.
-          type: boolean
-        sharedRunsByDefault:
-          description: When `true`, new workflow runs created from this workflow have their share link enabled by default. Recipients of the share link can fill in form fields and complete tasks without a Process Street account.
-          type: boolean
-        referenceId:
-          description: Version prefix used when version control is enabled on this workflow. Combined with the version number to form the full version identifier.
-          type: string
-          maxLength: 100
     ListWorkflowsResponse:
       title: ListWorkflowsResponse
       type: object
@@ -1269,25 +1288,6 @@ components:
                 enum:
                 - Api
                 - App
-    WorkflowPermissionEntry:
-      title: WorkflowPermissionEntry
-      type: object
-      required:
-      - email
-      - accessLevel
-      properties:
-        email:
-          description: Email address.
-          type: string
-        accessLevel:
-          description: Access level granted to a user or group on this workflow. `Edit` — edit the workflow, run new workflow runs, and view all runs created from it. `EditViewOwn` — edit the workflow and run new runs, but only view runs assigned to them (available on some plans). `ViewAll` — view the workflow and all runs, plus run new runs; cannot edit the workflow. `Run` — view the workflow, run new runs, and view runs assigned to them. `View` — view the workflow and only runs assigned to them; cannot run.
-          type: string
-          enum:
-          - Edit
-          - EditViewOwn
-          - ViewAll
-          - Run
-          - View
   securitySchemes:
     apiKeyAuth:
       type: apiKey

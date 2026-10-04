@@ -430,6 +430,203 @@ paths:
       - httpAuth: []
 components:
   schemas:
+    ListTaskAssigneesResponse:
+      title: ListTaskAssigneesResponse
+      type: object
+      properties:
+        assignees:
+          type: array
+          items:
+            title: PublicApiUser
+            examples:
+            - id: iAaSNCU5lWLYGAi663hO8Q
+              email: jane.doe@example.com
+              username: Jane Doe
+            type: object
+            required:
+            - id
+            - email
+            - username
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              email:
+                description: The user's email address (also their login identifier).
+                type: string
+              username:
+                description: The user's display name (e.g. `Jane Doe`).
+                type: string
+    UpsertApprovalRequest:
+      title: UpsertApprovalRequest
+      type: object
+      required:
+      - approvalTaskId
+      - status
+      properties:
+        approvalTaskId:
+          examples:
+          - kEDOjQu891-kEobPtstORw
+          type: string
+        subjectTaskId:
+          examples:
+          - kEDOjQu891-kEobPtstORw
+          type: string
+        status:
+          description: 'Outcome of an approval task review.
+
+
+            - `Approved` — the reviewer accepted the subject task(s).
+
+            - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
+
+            '
+          type: string
+          enum:
+          - Approved
+          - Rejected
+        comment:
+          type: string
+    GetTaskResponse:
+      title: GetTaskResponse
+      type: object
+      required:
+      - id
+      - updatedDate
+      - updatedBy
+      - workflowRunId
+      - status
+      - name
+      - hidden
+      - stopped
+      properties:
+        id:
+          description: The ID of the Task
+          examples:
+          - mdDUijub_wOJZGOTRs9GEQ
+          type: string
+        updatedDate:
+          description: When the resource was last modified. ISO-8601 UTC.
+          type: string
+          format: date-time
+        updatedBy:
+          title: PublicApiUser
+          description: User who last modified the resource.
+          examples:
+          - id: iAaSNCU5lWLYGAi663hO8Q
+            email: jane.doe@example.com
+            username: Jane Doe
+          type: object
+          required:
+          - id
+          - email
+          - username
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            email:
+              description: The user's email address (also their login identifier).
+              type: string
+            username:
+              description: The user's display name (e.g. `Jane Doe`).
+              type: string
+        completedDate:
+          type: string
+          format: date-time
+        completedBy:
+          title: PublicApiUser
+          examples:
+          - id: iAaSNCU5lWLYGAi663hO8Q
+            email: jane.doe@example.com
+            username: Jane Doe
+          type: object
+          required:
+          - id
+          - email
+          - username
+          properties:
+            id:
+              title: EntityID
+              description: The resource's ID.
+              type: string
+            email:
+              description: The user's email address (also their login identifier).
+              type: string
+            username:
+              description: The user's display name (e.g. `Jane Doe`).
+              type: string
+        workflowRunId:
+          description: The ID of the Workflow Run
+          examples:
+          - mdDUijub_wOJZGOTRs9GEQ
+          type: string
+        status:
+          title: Status
+          type: string
+          enum:
+          - NotCompleted
+          - Completed
+        dueDate:
+          description: Due date. ISO-8601 UTC.
+          type: string
+          format: date-time
+        name:
+          description: Display name.
+          type: string
+        hidden:
+          description: Whether the task is hidden by Conditional Logic.
+          type: boolean
+        stopped:
+          description: Whether the task is blocked (stopped) by an incomplete prior stop task.
+          type: boolean
+        links:
+          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
+          type: array
+          items:
+            title: Link
+            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
+            type: object
+            required:
+            - name
+            - href
+            - type
+            properties:
+              name:
+                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
+                type: string
+              href:
+                title: Uri
+                description: URL of the linked resource.
+                examples:
+                - https://api.process.st/api/v1.1/resource/XXX
+                type: string
+              rel:
+                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
+                type: string
+                enum:
+                - Approval Task
+                - Approvals
+                - Assignees
+                - Comment
+                - Data Set Records
+                - Data Sets
+                - Form Field Values
+                - Subject Task
+                - Task
+                - Tasks
+                - Users
+                - Webhook
+                - Workflow
+                - Workflow Run
+              type:
+                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
+                type: string
+                enum:
+                - Api
+                - App
     ListApprovalsResponse:
       title: ListApprovalsResponse
       type: object
@@ -658,214 +855,6 @@ components:
                 enum:
                 - Api
                 - App
-    UpsertApprovalRequest:
-      title: UpsertApprovalRequest
-      type: object
-      required:
-      - approvalTaskId
-      - status
-      properties:
-        approvalTaskId:
-          examples:
-          - kEDOjQu891-kEobPtstORw
-          type: string
-        subjectTaskId:
-          examples:
-          - kEDOjQu891-kEobPtstORw
-          type: string
-        status:
-          description: 'Outcome of an approval task review.
-
-
-            - `Approved` — the reviewer accepted the subject task(s).
-
-            - `Rejected` — the reviewer rejected; subject tasks return to the assignee for rework.
-
-            '
-          type: string
-          enum:
-          - Approved
-          - Rejected
-        comment:
-          type: string
-    GetTaskResponse:
-      title: GetTaskResponse
-      type: object
-      required:
-      - id
-      - updatedDate
-      - updatedBy
-      - workflowRunId
-      - status
-      - name
-      - hidden
-      - stopped
-      properties:
-        id:
-          description: The ID of the Task
-          examples:
-          - mdDUijub_wOJZGOTRs9GEQ
-          type: string
-        updatedDate:
-          description: When the resource was last modified. ISO-8601 UTC.
-          type: string
-          format: date-time
-        updatedBy:
-          title: PublicApiUser
-          description: User who last modified the resource.
-          examples:
-          - id: iAaSNCU5lWLYGAi663hO8Q
-            email: jane.doe@example.com
-            username: Jane Doe
-          type: object
-          required:
-          - id
-          - email
-          - username
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            email:
-              description: The user's email address (also their login identifier).
-              type: string
-            username:
-              description: The user's display name (e.g. `Jane Doe`).
-              type: string
-        completedDate:
-          type: string
-          format: date-time
-        completedBy:
-          title: PublicApiUser
-          examples:
-          - id: iAaSNCU5lWLYGAi663hO8Q
-            email: jane.doe@example.com
-            username: Jane Doe
-          type: object
-          required:
-          - id
-          - email
-          - username
-          properties:
-            id:
-              title: EntityID
-              description: The resource's ID.
-              type: string
-            email:
-              description: The user's email address (also their login identifier).
-              type: string
-            username:
-              description: The user's display name (e.g. `Jane Doe`).
-              type: string
-        workflowRunId:
-          description: The ID of the Workflow Run
-          examples:
-          - mdDUijub_wOJZGOTRs9GEQ
-          type: string
-        status:
-          title: Status
-          type: string
-          enum:
-          - NotCompleted
-          - Completed
-        dueDate:
-          description: Due date. ISO-8601 UTC.
-          type: string
-          format: date-time
-        name:
-          description: Display name.
-          type: string
-        hidden:
-          description: Whether the task is hidden by Conditional Logic.
-          type: boolean
-        stopped:
-          description: Whether the task is blocked (stopped) by an incomplete prior stop task.
-          type: boolean
-        links:
-          description: Navigable HATEOAS links to related resources. Each entry has a `name` (RFC-5988 relation), an `href` URL, and a `type` (`Api` or `App`).
-          type: array
-          items:
-            title: Link
-            description: A HATEOAS link to a related resource. Use these to navigate between resources without constructing URLs by hand.
-            type: object
-            required:
-            - name
-            - href
-            - type
-            properties:
-              name:
-                description: Standard link relation name (RFC 5988) indicating this link's role. Common values include `self`, `edit`, `related`, `previous`, `next`.
-                type: string
-              href:
-                title: Uri
-                description: URL of the linked resource.
-                examples:
-                - https://api.process.st/api/v1.1/resource/XXX
-                type: string
-              rel:
-                description: Optional. The kind of resource this link points to (e.g. `Workflow`, `Task`, `Comment`).
-                type: string
-                enum:
-                - Approval Task
-                - Approvals
-                - Assignees
-                - Comment
-                - Data Set Records
-                - Data Sets
-                - Form Field Values
-                - Subject Task
-                - Task
-                - Tasks
-                - Users
-                - Webhook
-                - Workflow
-                - Workflow Run
-              type:
-                description: Whether this link targets an API endpoint or a Process Street app URL. `Api` — a callable API endpoint you can fetch directly. `App` — a browser-facing URL in the Process Street UI.
-                type: string
-                enum:
-                - Api
-                - App
-    ErrorInfo:
-      title: ErrorInfo
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
-
-            programmatically — use `errorCode` for that.'
-          type: string
-        details:
-          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
-
-            paths; for `PaymentRequired` the keys describe the limit that was hit.'
-          type: object
-          additionalProperties:
-            type: string
-        errorCode:
-          title: ErrorCode
-          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
-
-            exception handler. Branch your own error handling on this (not the message text).'
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - Conflict
-          - PayloadTooLarge
-          - Validation
-          - RateLimited
-          - InternalError
-        requestId:
-          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
-          type: string
     ListTasksResponse:
       title: ListTasksResponse
       type: object
@@ -1078,34 +1067,6 @@ components:
                 enum:
                 - Api
                 - App
-    ListTaskAssigneesResponse:
-      title: ListTaskAssigneesResponse
-      type: object
-      properties:
-        assignees:
-          type: array
-          items:
-            title: PublicApiUser
-            examples:
-            - id: iAaSNCU5lWLYGAi663hO8Q
-              email: jane.doe@example.com
-              username: Jane Doe
-            type: object
-            required:
-            - id
-            - email
-            - username
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              email:
-                description: The user's email address (also their login identifier).
-                type: string
-              username:
-                description: The user's display name (e.g. `Jane Doe`).
-                type: string
     UpdateTaskRequest:
       title: UpdateTaskRequest
       type: object
@@ -1129,6 +1090,45 @@ components:
           description: Due date. ISO-8601 UTC.
           type: string
           format: date-time
+    ErrorInfo:
+      title: ErrorInfo
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          description: 'Human-readable error message. Suitable for logs or for surfacing to end users; do not parse it
+
+            programmatically — use `errorCode` for that.'
+          type: string
+        details:
+          description: 'Optional structured context. Shape depends on the error: for `Validation` errors the keys are field
+
+            paths; for `PaymentRequired` the keys describe the limit that was hit.'
+          type: object
+          additionalProperties:
+            type: string
+        errorCode:
+          title: ErrorCode
+          description: 'Machine-parsable classification of the error. Always set on responses generated by the global
+
+            exception handler. Branch your own error handling on this (not the message text).'
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - Conflict
+          - PayloadTooLarge
+          - Validation
+          - RateLimited
+          - InternalError
+        requestId:
+          description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -680,6 +680,36 @@ components:
                       enum:
                       - Api
                       - App
+    UpdateMultipleFormFieldValuesRequest:
+      title: UpdateMultipleFormFieldValuesRequest
+      type: object
+      properties:
+        fields:
+          description: Form field definitions or column definitions, depending on context.
+          type: array
+          items:
+            type: object
+            required:
+            - id
+            properties:
+              id:
+                title: EntityID
+                description: The resource's ID.
+                type: string
+              value:
+                description: The form field value (e.g. text, date as ISO string, URL or user email for Users field)
+                type: string
+              values:
+                description: List of form field values
+                type: array
+                items:
+                  type: string
+              timeHidden:
+                description: Whether to hide the time portion and display the date only for Date form fields.
+                type: boolean
+              dataSetRowId:
+                title: EntityID
+                type: string
     UploadFormFieldValueRequest:
       title: UploadFormFieldValueRequest
       type: object
@@ -745,36 +775,6 @@ components:
         requestId:
           description: Per-request correlation ID. Include this when contacting support so we can find the request in our logs.
           type: string
-    UpdateMultipleFormFieldValuesRequest:
-      title: UpdateMultipleFormFieldValuesRequest
-      type: object
-      properties:
-        fields:
-          description: Form field definitions or column definitions, depending on context.
-          type: array
-          items:
-            type: object
-            required:
-            - id
-            properties:
-              id:
-                title: EntityID
-                description: The resource's ID.
-                type: string
-              value:
-                description: The form field value (e.g. text, date as ISO string, URL or user email for Users field)
-                type: string
-              values:
-                description: List of form field values
-                type: array
-                items:
-                  type: string
-              timeHidden:
-                description: Whether to hide the time portion and display the date only for Date form fields.
-                type: boolean
-              dataSetRowId:
-                title: EntityID
-                type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
