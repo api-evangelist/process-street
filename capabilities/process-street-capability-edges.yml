@@ -1,0 +1,45 @@
+slug: process-street
+provider: Process Street
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Workflow Revisions
+  spec_file: process-street-workflow-revisions-api-openapi.yml
+  capability_id: BC-930.20
+  capability_id_l1: BC-930
+  capability_name: Process Modeling and Documentation
+  confidence: 0.78
+  evidence: POST /workflows/{workflowId}/revisions/{revisionId}/publish  'Publish a workflow revision'
+  reason: Revision create/update/publish plus variable listing is version control and publication of process
+    definitions — squarely process modeling and documentation in a process management platform.
+- tag: Workflows
+  spec_file: process-street-workflows-api-openapi.yml
+  capability_id: BC-930.20
+  capability_id_l1: BC-930
+  capability_name: Process Modeling and Documentation
+  confidence: 0.78
+  evidence: POST /workflows  'Create a workflow'; POST /workflows/{workflowId}/duplicate  'Duplicate a
+    workflow'
+  reason: CRUD, duplication and permissioning of reusable process templates ('workflows (reusable templates)')
+    is authoring and stewardship of process documentation artefacts.
+- tag: Scheduled Workflows
+  spec_file: process-street-scheduled-workflows-api-openapi.yml
+  capability_id: BC-930
+  capability_id_l1: BC-930
+  capability_name: Business Process Management
+  confidence: 0.7
+  evidence: POST /scheduled-workflows  createScheduledWorkflow  Create a scheduled workflow; "no-code
+    workflow and process management platform for building, running, and automating recurring team processes"
+  reason: CRUD over schedules that launch recurring process workflow runs on a BPM platform. Business
+    Process Management is clearly the L1; the evidence does not distinguish between process modelling,
+    automation governance or execution, so no L2 is claimed.
