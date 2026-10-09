@@ -1,17 +1,30 @@
-generated: '2026-07-20'
+generated: '2026-09-23'
 method: generated
-source: openapi/process-street-openapi-original.json
+source: openapi/process-street-attachments-api-openapi.yml, openapi/process-street-comments-api-openapi.yml,
+  openapi/process-street-data-set-incoming-webhooks-api-openapi.yml, openapi/process-street-datasets-api-openapi.yml,
+  openapi/process-street-file-uploads-api-openapi.yml, openapi/process-street-folders-api-openapi.yml,
+  openapi/process-street-form-field-values-api-openapi.yml, openapi/process-street-form-fields-api-openapi.yml,
+  openapi/process-street-my-work-api-openapi.yml, openapi/process-street-one-off-tasks-api-openapi.yml,
+  openapi/process-street-page-revisions-api-openapi.yml, openapi/process-street-page-widgets-api-openapi.yml,
+  openapi/process-street-pages-api-openapi.yml, openapi/process-street-scheduled-workflows-api-openapi.yml,
+  openapi/process-street-tasks-api-openapi.yml, openapi/process-street-users-api-openapi.yml,
+  openapi/process-street-utilities-api-openapi.yml, openapi/process-street-webhooks-api-openapi.yml,
+  openapi/process-street-workflow-due-date-rules-api-openapi.yml, openapi/process-street-workflow-incoming-webhooks-api-openapi.yml,
+  openapi/process-street-workflow-logic-rules-api-openapi.yml, openapi/process-street-workflow-revisions-api-openapi.yml,
+  openapi/process-street-workflow-runs-api-openapi.yml, openapi/process-street-workflow-task-assignment-rules-api-openapi.yml,
+  openapi/process-street-workflow-task-due-date-rules-api-openapi.yml, openapi/process-street-workflow-tasks-api-openapi.yml,
+  openapi/process-street-workflow-widgets-api-openapi.yml, openapi/process-street-workflows-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 150
   by_action_class:
-    connected: 62
-    acting: 88
+    connected: 63
+    acting: 87
   by_consequence:
-    read: 62
-    write: 88
+    read: 63
+    write: 87
   human_in_the_loop_required: 0
 operations:
 - path: /attachments
@@ -192,6 +205,158 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /data-sets
+  method: get
+  operationId: listDataSets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data-sets
+  method: post
+  operationId: createDataSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}
+  method: get
+  operationId: getDataSet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data-sets/{dataSetId}
+  method: put
+  operationId: updateDataSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}
+  method: delete
+  operationId: deleteDataSet
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}/records/import
+  method: post
+  operationId: importDataSetRecords
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}/records
+  method: get
+  operationId: listDataSetRecords
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data-sets/{dataSetId}/records
+  method: post
+  operationId: createDataSetRecord
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
+  method: get
+  operationId: getDataSetRecord
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
+  method: put
+  operationId: updateDataSetRecord
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
+  method: delete
+  operationId: deleteDataSetRecord
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /file-uploads
   method: post
   operationId: createFileUpload
@@ -292,9 +457,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/form-fields
   method: get
-  operationId: listWorkflows
+  operationId: listFormFieldValuesByTask
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -302,9 +467,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workflows
+- path: /workflow-runs/{workflowRunId}/form-fields
+  method: get
+  operationId: listFormFieldValues
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflow-runs/{workflowRunId}/form-fields
   method: post
-  operationId: createWorkflow
+  operationId: batchUpdateFormFieldValues
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -318,19 +493,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}
-  method: get
-  operationId: getWorkflow
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}
-  method: put
-  operationId: updateWorkflow
+- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload
+  method: post
+  operationId: uploadFormFieldValue
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -344,9 +509,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}
+- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload
   method: delete
-  operationId: deleteWorkflow
+  operationId: deleteFormFieldAllFiles
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -360,9 +525,25 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}/tasks
+- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload/{fileId}
+  method: delete
+  operationId: deleteFormFieldFileById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/form-fields
   method: get
-  operationId: listWorkflowTasks
+  operationId: listFormFields
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -370,9 +551,39 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workflows/{workflowId}/duplicate
+- path: /workflows/{workflowId}/form-fields/{formFieldId}/options
+  method: get
+  operationId: listFormFieldOptions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /work/items
+  method: get
+  operationId: listMyWorkItems
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /work/items/search
   method: post
-  operationId: duplicateWorkflow
+  operationId: searchMyWorkItems
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /work/items/{itemId}/snooze
+  method: post
+  operationId: snoozeMyWorkItem
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -386,9 +597,25 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}/permissions
+- path: /work/items/{itemId}/snooze
+  method: delete
+  operationId: unsnoozeMyWorkItem
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /work/stats
   method: get
-  operationId: getWorkflowPermissions
+  operationId: getMyWorkStats
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -396,9 +623,813 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workflows/{workflowId}/permissions
+- path: /work/tasks
+  method: post
+  operationId: createOneOffTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /work/tasks/{taskId}
+  method: get
+  operationId: getOneOffTask
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /work/tasks/{taskId}
   method: put
-  operationId: updateWorkflowPermissions
+  operationId: updateOneOffTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /work/tasks/{taskId}
+  method: delete
+  operationId: deleteOneOffTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /work/tasks/{taskId}/complete
+  method: post
+  operationId: completeOneOffTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /work/tasks/{taskId}/uncomplete
+  method: post
+  operationId: uncompleteOneOffTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions
+  method: get
+  operationId: listPageRevisions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/revisions
+  method: post
+  operationId: createPageRevision
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}
+  method: get
+  operationId: getPageRevision
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/revisions/{revisionId}
+  method: put
+  operationId: updatePageRevision
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}
+  method: delete
+  operationId: deletePageRevision
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}/markdown
+  method: get
+  operationId: getPageRevisionMarkdown
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/revisions/{revisionId}/publish
+  method: post
+  operationId: publishPageRevision
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
+  method: get
+  operationId: getPageRevisionWidget
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
+  method: put
+  operationId: updatePageRevisionWidget
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
+  method: delete
+  operationId: deletePageRevisionWidget
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}/widgets
+  method: get
+  operationId: listPageRevisionWidgets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/revisions/{revisionId}/widgets
+  method: post
+  operationId: createPageRevisionWidget
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}/upload
+  method: post
+  operationId: uploadPageRevisionWidgetFile
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages
+  method: get
+  operationId: listPages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages
+  method: post
+  operationId: createPage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}
+  method: get
+  operationId: getPage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}
+  method: put
+  operationId: updatePage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}
+  method: delete
+  operationId: deletePage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/markdown
+  method: get
+  operationId: getPageMarkdown
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/permissions
+  method: get
+  operationId: getPagePermissions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pages/{pageId}/permissions
+  method: put
+  operationId: updatePagePermissions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pages/{pageId}/duplicate
+  method: post
+  operationId: duplicatePage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /scheduled-workflows
+  method: get
+  operationId: listScheduledWorkflows
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scheduled-workflows
+  method: post
+  operationId: createScheduledWorkflow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /scheduled-workflows/{scheduledWorkflowId}
+  method: get
+  operationId: getScheduledWorkflow
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scheduled-workflows/{scheduledWorkflowId}
+  method: put
+  operationId: updateScheduledWorkflow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /scheduled-workflows/{scheduledWorkflowId}
+  method: delete
+  operationId: deleteScheduledWorkflow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflow-runs/{workflowRunId}/approvals
+  method: get
+  operationId: listApprovals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflow-runs/{workflowRunId}/approvals
+  method: put
+  operationId: upsertApproval
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees/{email}
+  method: put
+  operationId: assignTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees/{email}
+  method: delete
+  operationId: unassignTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}
+  method: get
+  operationId: getTask
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}
+  method: put
+  operationId: updateTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /tasks
+  method: get
+  operationId: listTasks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflow-runs/{workflowRunId}/tasks
+  method: get
+  operationId: listTasksByWorkflowRun
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees
+  method: get
+  operationId: listTaskAssignees
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users
+  method: get
+  operationId: listUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /testAuth
+  method: get
+  operationId: testAuth
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /webhooks
+  method: get
+  operationId: listWebhooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /webhooks
+  method: post
+  operationId: createWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /webhooks/{webhookId}
+  method: get
+  operationId: getWebhook
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /webhooks/{webhookId}
+  method: put
+  operationId: updateWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /webhooks/{webhookId}
+  method: delete
+  operationId: deleteWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/revisions/{revisionId}/due-date-rule
+  method: get
+  operationId: getChecklistDueDateRule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/revisions/{revisionId}/due-date-rule
+  method: put
+  operationId: setChecklistDueDateRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/incoming-webhooks
+  method: get
+  operationId: listWorkflowIncomingWebhooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/incoming-webhooks
+  method: post
+  operationId: createWorkflowIncomingWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
+  method: get
+  operationId: getWorkflowIncomingWebhook
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
+  method: put
+  operationId: updateWorkflowIncomingWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
+  method: delete
+  operationId: deleteWorkflowIncomingWebhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules
+  method: get
+  operationId: listWorkflowRevisionLogicRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules
+  method: post
+  operationId: createWorkflowRevisionLogicRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
+  method: get
+  operationId: getWorkflowRevisionLogicRule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
+  method: put
+  operationId: updateWorkflowRevisionLogicRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
+  method: delete
+  operationId: deleteWorkflowRevisionLogicRule
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -642,9 +1673,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflow-runs/{workflowRunId}/approvals
+- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/assignment-rules
   method: get
-  operationId: listApprovals
+  operationId: getWorkflowRevisionTaskAssignmentRules
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -652,9 +1683,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workflow-runs/{workflowRunId}/approvals
+- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/assignment-rules
   method: put
-  operationId: upsertApproval
+  operationId: updateWorkflowRevisionTaskAssignmentRules
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -668,793 +1699,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees/{email}
+- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/due-date-rule
+  method: get
+  operationId: getTaskDueDateRule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/due-date-rule
   method: put
-  operationId: assignTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees/{email}
-  method: delete
-  operationId: unassignTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}
-  method: get
-  operationId: getTask
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}
-  method: put
-  operationId: updateTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /tasks
-  method: get
-  operationId: listTasks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/tasks
-  method: get
-  operationId: listTasksByWorkflowRun
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/assignees
-  method: get
-  operationId: listTaskAssignees
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/form-fields
-  method: get
-  operationId: listFormFields
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/form-fields/{formFieldId}/options
-  method: get
-  operationId: listFormFieldOptions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/tasks/{taskId}/form-fields
-  method: get
-  operationId: listFormFieldValuesByTask
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/form-fields
-  method: get
-  operationId: listFormFieldValues
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflow-runs/{workflowRunId}/form-fields
-  method: post
-  operationId: batchUpdateFormFieldValues
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload
-  method: post
-  operationId: uploadFormFieldValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload
-  method: delete
-  operationId: deleteFormFieldAllFiles
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflow-runs/{workflowRunId}/form-fields/{formFieldId}/upload/{fileId}
-  method: delete
-  operationId: deleteFormFieldFileById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets
-  method: get
-  operationId: listDataSets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /data-sets
-  method: post
-  operationId: createDataSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}
-  method: get
-  operationId: getDataSet
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /data-sets/{dataSetId}
-  method: put
-  operationId: updateDataSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}
-  method: delete
-  operationId: deleteDataSet
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}/records/import
-  method: post
-  operationId: importDataSetRecords
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}/records
-  method: get
-  operationId: listDataSetRecords
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /data-sets/{dataSetId}/records
-  method: post
-  operationId: createDataSetRecord
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
-  method: get
-  operationId: getDataSetRecord
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
-  method: put
-  operationId: updateDataSetRecord
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data-sets/{dataSetId}/records/{dataSetRecordId}
-  method: delete
-  operationId: deleteDataSetRecord
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/tasks
-  method: post
-  operationId: createOneOffTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/tasks/{taskId}
-  method: get
-  operationId: getOneOffTask
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /work/tasks/{taskId}
-  method: put
-  operationId: updateOneOffTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/tasks/{taskId}
-  method: delete
-  operationId: deleteOneOffTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/tasks/{taskId}/complete
-  method: post
-  operationId: completeOneOffTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/tasks/{taskId}/uncomplete
-  method: post
-  operationId: uncompleteOneOffTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages
-  method: get
-  operationId: listPages
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages
-  method: post
-  operationId: createPage
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}
-  method: get
-  operationId: getPage
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}
-  method: put
-  operationId: updatePage
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}
-  method: delete
-  operationId: deletePage
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/markdown
-  method: get
-  operationId: getPageMarkdown
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/permissions
-  method: get
-  operationId: getPagePermissions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/permissions
-  method: put
-  operationId: updatePagePermissions
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/duplicate
-  method: post
-  operationId: duplicatePage
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions
-  method: get
-  operationId: listPageRevisions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/revisions
-  method: post
-  operationId: createPageRevision
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}
-  method: get
-  operationId: getPageRevision
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/revisions/{revisionId}
-  method: put
-  operationId: updatePageRevision
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}
-  method: delete
-  operationId: deletePageRevision
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}/markdown
-  method: get
-  operationId: getPageRevisionMarkdown
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/revisions/{revisionId}/publish
-  method: post
-  operationId: publishPageRevision
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
-  method: get
-  operationId: getPageRevisionWidget
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
-  method: put
-  operationId: updatePageRevisionWidget
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}
-  method: delete
-  operationId: deletePageRevisionWidget
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}/widgets
-  method: get
-  operationId: listPageRevisionWidgets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pages/{pageId}/revisions/{revisionId}/widgets
-  method: post
-  operationId: createPageRevisionWidget
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pages/{pageId}/revisions/{revisionId}/widgets/{widgetId}/upload
-  method: post
-  operationId: uploadPageRevisionWidgetFile
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules
-  method: get
-  operationId: listWorkflowRevisionLogicRules
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules
-  method: post
-  operationId: createWorkflowRevisionLogicRule
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
-  method: get
-  operationId: getWorkflowRevisionLogicRule
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
-  method: put
-  operationId: updateWorkflowRevisionLogicRule
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/logic-rules/{ruleId}
-  method: delete
-  operationId: deleteWorkflowRevisionLogicRule
+  operationId: setTaskDueDateRule
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1588,100 +1845,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}/incoming-webhooks
-  method: get
-  operationId: listWorkflowIncomingWebhooks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/incoming-webhooks
-  method: post
-  operationId: createWorkflowIncomingWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
-  method: get
-  operationId: getWorkflowIncomingWebhook
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
-  method: put
-  operationId: updateWorkflowIncomingWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/incoming-webhooks/{webhookId}
-  method: delete
-  operationId: deleteWorkflowIncomingWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/assignment-rules
-  method: get
-  operationId: getWorkflowRevisionTaskAssignmentRules
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/assignment-rules
-  method: put
-  operationId: updateWorkflowRevisionTaskAssignmentRules
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/widgets
   method: get
   operationId: listWorkflowRevisionTaskWidgets
@@ -1766,9 +1929,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/due-date-rule
+- path: /workflows
   method: get
-  operationId: getChecklistDueDateRule
+  operationId: listWorkflows
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1776,61 +1939,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workflows/{workflowId}/revisions/{revisionId}/due-date-rule
-  method: put
-  operationId: setChecklistDueDateRule
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/due-date-rule
-  method: get
-  operationId: getTaskDueDateRule
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workflows/{workflowId}/revisions/{revisionId}/tasks/{taskId}/due-date-rule
-  method: put
-  operationId: setTaskDueDateRule
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /scheduled-workflows
-  method: get
-  operationId: listScheduledWorkflows
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /scheduled-workflows
+- path: /workflows
   method: post
-  operationId: createScheduledWorkflow
+  operationId: createWorkflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1844,9 +1955,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /scheduled-workflows/{scheduledWorkflowId}
+- path: /workflows/{workflowId}
   method: get
-  operationId: getScheduledWorkflow
+  operationId: getWorkflow
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1854,9 +1965,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /scheduled-workflows/{scheduledWorkflowId}
+- path: /workflows/{workflowId}
   method: put
-  operationId: updateScheduledWorkflow
+  operationId: updateWorkflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1870,9 +1981,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /scheduled-workflows/{scheduledWorkflowId}
+- path: /workflows/{workflowId}
   method: delete
-  operationId: deleteScheduledWorkflow
+  operationId: deleteWorkflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1886,9 +1997,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /users
+- path: /workflows/{workflowId}/tasks
   method: get
-  operationId: listUsers
+  operationId: listWorkflowTasks
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1896,19 +2007,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /webhooks
-  method: get
-  operationId: listWebhooks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /webhooks
+- path: /workflows/{workflowId}/duplicate
   method: post
-  operationId: createWebhook
+  operationId: duplicateWorkflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1922,9 +2023,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /webhooks/{webhookId}
+- path: /workflows/{workflowId}/permissions
   method: get
-  operationId: getWebhook
+  operationId: getWorkflowPermissions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1932,9 +2033,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /webhooks/{webhookId}
+- path: /workflows/{workflowId}/permissions
   method: put
-  operationId: updateWebhook
+  operationId: updateWorkflowPermissions
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1948,97 +2049,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /webhooks/{webhookId}
-  method: delete
-  operationId: deleteWebhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /testAuth
-  method: get
-  operationId: testAuth
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /work/items
-  method: get
-  operationId: listMyWorkItems
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /work/items/search
-  method: post
-  operationId: searchMyWorkItems
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/items/{itemId}/snooze
-  method: post
-  operationId: snoozeMyWorkItem
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/items/{itemId}/snooze
-  method: delete
-  operationId: unsnoozeMyWorkItem
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /work/stats
-  method: get
-  operationId: getMyWorkStats
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none

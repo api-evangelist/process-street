@@ -39,3 +39,21 @@ deployment:
   source: wall re-adjudication 2026-09-11 (RFC 9728 / JSON-RPC envelope)
   probe_prior: wall
   probe_why: RFC 9728 challenge (host-wide OAuth-protected resource)
+rfc9728:
+  endpoint: https://mcp.process.st/
+  metadata_url: https://mcp.process.st/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.process.st
+    authorization_servers:
+    - https://login.process.st
+    scopes_supported:
+    - openid
+    - profile
+    - email
+    - offline_access
+    bearer_methods_supported:
+    - header
