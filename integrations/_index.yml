@@ -85,3 +85,42 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: process-street-meltano-meltano-hub
+  label: Meltano (meltano-hub)
+  partner: meltano
+  partner_name: Meltano (meltano-hub)
+  category: data integration
+  type: marketplace
+  marketplace: meltano-hub
+  channel: partner-built
+  evidence: https://hub.meltano.com/extractors/tap-process-street--process-street
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: process-street-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200003933
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: process-street-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A01F13G6C6N-process-street
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
